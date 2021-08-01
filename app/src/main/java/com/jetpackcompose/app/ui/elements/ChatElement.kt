@@ -26,6 +26,20 @@ import com.jetpackcompose.app.ui.theme.ComposeAppTheme
 /**
  * https://developer.android.com/jetpack/compose/tutorial
  */
+
+@Preview(name = "Light Mode")
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode"
+)
+@Composable
+fun PreviewMessageCard() {
+    ComposeAppTheme {
+        Conversation(messages = getSampleMessages())
+    }
+}
+
 data class Message(val author: String, val body: String)
 
 @Composable
@@ -92,19 +106,6 @@ fun Conversation(messages: List<Message>) {
         items(messages) { message ->
             MessageCard(msg = message)
         }
-    }
-}
-
-@Preview(name = "Light Mode")
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    name = "Dark Mode"
-)
-@Composable
-fun PreviewMessageCard() {
-    ComposeAppTheme {
-        Conversation(messages = getSampleMessages())
     }
 }
 
