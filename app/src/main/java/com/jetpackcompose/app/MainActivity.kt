@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 /**
- * https://developer.android.com/oauth2callback?state=%7B%22csrf_token%22%3A+%22f19493b591739f30339c497833af941190b2196f19b456fcd9bc5b626cf11303%22%2C+%22return_url%22%3A+%22https%3A%2F%2Fdeveloper.android.com%2Fjetpack%2Fcompose%2Ftutorial%22%7D&code=4%2F0AX4XfWhtklQBSCSlzMJt7slEoJyxxhwRAur2G9Tpl-QYuetboxvNGH3_weCjtqe9w6hGWA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdeveloperprofiles+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdeveloperprofiles.award+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgoogledevelopers&authuser=0&prompt=none
+ * https://developer.android.com/jetpack/compose/tutorial
  */
 data class Message(val author: String, val body: String)
 
