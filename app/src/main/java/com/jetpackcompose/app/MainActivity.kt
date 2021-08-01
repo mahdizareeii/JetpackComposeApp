@@ -8,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,9 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jetpackcompose.app.ui.theme.Black
 import com.jetpackcompose.app.ui.theme.ComposeAppTheme
-import com.jetpackcompose.app.ui.theme.Purple700
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,15 +46,21 @@ fun MessageCard(msg: Message) {
             modifier = Modifier
                 .size(50.dp)
                 .clip(CircleShape)
-                .border(1.dp, Purple700, CircleShape)
+                .border(1.dp, MaterialTheme.colors.onPrimary, CircleShape)
         )
 
         Spacer(Modifier.width(8.dp))
 
         Column() {
-            Text(text = msg.author, color = Black)
+            Text(
+                text = msg.author,
+                color = MaterialTheme.colors.onSurface
+            )
             Spacer(modifier = Modifier.height(5.dp))
-            Text(text = msg.body)
+            Text(
+                text = msg.body,
+                color = MaterialTheme.colors.onSecondary
+            )
         }
     }
 }

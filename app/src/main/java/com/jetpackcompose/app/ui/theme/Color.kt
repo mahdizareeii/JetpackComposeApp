@@ -2,8 +2,15 @@ package com.jetpackcompose.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
-val Black = Color(0xFF001433)
+val PrimaryColor = Color(0xFF3F51B5)
+val PrimaryColorDark = Color(0xFF001433)
+val SecondaryColor = Color(0xFFFFC107)
+val SecondaryColorDark = Color(0xFFFFC107)
+val PrimaryVariantDark = Color(0xFF3F51B5)
+val PrimaryVariant = Color(0xFF2196F3)
+val BackgroundColor = Color(0xFFFFFFFF)
+val BackgroundColorDark = Color(0xFF001433)
+val DarkBlue = Color(0xFF001433)
+val DarkBlue2 = Color(0xFF003381)
+val White = Color(0xFFE4E4E4)
+val White2 = Color(0xFFC7C7C7)
