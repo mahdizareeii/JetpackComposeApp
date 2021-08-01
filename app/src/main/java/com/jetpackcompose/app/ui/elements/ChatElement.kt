@@ -116,7 +116,7 @@ fun getSampleMessages() = listOf(
     Message("Mahdi", "Im fine too"),
     Message(
         "Mahdi",
-        "Please read this \n We want you to understand the types of information we collect as you use our services\n" +
+        "We want you to understand the types of information we collect as you use our services\n" +
                 "\n" +
                 "We collect information to provide better services to all our users — from figuring out basic stuff like which language you speak, to more complex things like which ads you’ll find most useful, the people who matter most to you online, or which YouTube videos you might like. The information Google collects, and how that information is used, depends on how you use our services and how you manage your privacy controls.\n" +
                 "\n" +
