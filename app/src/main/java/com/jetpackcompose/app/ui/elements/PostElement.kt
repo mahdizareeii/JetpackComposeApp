@@ -1,4 +1,3 @@
 package com.jetpackcompose.app.ui.elements
 
-class PostElement {
-}
+data class Post(val postOwner: String, val postBody: String)

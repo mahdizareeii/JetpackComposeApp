@@ -102,7 +102,9 @@ fun MessageCard(msg: Message) {
  */
 @Composable
 fun Conversation(messages: List<Message>) {
-    LazyColumn {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(5.dp)
+    ) {
         items(messages) { message ->
             MessageCard(msg = message)
         }
