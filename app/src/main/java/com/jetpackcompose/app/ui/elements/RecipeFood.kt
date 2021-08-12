@@ -19,7 +19,7 @@ import com.jetpackcompose.app.R
 import com.jetpackcompose.app.ui.theme.ComposeAppTheme
 
 @Composable
-fun recipeFood() {
+fun RecipeFood() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -70,6 +70,6 @@ fun recipeFood() {
 @Composable
 fun previewRecipeFood() {
     ComposeAppTheme {
-        recipeFood()
+        RecipeFood()
     }
 }
