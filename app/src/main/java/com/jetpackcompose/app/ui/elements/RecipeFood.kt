@@ -70,7 +70,7 @@ fun RecipeFood() {
     name = "Dark Mode"
 )
 @Composable
-fun previewRecipeFood() {
+fun PreviewRecipeFood() {
     ComposeAppTheme {
         RecipeFood()
     }
