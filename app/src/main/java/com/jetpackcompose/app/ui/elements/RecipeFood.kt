@@ -28,7 +28,9 @@ fun RecipeFood() {
         items(1) {
             Image(
                 painter = painterResource(id = R.drawable.food),
-                modifier = Modifier.height(300.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
                 contentScale = ContentScale.Crop,
                 contentDescription = "food image"
             )
