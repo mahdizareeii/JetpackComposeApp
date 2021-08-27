@@ -2,13 +2,13 @@ package com.jetpackcompose.app.ui.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class RecipeResponse(
+data class RecipeDto(
     @SerializedName("pk")
     val primaryKey: Int? = null,
     @SerializedName("title")
     val title: String? = null,
     @SerializedName("cooking_instructions")
-    val cookingInstructions: Any? = null,
+    val cookingInstructions: String? = null,
     @SerializedName("date_added")
     val dateAdded: String? = null,
     @SerializedName("date_updated")
