@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.ui.elements
+package com.jetpackcompose.app.ui.theme.element
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image

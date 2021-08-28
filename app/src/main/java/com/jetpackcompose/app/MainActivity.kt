@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.google.gson.GsonBuilder
-import com.jetpackcompose.app.ui.elements.RecipeFood
+import com.jetpackcompose.app.ui.theme.element.RecipeFood
 import com.jetpackcompose.app.ui.network.api.RecipeApiService
 import com.jetpackcompose.app.ui.theme.ComposeAppTheme
 import kotlinx.coroutines.CoroutineScope
