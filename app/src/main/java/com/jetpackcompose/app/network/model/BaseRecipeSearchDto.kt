@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.ui.network.model
+package com.jetpackcompose.app.network.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,7 +1,7 @@
-package com.jetpackcompose.app.ui.network.api
+package com.jetpackcompose.app.network.api
 
-import com.jetpackcompose.app.ui.network.model.BaseRecipeSearchDto
-import com.jetpackcompose.app.ui.network.model.RecipeDto
+import com.jetpackcompose.app.network.model.BaseRecipeSearchDto
+import com.jetpackcompose.app.network.model.RecipeDto
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

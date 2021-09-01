@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.ui.domain.model
+package com.jetpackcompose.app.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

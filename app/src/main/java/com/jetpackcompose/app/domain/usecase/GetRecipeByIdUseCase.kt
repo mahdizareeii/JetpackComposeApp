@@ -1,8 +1,8 @@
-package com.jetpackcompose.app.ui.domain.usecase
+package com.jetpackcompose.app.domain.usecase
 
-import com.jetpackcompose.app.ui.domain.model.Recipe
-import com.jetpackcompose.app.ui.network.mapper.RecipeDtoMapper
-import com.jetpackcompose.app.ui.network.repository.RecipeRepository
+import com.jetpackcompose.app.domain.model.Recipe
+import com.jetpackcompose.app.network.mapper.RecipeDtoMapper
+import com.jetpackcompose.app.network.repository.RecipeRepository
 
 interface GetRecipeByIdUseCase {
     suspend fun execute(id: Int): Recipe

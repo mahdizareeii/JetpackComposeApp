@@ -1,8 +1,8 @@
-package com.jetpackcompose.app.ui.network.repository
+package com.jetpackcompose.app.network.repository
 
-import com.jetpackcompose.app.ui.network.api.RecipeApiService
-import com.jetpackcompose.app.ui.network.model.BaseRecipeSearchDto
-import com.jetpackcompose.app.ui.network.model.RecipeDto
+import com.jetpackcompose.app.network.api.RecipeApiService
+import com.jetpackcompose.app.network.model.BaseRecipeSearchDto
+import com.jetpackcompose.app.network.model.RecipeDto
 
 interface RecipeRepository {
 
