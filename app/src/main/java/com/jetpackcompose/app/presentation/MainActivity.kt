@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.ui
+package com.jetpackcompose.app.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -6,21 +6,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.google.gson.GsonBuilder
 import com.jetpackcompose.app.network.api.RecipeApiService
-import com.jetpackcompose.app.ui.theme.ComposeAppTheme
-import com.jetpackcompose.app.ui.theme.element.RecipeFood
+import com.jetpackcompose.app.theme.ComposeAppTheme
+import com.jetpackcompose.app.theme.element.RecipeFood
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var stuffString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +24,6 @@ class MainActivity : ComponentActivity() {
                 RecipeFood()
             }
         }
-        Log.i("MainActivity", "string injected: $stuffString")
-        requestToServer()
     }
 
     private fun requestToServer() {

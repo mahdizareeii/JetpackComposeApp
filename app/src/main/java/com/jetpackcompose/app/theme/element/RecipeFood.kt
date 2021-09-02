@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.ui.theme.element
+package com.jetpackcompose.app.theme.element
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jetpackcompose.app.R
-import com.jetpackcompose.app.ui.theme.ComposeAppTheme
+import com.jetpackcompose.app.theme.ComposeAppTheme
 
 @Composable
 fun RecipeFood() {
