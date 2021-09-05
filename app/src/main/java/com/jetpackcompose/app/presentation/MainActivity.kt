@@ -8,8 +8,6 @@ import com.google.gson.GsonBuilder
 import com.jetpackcompose.app.network.api.RecipeApiService
 import com.jetpackcompose.app.presentation.navigation.Navigation
 import com.jetpackcompose.app.theme.ComposeAppTheme
-import com.jetpackcompose.app.theme.element.RecipeFood
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
