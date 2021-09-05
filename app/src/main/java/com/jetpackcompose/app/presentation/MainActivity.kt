@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.google.gson.GsonBuilder
 import com.jetpackcompose.app.network.api.RecipeApiService
+import com.jetpackcompose.app.presentation.navigation.Navigation
 import com.jetpackcompose.app.theme.ComposeAppTheme
 import com.jetpackcompose.app.theme.element.RecipeFood
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeAppTheme {
-                RecipeFood()
+                Navigation()
             }
         }
     }
