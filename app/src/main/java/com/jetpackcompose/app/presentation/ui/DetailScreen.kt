@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun DetailScreen(argument: Bundle?) {
-
     val title: String = argument?.getString("title") ?: ""
     Box(
         contentAlignment = Alignment.Center,
@@ -18,5 +17,4 @@ fun DetailScreen(argument: Bundle?) {
     ) {
         Text(text = title)
     }
-
 }

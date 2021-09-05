@@ -12,14 +12,13 @@ import com.jetpackcompose.app.presentation.ui.MainScreen
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    val route = Screen.DetailScreen.route
-    NavHost(navController = navController, startDestination = route) {
-        composable(route = route) {
+    NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
+        composable(route = Screen.MainScreen.route) {
             MainScreen(navController = navController)
         }
 
         composable(
-            route = "$route/{title}",
+            route = "${Screen.DetailScreen.route}/{title}",
             arguments = listOf(
                 navArgument("title") {
                     type = NavType.StringType
