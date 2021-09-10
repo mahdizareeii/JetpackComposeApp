@@ -10,11 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import coil.size.Scale
 import com.jetpackcompose.app.R
 import com.jetpackcompose.app.domain.model.Recipe
 
+@ExperimentalCoilApi
 @Composable
 fun RecipeCard(
     recipe: Recipe,
@@ -28,12 +33,20 @@ fun RecipeCard(
             .clickable(onClick = onClick)
     ) {
         Column {
-            recipe.featuredImage?.let {
+            recipe.featuredImage?.let { img ->
+                //load image with coil
                 Image(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(225.dp),
-                    painter = painterResource(id = R.drawable.food),
+                    painter = rememberImagePainter(
+                        data = img,
+                        builder = {
+                            crossfade(true)
+                            placeholder(R.drawable.place_holder)
+                            scale(Scale.FILL)
+                        }
+                    ),
                     contentDescription = "food image",
                     contentScale = ContentScale.Crop
                 )
@@ -55,7 +68,9 @@ fun RecipeCard(
                         modifier = Modifier
                             .fillMaxWidth(fraction = 0.8f)
                             .wrapContentWidth(Alignment.Start),
-                        style = MaterialTheme.typography.h5
+                        style = TextStyle(
+                            fontSize = 16.sp
+                        )
                     )
                 }
 
@@ -66,7 +81,9 @@ fun RecipeCard(
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.End)
                             .align(Alignment.CenterVertically),
-                        style = MaterialTheme.typography.h6
+                        style = TextStyle(
+                            fontSize = 12.sp
+                        )
                     )
                 }
             }
