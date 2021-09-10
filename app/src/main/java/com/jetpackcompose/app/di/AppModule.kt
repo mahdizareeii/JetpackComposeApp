@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
+import javax.inject.Singleton
 
 /**
  *  you should give the scope to @InstallIn() to inject something based on this document
@@ -12,8 +14,12 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    //the @Named help us to inject a specific string into a class if we have multiple string
+    @Singleton
     @Provides
-    fun getSampleText(): String {
-        return "Hi this is test of dependency injection"
+    @Named("token")
+    fun provideToken(): String {
+        return "Token 9c8b06d329136da358c2d00e76946b0111ce2c48"
     }
 }
