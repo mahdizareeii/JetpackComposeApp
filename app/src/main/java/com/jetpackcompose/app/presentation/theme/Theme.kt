@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.theme
+package com.jetpackcompose.app.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

@@ -1,6 +1,5 @@
-package com.jetpackcompose.app.presentation.ui
+package com.jetpackcompose.app.presentation.theme.trainingelements
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -9,15 +8,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.jetpackcompose.app.presentation.navigation.Screen
-import com.jetpackcompose.app.presentation.viewModel.MainScreenViewModel
 
 @Composable
-fun MainScreen(
-    navController: NavController,
-    viewModel: MainScreenViewModel = hiltViewModel()
+fun SampleItem2(
+    navController: NavController
 ) {
     var title by remember {
         mutableStateOf("")

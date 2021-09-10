@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.theme.element
+package com.jetpackcompose.app.presentation.theme.trainingelements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -19,10 +19,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jetpackcompose.app.R
-import com.jetpackcompose.app.theme.ComposeAppTheme
+import com.jetpackcompose.app.presentation.theme.ComposeAppTheme
 
 @Composable
-fun RecipeFood() {
+fun SampleItem() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -99,6 +99,6 @@ fun RecipeFood() {
 @Composable
 fun PreviewRecipeFood() {
     ComposeAppTheme {
-        RecipeFood()
+        SampleItem()
     }
 }

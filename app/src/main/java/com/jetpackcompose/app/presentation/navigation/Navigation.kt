@@ -6,14 +6,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.jetpackcompose.app.presentation.ui.DetailScreen
-import com.jetpackcompose.app.presentation.ui.MainScreen
+import com.jetpackcompose.app.presentation.ui.detail.DetailScreen
+import com.jetpackcompose.app.presentation.ui.home.MainScreen
 
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
-        composable(route = Screen.MainScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
+        composable(route = Screen.HomeScreen.route) {
             MainScreen(navController = navController)
         }
 

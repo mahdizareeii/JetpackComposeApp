@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.viewModel
+package com.jetpackcompose.app.presentation.ui.home
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class HomeScreenViewModel @Inject constructor(
     private val searchRecipesUseCase: SearchRecipesUseCase,
     @Named("token") private val token: String
 ) : ViewModel() {
