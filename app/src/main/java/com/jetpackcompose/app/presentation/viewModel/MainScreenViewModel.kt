@@ -22,6 +22,10 @@ class MainScreenViewModel @Inject constructor(
     val recipeList: State<List<Recipe>> get() = _recipeList
 
     init {
+        searchRecipe()
+    }
+
+    private fun searchRecipe(){
         viewModelScope.launch {
             val result = searchRecipesUseCase.execute(page = 1, "chicken", token = token)
             _recipeList.value = result
