@@ -16,6 +16,8 @@ import javax.inject.Singleton
 object AppModule {
 
     //the @Named help us to inject a specific string into a class if we have multiple string
+    //we can get token from server and store it with sharedPreferences and get it in TokenManager class
+    //and remove this provider
     @Singleton
     @Provides
     @Named("token")
