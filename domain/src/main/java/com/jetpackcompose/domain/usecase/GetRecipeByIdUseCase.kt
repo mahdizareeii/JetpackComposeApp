@@ -1,8 +1,8 @@
-package com.jetpackcompose.app.domain.usecase
+package com.jetpackcompose.domain.usecase
 
-import com.jetpackcompose.app.domain.model.Recipe
-import com.jetpackcompose.app.network.mapper.RecipeDtoMapper
-import com.jetpackcompose.app.network.repository.RecipeRepository
+import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.domain.network.mapper.RecipeDtoMapper
+import com.jetpackcompose.domain.network.repository.RecipeRepository
 import javax.inject.Inject
 
 interface GetRecipeByIdUseCase {

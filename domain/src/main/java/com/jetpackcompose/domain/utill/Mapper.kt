@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.domain.utill
+package com.jetpackcompose.domain.utill
 
 interface Mapper<DTO, DomainModel> {
     fun mapToDomainModel(dto: DTO): DomainModel

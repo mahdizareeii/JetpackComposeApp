@@ -5,8 +5,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jetpackcompose.app.domain.model.Recipe
-import com.jetpackcompose.app.domain.usecase.SearchRecipesUseCase
+import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class HomeScreenViewModel @Inject constructor(
         searchRecipe()
     }
 
-    private fun searchRecipe(){
+    private fun searchRecipe() {
         viewModelScope.launch {
             val result = searchRecipesUseCase.execute(page = 1, "chicken", token = token)
             _recipeList.value = result

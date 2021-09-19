@@ -1,10 +1,11 @@
-package com.jetpackcompose.app.network.mapper
+package com.jetpackcompose.domain.network.mapper
 
-import com.jetpackcompose.app.domain.model.Recipe
-import com.jetpackcompose.app.domain.utill.Mapper
-import com.jetpackcompose.app.network.model.RecipeDto
+import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.domain.network.model.RecipeDto
+import com.jetpackcompose.domain.utill.Mapper
 
-class RecipeDtoMapper : Mapper<RecipeDto, Recipe> {
+class RecipeDtoMapper :
+    Mapper<RecipeDto, Recipe> {
     override fun mapToDomainModel(dto: RecipeDto): Recipe {
         return Recipe(
             id = dto.primaryKey,

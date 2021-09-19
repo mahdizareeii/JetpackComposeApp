@@ -17,7 +17,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import com.jetpackcompose.app.R
-import com.jetpackcompose.app.domain.model.Recipe
+import com.jetpackcompose.domain.model.Recipe
 
 @ExperimentalCoilApi
 @Composable

@@ -1,7 +1,6 @@
-package com.jetpackcompose.app.di
+package com.jetpackcompose.domain.di
 
 import com.google.gson.GsonBuilder
-import com.jetpackcompose.app.network.api.RecipeApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,10 +19,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideService(): RecipeApiService = Retrofit.Builder()
+    fun provideService(): com.jetpackcompose.domain.network.api.RecipeApiService = Retrofit.Builder()
         .baseUrl("https://food2fork.ca/api/recipe/")
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .build()
-        .create(RecipeApiService::class.java)
+        .create(com.jetpackcompose.domain.network.api.RecipeApiService::class.java)
 
 }
