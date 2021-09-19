@@ -10,7 +10,6 @@ interface RecipeApiService {
 
     @GET("search")
     suspend fun search(
-        @Header("Authorization") token: String,
         @Query("page") page: Int,
         @Query("query") query: String
     ): BaseRecipeSearchDto<List<RecipeDto>>

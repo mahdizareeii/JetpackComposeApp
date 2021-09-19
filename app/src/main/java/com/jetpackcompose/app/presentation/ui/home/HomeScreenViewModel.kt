@@ -14,8 +14,7 @@ import javax.inject.Named
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val searchRecipesUseCase: SearchRecipesUseCase,
-    @Named("token") private val token: String
+    private val searchRecipesUseCase: SearchRecipesUseCase
 ) : ViewModel() {
 
     private val _recipeList: MutableState<List<Recipe>> = mutableStateOf(listOf())
@@ -27,7 +26,7 @@ class HomeScreenViewModel @Inject constructor(
 
     private fun searchRecipe() {
         viewModelScope.launch {
-            val result = searchRecipesUseCase.execute(page = 1, "chicken", token = token)
+            val result = searchRecipesUseCase.execute(page = 1, "chicken")
             _recipeList.value = result
         }
     }

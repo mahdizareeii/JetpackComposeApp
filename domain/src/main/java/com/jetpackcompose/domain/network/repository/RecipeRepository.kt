@@ -7,7 +7,6 @@ import com.jetpackcompose.domain.network.model.RecipeDto
 interface RecipeRepository {
 
     suspend fun search(
-        token: String,
         page: Int,
         query: String
     ): BaseRecipeSearchDto<List<RecipeDto>>
@@ -20,11 +19,10 @@ class RecipeRepositoryImpl(
     private val apiService: RecipeApiService
 ) : RecipeRepository {
     override suspend fun search(
-        token: String,
         page: Int,
         query: String
     ): BaseRecipeSearchDto<List<RecipeDto>> {
-        return apiService.search(token, page, query)
+        return apiService.search(page, query)
     }
 
     override suspend fun getRecipeById(token: String, id: Int): RecipeDto {
