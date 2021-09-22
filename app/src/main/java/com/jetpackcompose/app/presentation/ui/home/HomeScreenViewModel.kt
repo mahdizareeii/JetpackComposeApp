@@ -10,7 +10,6 @@ import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Named
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
@@ -20,13 +19,20 @@ class HomeScreenViewModel @Inject constructor(
     private val _recipeList: MutableState<List<Recipe>> = mutableStateOf(listOf())
     val recipeList: State<List<Recipe>> get() = _recipeList
 
+    private val _query = mutableStateOf("")
+    val query: State<String> get() = _query
+
     init {
-        searchRecipe()
+
     }
 
-    private fun searchRecipe() {
+    fun onQueryChanged(text: String) {
+        _query.value = text
+    }
+
+    fun searchFood() {
         viewModelScope.launch {
-            val result = searchRecipesUseCase.execute(page = 1, "chicken")
+            val result = searchRecipesUseCase.execute(page = 1, query.value)
             _recipeList.value = result
         }
     }
