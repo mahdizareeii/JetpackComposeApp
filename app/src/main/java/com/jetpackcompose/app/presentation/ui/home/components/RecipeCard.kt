@@ -32,13 +32,15 @@ fun RecipeCard(
             .padding(all = 5.dp)
             .clickable(onClick = onClick)
     ) {
-        Column {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
             recipe.featuredImage?.let { img ->
                 //load image with coil
                 Image(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(225.dp),
+                        .fillMaxWidth(0.3f)
+                        .height(100.dp),
                     painter = rememberImagePainter(
                         data = img,
                         builder = {
@@ -48,16 +50,16 @@ fun RecipeCard(
                         }
                     ),
                     contentDescription = "food image",
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
                 )
             }
 
-            Row(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(0.7f)
                     .padding(
-                        top = 12.dp,
-                        bottom = 12.dp,
+                        top = 8.dp,
+                        bottom = 8.dp,
                         start = 8.dp,
                         end = 8.dp
                     )
@@ -66,7 +68,7 @@ fun RecipeCard(
                     Text(
                         text = it,
                         modifier = Modifier
-                            .fillMaxWidth(fraction = 0.8f)
+                            .fillMaxWidth()
                             .wrapContentWidth(Alignment.Start),
                         style = TextStyle(
                             fontSize = 16.sp
@@ -76,11 +78,10 @@ fun RecipeCard(
 
                 recipe.rating?.let {
                     Text(
-                        text = it.toString(),
+                        text = "comments: $it",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .wrapContentWidth(Alignment.End)
-                            .align(Alignment.CenterVertically),
+                            .wrapContentWidth(Alignment.Start),
                         style = TextStyle(
                             fontSize = 12.sp
                         )
