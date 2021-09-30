@@ -30,8 +30,6 @@ fun MainScreen(
             SearchBar(viewModel = viewModel)
         }
     ) {
-        Spacer(modifier = Modifier.padding(10.dp))
-
         Column {
             LazyRow(
                 modifier = Modifier.fillMaxWidth()
