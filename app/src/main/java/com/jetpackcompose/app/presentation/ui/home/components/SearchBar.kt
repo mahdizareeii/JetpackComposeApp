@@ -17,9 +17,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.jetpackcompose.app.presentation.ui.home.HomeScreenViewModel
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchBar(viewModel: HomeScreenViewModel) {
-//    val keyboardController = LocalSoftwareKeyboardController.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Surface(
         Modifier.fillMaxWidth(),
@@ -43,7 +44,7 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
                 keyboardActions = KeyboardActions(
                     onSearch = {
                         viewModel.searchFood()
-//                        keyboardController?.hide()
+                        keyboardController?.hide()
                     }
                 ),
                 leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "search icon") },
