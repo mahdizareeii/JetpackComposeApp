@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.home
+package com.jetpackcompose.app.presentation.ui.home.util
 
 enum class FoodCategory(val foodName: String) {
     CHICKEN("Chicken"),
