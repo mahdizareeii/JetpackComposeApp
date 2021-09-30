@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        def gradle_version = "7.0.1"
+        def gradle_version = '7.0.2'
         classpath "com.android.tools.build:gradle:$gradle_version"
 
         def kotlin_gradle_plugin_version = "1.5.21"
@@ -18,6 +18,15 @@ buildscript {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+    subprojects {
+        afterEvaluate { project ->
+            if (project.hasProperty("android")) {
+                android {
+                    compileSdkVersion Versions.COMPILE_SDK_VERSION
+                }
+            }
+        }
     }
 }
 

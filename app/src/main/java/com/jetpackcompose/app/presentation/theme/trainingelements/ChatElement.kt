@@ -21,7 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jetpackcompose.app.R
-import com.jetpackcompose.app.presentation.theme.ComposeAppTheme
+import com.jetpackcompose.app.presentation.theme.AppTheme
 
 /**
  * https://developer.android.com/jetpack/compose/tutorial
@@ -35,7 +35,7 @@ import com.jetpackcompose.app.presentation.theme.ComposeAppTheme
 )
 @Composable
 fun PreviewMessageCard() {
-    ComposeAppTheme {
+    AppTheme {
         Conversation(messages = getSampleMessages())
     }
 }

@@ -1,4 +1,9 @@
 object Versions {
+    const val COMPILE_SDK_VERSION = 31
+    const val TARGET_SDK_VERSION = 31
+    const val MIN_SDK_VERSION = 21
+
+
     const val COMPOSE_VERSION = "1.0.2"
     const val APP_COMPAT_VERSION = "1.3.1"
     const val MATERIAL_VERSION = "1.4.0"

@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jetpackcompose.app.R
-import com.jetpackcompose.app.presentation.theme.ComposeAppTheme
+import com.jetpackcompose.app.presentation.theme.AppTheme
 
 @Composable
 fun SampleItem() {
@@ -98,7 +98,7 @@ fun SampleItem() {
 )
 @Composable
 fun PreviewRecipeFood() {
-    ComposeAppTheme {
+    AppTheme {
         SampleItem()
     }
 }

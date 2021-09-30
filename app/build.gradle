@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk Versions.COMPILE_SDK_VERSION
 
     defaultConfig {
         applicationId "com.jetpackcompose.app"
-        minSdk 21
-        targetSdk 31
+        minSdk Versions.MIN_SDK_VERSION
+        targetSdk Versions.TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
 

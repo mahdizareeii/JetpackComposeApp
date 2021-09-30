@@ -5,15 +5,11 @@ import com.jetpackcompose.domain.network.mapper.RecipeDtoMapper
 import com.jetpackcompose.domain.network.repository.RecipeRepository
 import javax.inject.Inject
 
-interface SearchRecipesUseCase {
-    suspend fun execute(page: Int, query: String): List<Recipe>
-}
-
-class SearchRecipesUseCaseImpl @Inject constructor(
+class SearchRecipesUseCase @Inject constructor(
     private val repository: RecipeRepository,
     private val mapper: RecipeDtoMapper
-) : SearchRecipesUseCase {
-    override suspend fun execute(page: Int, query: String): List<Recipe> {
+) {
+    suspend operator fun invoke(page: Int, query: String): List<Recipe> {
         return mapper.toDomainList(repository.search(page, query).results ?: listOf())
     }
 }

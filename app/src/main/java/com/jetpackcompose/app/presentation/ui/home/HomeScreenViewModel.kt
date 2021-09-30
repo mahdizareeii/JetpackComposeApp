@@ -32,7 +32,7 @@ class HomeScreenViewModel @Inject constructor(
 
     fun searchFood() {
         viewModelScope.launch {
-            val result = searchRecipesUseCase.execute(page = 1, query.value)
+            val result = searchRecipesUseCase(page = 1, query.value)
             _recipeList.value = result
         }
     }
