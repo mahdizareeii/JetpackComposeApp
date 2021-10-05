@@ -5,6 +5,7 @@ import com.jetpackcompose.domain.network.api.RecipeApiService
 import com.jetpackcompose.domain.utill.network.AuthorizationInterceptor
 import com.jetpackcompose.domain.utill.network.TokenManager
 import com.jetpackcompose.domain.utill.network.TokenManagerImpl
+import com.jetpackcompose.domain.utill.network.calladapter.adapter.CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +30,7 @@ object NetworkModule {
     fun provideService(interceptor: Interceptor): RecipeApiService = Retrofit.Builder()
         .baseUrl("https://food2fork.ca/api/recipe/")
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+        .addCallAdapterFactory(CallAdapterFactory())
         .client(okHttpClient(interceptor))
         .build()
         .create(RecipeApiService::class.java)

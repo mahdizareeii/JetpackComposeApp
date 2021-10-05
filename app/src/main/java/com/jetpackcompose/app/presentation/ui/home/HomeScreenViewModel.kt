@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
+import com.jetpackcompose.domain.utill.network.calladapter.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,6 +16,9 @@ import javax.inject.Inject
 class HomeScreenViewModel @Inject constructor(
     private val searchRecipesUseCase: SearchRecipesUseCase
 ) : ViewModel() {
+
+    private val _error: MutableState<String> = mutableStateOf("")
+    val error: State<String> get() = _error
 
     private val _recipeList: MutableState<List<Recipe>> = mutableStateOf(listOf())
     val recipeList: State<List<Recipe>> get() = _recipeList
@@ -32,8 +36,10 @@ class HomeScreenViewModel @Inject constructor(
 
     fun searchFood() {
         viewModelScope.launch {
-            val result = searchRecipesUseCase(page = 1, query.value)
-            _recipeList.value = result
+            when (val result = searchRecipesUseCase(page = 1, query.value)) {
+                is Result.Success -> _recipeList.value = result.data
+                is Result.Error -> _error.value = result.statusCode.name
+            }
         }
     }
 }

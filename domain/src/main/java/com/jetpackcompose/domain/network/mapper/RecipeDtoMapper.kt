@@ -5,19 +5,19 @@ import com.jetpackcompose.domain.network.model.RecipeDto
 import com.jetpackcompose.domain.utill.mapper.Mapper
 
 class RecipeDtoMapper : Mapper<RecipeDto, Recipe> {
-    override fun mapToDomainModel(dto: RecipeDto): Recipe {
+    override fun mapToDomainModel(dto: RecipeDto?): Recipe {
         return Recipe(
-            id = dto.primaryKey,
-            title = dto.title,
-            publisher = dto.publisher,
-            featuredImage = dto.featuredImage,
-            rating = dto.rating,
-            sourceUrl = dto.sourceUrl,
-            description = dto.description,
-            cookingInstructions = dto.cookingInstructions,
-            ingredients = dto.ingredients,
-            dateAdded = dto.dateAdded,
-            dateUpdated = dto.dateUpdated
+            id = dto?.primaryKey,
+            title = dto?.title,
+            publisher = dto?.publisher,
+            featuredImage = dto?.featuredImage,
+            rating = dto?.rating,
+            sourceUrl = dto?.sourceUrl,
+            description = dto?.description,
+            cookingInstructions = dto?.cookingInstructions,
+            ingredients = dto?.ingredients,
+            dateAdded = dto?.dateAdded,
+            dateUpdated = dto?.dateUpdated
         )
     }
 
