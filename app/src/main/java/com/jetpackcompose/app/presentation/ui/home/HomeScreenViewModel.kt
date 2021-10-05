@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.domain.utill.network.calladapter.Result
+import com.jetpackcompose.domain.utill.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,8 +37,8 @@ class HomeScreenViewModel @Inject constructor(
     fun searchFood() {
         viewModelScope.launch {
             when (val result = searchRecipesUseCase(page = 1, query.value)) {
-                is Result.Success -> _recipeList.value = result.data
-                is Result.Error -> _error.value = result.statusCode.name
+                is DataState.Success -> _recipeList.value = result.data
+                is DataState.Error -> _error.value = result.networkStatus.message
             }
         }
     }

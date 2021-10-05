@@ -2,7 +2,7 @@ package com.jetpackcompose.domain.network.api
 
 import com.jetpackcompose.domain.network.model.BaseRecipeSearchDto
 import com.jetpackcompose.domain.network.model.RecipeDto
-import com.jetpackcompose.domain.utill.network.calladapter.Result
+import com.jetpackcompose.domain.utill.DataState
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,11 +12,11 @@ interface RecipeApiService {
     suspend fun search(
         @Query("page") page: Int,
         @Query("query") query: String
-    ): Result<BaseRecipeSearchDto<List<RecipeDto>>>
+    ): DataState<BaseRecipeSearchDto<List<RecipeDto>>>
 
     @GET("get")
     suspend fun getRecipeById(
         @Query("id") id: Int
-    ): Result<RecipeDto>
+    ): DataState<RecipeDto>
 
 }

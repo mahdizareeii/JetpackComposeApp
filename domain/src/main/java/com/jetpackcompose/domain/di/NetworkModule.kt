@@ -2,7 +2,7 @@ package com.jetpackcompose.domain.di
 
 import com.google.gson.GsonBuilder
 import com.jetpackcompose.domain.network.api.RecipeApiService
-import com.jetpackcompose.domain.utill.network.AuthorizationInterceptor
+import com.jetpackcompose.domain.utill.network.interceptors.AuthorizationInterceptor
 import com.jetpackcompose.domain.utill.network.TokenManager
 import com.jetpackcompose.domain.utill.network.TokenManagerImpl
 import com.jetpackcompose.domain.utill.network.calladapter.adapter.CallAdapterFactory

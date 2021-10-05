@@ -3,17 +3,17 @@ package com.jetpackcompose.domain.usecase
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.network.mapper.RecipeDtoMapper
 import com.jetpackcompose.domain.network.repository.RecipeRepository
-import com.jetpackcompose.domain.utill.network.calladapter.Result
+import com.jetpackcompose.domain.utill.DataState
 import javax.inject.Inject
 
 class GetRecipeByIdUseCase @Inject constructor(
     private val repository: RecipeRepository,
     private val mapper: RecipeDtoMapper
 ) {
-    suspend operator fun invoke(id: Int): Result<Recipe> {
+    suspend operator fun invoke(id: Int): DataState<Recipe> {
         return when (val result = repository.getRecipeById(id)) {
-            is Result.Success -> Result.Success(mapper.mapToDomainModel(result.data))
-            is Result.Error -> result
+            is DataState.Success -> DataState.Success(mapper.mapToDomainModel(result.data))
+            is DataState.Error -> result
         }
     }
 }

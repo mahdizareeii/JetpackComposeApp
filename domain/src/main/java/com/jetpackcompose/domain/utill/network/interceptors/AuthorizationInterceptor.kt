@@ -1,5 +1,6 @@
-package com.jetpackcompose.domain.utill.network
+package com.jetpackcompose.domain.utill.network.interceptors
 
+import com.jetpackcompose.domain.utill.network.TokenManager
 import okhttp3.Interceptor
 import okhttp3.Response
 

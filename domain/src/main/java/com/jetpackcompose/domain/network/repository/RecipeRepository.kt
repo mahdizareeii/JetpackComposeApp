@@ -3,16 +3,16 @@ package com.jetpackcompose.domain.network.repository
 import com.jetpackcompose.domain.network.api.RecipeApiService
 import com.jetpackcompose.domain.network.model.BaseRecipeSearchDto
 import com.jetpackcompose.domain.network.model.RecipeDto
-import com.jetpackcompose.domain.utill.network.calladapter.Result
+import com.jetpackcompose.domain.utill.DataState
 
 interface RecipeRepository {
 
     suspend fun search(
         page: Int,
         query: String
-    ): Result<BaseRecipeSearchDto<List<RecipeDto>>>
+    ): DataState<BaseRecipeSearchDto<List<RecipeDto>>>
 
-    suspend fun getRecipeById(id: Int): Result<RecipeDto>
+    suspend fun getRecipeById(id: Int): DataState<RecipeDto>
 
 }
 
@@ -22,11 +22,11 @@ class RecipeRepositoryImpl(
     override suspend fun search(
         page: Int,
         query: String
-    ): Result<BaseRecipeSearchDto<List<RecipeDto>>> {
+    ): DataState<BaseRecipeSearchDto<List<RecipeDto>>> {
         return apiService.search(page, query)
     }
 
-    override suspend fun getRecipeById(id: Int): Result<RecipeDto> {
+    override suspend fun getRecipeById(id: Int): DataState<RecipeDto> {
         return apiService.getRecipeById(id)
     }
 }

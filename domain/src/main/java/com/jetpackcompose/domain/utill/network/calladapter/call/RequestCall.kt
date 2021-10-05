@@ -1,7 +1,7 @@
 package com.jetpackcompose.domain.utill.network.calladapter.call
 
-import com.jetpackcompose.domain.utill.network.calladapter.Result
-import com.jetpackcompose.domain.utill.network.calladapter.util.StatusCode
+import com.jetpackcompose.domain.utill.DataState
+import com.jetpackcompose.domain.utill.network.calladapter.NetworkStatus
 import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
@@ -9,8 +9,8 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
-class RequestCall<T>(proxy: Call<T>) : CallDelegate<T, Result<T>>(proxy) {
-    override fun enqueueImpl(callback: Callback<Result<T>>) {
+class RequestCall<T>(proxy: Call<T>) : CallDelegate<T, DataState<T>>(proxy) {
+    override fun enqueueImpl(callback: Callback<DataState<T>>) {
         proxy.enqueue(object : Callback<T> {
             override fun onResponse(call: Call<T>, response: Response<T>) {
                 val code = response.code()
@@ -18,11 +18,11 @@ class RequestCall<T>(proxy: Call<T>) : CallDelegate<T, Result<T>>(proxy) {
 
                 val result = if (code in 200 until 300) {
                     if (body != null)
-                        Result.Success(body)
+                        DataState.Success(body)
                     else
-                        Result.Error(StatusCode.ResponseBodyIsNull)
+                        DataState.Error(NetworkStatus.ResponseBodyIsNull)
                 } else {
-                    Result.Error(StatusCode.fromStatusCode(code))
+                    DataState.Error(NetworkStatus.fromStatusCode(code))
                 }
 
                 callback.onResponse(this@RequestCall, Response.success(result))
@@ -31,19 +31,19 @@ class RequestCall<T>(proxy: Call<T>) : CallDelegate<T, Result<T>>(proxy) {
             override fun onFailure(call: Call<T>, t: Throwable) {
                 val result = when (t) {
                     is IOException -> {
-                        Result.Error(StatusCode.NetworkError)
+                        DataState.Error(NetworkStatus.NetworkError)
                     }
                     is HttpException -> {
-                        Result.Error(StatusCode.fromStatusCode(t.code()))
+                        DataState.Error(NetworkStatus.fromStatusCode(t.code()))
                     }
-                    else -> Result.Error(StatusCode.Unknown)
+                    else -> DataState.Error(NetworkStatus.Unknown)
                 }
                 callback.onResponse(this@RequestCall, Response.success(result))
             }
         })
     }
 
-    override fun cloneImpl(): Call<Result<T>> = RequestCall(proxy.clone())
+    override fun cloneImpl(): Call<DataState<T>> = RequestCall(proxy.clone())
 
     override fun timeout(): Timeout = proxy.timeout()
 }
