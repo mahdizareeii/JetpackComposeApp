@@ -8,6 +8,8 @@ object Versions {
     const val APP_COMPAT_VERSION = "1.3.1"
     const val MATERIAL_VERSION = "1.4.0"
     const val JUNIT_VERSION = "4.13.2"
+    const val TEST_CORE_VERSION = "1.4.0"
+    const val MOCKITO_VERSION = "1.10.19"
     const val EXT_TEST_JUNIT_VERSION = "1.1.3"
     const val ESPRESSO_CORE_VERSION = "3.4.0"
     const val RETROFIT_VERSIONS = "2.9.0"

@@ -8,11 +8,15 @@ object Libs {
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_KTX_VERSION}"
     const val LIFE_CYCLE_RUNTIME_KTX =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFE_CYCLE_RUNTIME_KTX_VERSION}"
-    const val VIEW_MODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.VIEW_MODEL_KTX_VERSION}"
-    const val LIVE_DATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIVE_DATA_KTX_VERSION}"
+    const val VIEW_MODEL_KTX =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.VIEW_MODEL_KTX_VERSION}"
+    const val LIVE_DATA_KTX =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIVE_DATA_KTX_VERSION}"
 
     //Test
     const val JUNIT = "junit:junit:${Versions.JUNIT_VERSION}"
+    const val TEST_CORE = "androidx.test:core:${Versions.TEST_CORE_VERSION}"
+    const val MOCKITO = "org.mockito:mockito-core:${Versions.MOCKITO_VERSION}"
     const val EXT_TEST_JUNIT = "androidx.test.ext:junit:${Versions.EXT_TEST_JUNIT_VERSION}"
     const val ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE_VERSION}"
     const val COMPOSE_JUNIT = "androidx.compose.ui:ui-test-junit4:${Versions.COMPOSE_VERSION}"

@@ -13,6 +13,8 @@ dependencies {
 
     //Test
     testImplementation(Libs.JUNIT)
+    testImplementation(Libs.TEST_CORE)
+    testImplementation(Libs.MOCKITO)
     androidTestImplementation(Libs.EXT_TEST_JUNIT)
     androidTestImplementation(Libs.ESPRESSO)
     androidTestImplementation(Libs.COMPOSE_JUNIT)
