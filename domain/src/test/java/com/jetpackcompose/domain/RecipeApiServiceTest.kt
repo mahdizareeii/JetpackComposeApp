@@ -4,9 +4,7 @@ import com.jetpackcompose.domain.network.api.RecipeApiService
 import com.jetpackcompose.domain.network.model.RecipeDto
 import com.jetpackcompose.domain.utill.DataState
 import junit.framework.TestCase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,7 +26,7 @@ class RecipeApiServiceTest : TestCase() {
 
     @Test
     fun `get recipe by id should return empty object`() {
-        CoroutineScope(Dispatchers.IO).launch {
+        runBlocking {
             val fakeData = getFakeDataOfRecipe()
             `when`(apiService.getRecipeById(1)).thenReturn(fakeData)
             val recipe = apiService.getRecipeById(1)
