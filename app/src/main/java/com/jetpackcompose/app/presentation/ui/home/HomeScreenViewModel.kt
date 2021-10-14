@@ -38,7 +38,10 @@ class HomeScreenViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = searchRecipesUseCase(page = 1, query.value)) {
                 is DataState.Success -> _recipeList.value = result.data
-                is DataState.Error -> _error.value = result.networkStatus.message
+                is DataState.Error -> {
+                    _error.value = ""
+                    _error.value = result.networkStatus.message
+                }
             }
         }
     }
