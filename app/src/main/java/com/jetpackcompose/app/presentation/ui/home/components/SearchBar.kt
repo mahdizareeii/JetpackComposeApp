@@ -32,7 +32,7 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = viewModel.query.value,
-                textStyle = TextStyle(color = MaterialTheme.colors.onSecondary),
+                textStyle = TextStyle(color = MaterialTheme.colors.onBackground),
                 onValueChange = { text ->
                     viewModel.onQueryChanged(text)
                 },

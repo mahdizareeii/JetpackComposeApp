@@ -8,6 +8,7 @@
         <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:background">@color/status_bar</item>
         <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
     <style name="Theme.ComposeApp.NoActionBar">

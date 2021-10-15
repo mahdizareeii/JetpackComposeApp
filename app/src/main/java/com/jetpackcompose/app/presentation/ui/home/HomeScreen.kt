@@ -63,7 +63,10 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     items(FoodCategory.getAllFood()) {
-                        Chip(text = it.foodName)
+                        Chip(text = it.foodName, clicked = { chipValue ->
+                            viewModel.onQueryChanged(chipValue)
+                            viewModel.searchFood()
+                        })
                     }
                 }
 
