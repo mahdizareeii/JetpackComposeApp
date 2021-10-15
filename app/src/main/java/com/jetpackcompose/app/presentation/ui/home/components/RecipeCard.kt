@@ -10,9 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
@@ -70,9 +68,7 @@ fun RecipeCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.Start),
-                        style = TextStyle(
-                            fontSize = 16.sp
-                        )
+                        style = MaterialTheme.typography.subtitle1
                     )
                 }
 
@@ -82,9 +78,7 @@ fun RecipeCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.Start),
-                        style = TextStyle(
-                            fontSize = 12.sp
-                        )
+                        style = MaterialTheme.typography.caption
                     )
                 }
             }
