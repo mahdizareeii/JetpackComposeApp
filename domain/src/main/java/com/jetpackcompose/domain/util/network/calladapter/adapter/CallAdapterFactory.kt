@@ -1,6 +1,6 @@
-package com.jetpackcompose.domain.utill.network.calladapter.adapter
+package com.jetpackcompose.domain.util.network.calladapter.adapter
 
-import com.jetpackcompose.domain.utill.DataState
+import com.jetpackcompose.domain.util.DataState
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

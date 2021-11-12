@@ -87,6 +87,7 @@ dependencies {
     //KTX
     implementation(Libs.CORE_KTX)
     implementation(Libs.FRAGMENT_KTX)
+    implementation(Libs.ACTIVITY_KTX)
     implementation(Libs.LIFE_CYCLE_RUNTIME_KTX)
     implementation(Libs.VIEW_MODEL_KTX)
     implementation(Libs.LIVE_DATA_KTX)

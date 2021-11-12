@@ -5,9 +5,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jetpackcompose.domain.model.FoodCategory
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.domain.utill.DataState
+import com.jetpackcompose.domain.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,12 +27,25 @@ class HomeScreenViewModel @Inject constructor(
     private val _query = mutableStateOf("")
     val query: State<String> get() = _query
 
+    private val _selectedCategory: MutableState<FoodCategory> = mutableStateOf(FoodCategory.UN_KNOW)
+    val selectedCategory: State<FoodCategory> get() = _selectedCategory
+
     init {
 
     }
 
     fun onQueryChanged(text: String) {
         _query.value = text
+    }
+
+    fun onSelectedCategory(category: String) {
+        _selectedCategory.value = FoodCategory.getFoodCategory(category)
+        onQueryChanged(category)
+        searchFood()
+    }
+
+    fun inValidateSelectedCategory() {
+        _selectedCategory.value = FoodCategory.UN_KNOW
     }
 
     fun searchFood() {

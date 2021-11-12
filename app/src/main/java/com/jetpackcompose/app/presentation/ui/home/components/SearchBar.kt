@@ -34,6 +34,7 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
                 value = viewModel.query.value,
                 textStyle = TextStyle(color = MaterialTheme.colors.onBackground),
                 onValueChange = { text ->
+                    viewModel.inValidateSelectedCategory()
                     viewModel.onQueryChanged(text)
                 },
                 label = { Text(text = "Search") },

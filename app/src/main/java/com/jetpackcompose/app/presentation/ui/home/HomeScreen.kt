@@ -20,7 +20,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.app.presentation.ui.home.components.Chip
 import com.jetpackcompose.app.presentation.ui.home.components.RecipeCard
 import com.jetpackcompose.app.presentation.ui.home.components.SearchBar
-import com.jetpackcompose.app.presentation.ui.home.util.FoodCategory
+import com.jetpackcompose.domain.model.FoodCategory
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -63,10 +63,10 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     items(FoodCategory.getAllFood()) {
-                        Chip(text = it.foodName, clicked = { chipValue ->
-                            viewModel.onQueryChanged(chipValue)
-                            viewModel.searchFood()
-                        })
+                        Chip(
+                            text = it.foodName,
+                            viewModel = viewModel
+                        )
                     }
                 }
 

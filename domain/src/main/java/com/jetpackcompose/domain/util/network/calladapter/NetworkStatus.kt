@@ -1,4 +1,4 @@
-package com.jetpackcompose.domain.utill.network.calladapter
+package com.jetpackcompose.domain.util.network.calladapter
 
 enum class NetworkStatus(val code: Int, val message: String) {
     Unknown(0, "Unknown error."),

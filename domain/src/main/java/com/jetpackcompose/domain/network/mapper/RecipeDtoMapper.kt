@@ -2,7 +2,7 @@ package com.jetpackcompose.domain.network.mapper
 
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.network.model.RecipeDto
-import com.jetpackcompose.domain.utill.mapper.Mapper
+import com.jetpackcompose.domain.util.mapper.Mapper
 
 class RecipeDtoMapper : Mapper<RecipeDto, Recipe> {
     override fun mapToDomainModel(dto: RecipeDto?): Recipe {

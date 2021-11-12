@@ -1,6 +1,6 @@
-package com.jetpackcompose.domain.utill
+package com.jetpackcompose.domain.util
 
-import com.jetpackcompose.domain.utill.network.calladapter.NetworkStatus
+import com.jetpackcompose.domain.util.network.calladapter.NetworkStatus
 
 sealed class DataState<out T> {
     data class Success<T>(val data: T) : DataState<T>()

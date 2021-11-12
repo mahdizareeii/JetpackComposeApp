@@ -1,4 +1,4 @@
-package com.jetpackcompose.domain.utill.network
+package com.jetpackcompose.domain.util.network
 
 interface TokenManager {
     fun getToken(): String

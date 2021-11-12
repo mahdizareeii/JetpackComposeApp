@@ -7,6 +7,7 @@ object Versions {
     const val COMPOSE_VERSION = "1.0.2"
     const val APP_COMPAT_VERSION = "1.3.1"
     const val MATERIAL_VERSION = "1.4.0"
+    const val ACTIVITY_KTX_VERSION = "1.3.1"
     const val JUNIT_VERSION = "4.13.2"
     const val TEST_CORE_VERSION = "1.4.0"
     const val MOCKITO_VERSION = "1.10.19"

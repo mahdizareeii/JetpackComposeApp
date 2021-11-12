@@ -1,4 +1,4 @@
-package com.jetpackcompose.domain.utill.network.calladapter.call
+package com.jetpackcompose.domain.util.network.calladapter.call
 
 import okhttp3.Request
 import retrofit2.Call

@@ -1,7 +1,7 @@
-package com.jetpackcompose.domain.utill.network.calladapter.call
+package com.jetpackcompose.domain.util.network.calladapter.call
 
-import com.jetpackcompose.domain.utill.DataState
-import com.jetpackcompose.domain.utill.network.calladapter.NetworkStatus
+import com.jetpackcompose.domain.util.DataState
+import com.jetpackcompose.domain.util.network.calladapter.NetworkStatus
 import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback

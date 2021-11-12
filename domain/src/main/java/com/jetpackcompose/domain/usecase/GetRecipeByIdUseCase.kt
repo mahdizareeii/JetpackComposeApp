@@ -3,7 +3,7 @@ package com.jetpackcompose.domain.usecase
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.network.mapper.RecipeDtoMapper
 import com.jetpackcompose.domain.network.repository.RecipeRepository
-import com.jetpackcompose.domain.utill.DataState
+import com.jetpackcompose.domain.util.DataState
 import javax.inject.Inject
 
 class GetRecipeByIdUseCase @Inject constructor(

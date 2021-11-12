@@ -1,8 +1,8 @@
 package com.jetpackcompose.app.presentation.ui.home.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -10,7 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jetpackcompose.app.presentation.theme.AppTheme
+import com.jetpackcompose.app.presentation.ui.home.HomeScreenViewModel
 
 @Preview(name = "Light Mode")
 @Preview(
@@ -21,19 +23,29 @@ import com.jetpackcompose.app.presentation.theme.AppTheme
 @Composable
 fun PreviewChip() {
     AppTheme {
-        Chip(text = "Test") {}
+        Chip(text = "Test", viewModel = viewModel())
     }
 }
 
 @Composable
-fun Chip(text: String, clicked: (String) -> Unit) {
+fun Chip(
+    text: String,
+    viewModel: HomeScreenViewModel
+) {
+    val isSelected = viewModel.selectedCategory.value.foodName == text
+
     Surface(
         modifier = Modifier
             .padding(8.dp)
-            .clickable { clicked.invoke(text) },
+            .toggleable(
+                value = isSelected,
+                onValueChange = {
+                    viewModel.onSelectedCategory(text)
+                }
+            ),
         elevation = 8.dp,
         shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colors.onBackground
+        color = if (isSelected) MaterialTheme.colors.primary else MaterialTheme.colors.onBackground
     ) {
         Text(
             modifier = Modifier.padding(8.dp),

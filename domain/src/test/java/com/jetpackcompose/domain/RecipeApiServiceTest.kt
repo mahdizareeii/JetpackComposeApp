@@ -2,7 +2,7 @@ package com.jetpackcompose.domain
 
 import com.jetpackcompose.domain.network.api.RecipeApiService
 import com.jetpackcompose.domain.network.model.RecipeDto
-import com.jetpackcompose.domain.utill.DataState
+import com.jetpackcompose.domain.util.DataState
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

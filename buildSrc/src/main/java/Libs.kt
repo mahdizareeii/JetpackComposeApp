@@ -5,6 +5,7 @@ object Libs {
 
     //KTX
     const val CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX_VERSION}"
+    const val ACTIVITY_KTX = "androidx.activity:activity-ktx:${Versions.ACTIVITY_KTX_VERSION}"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_KTX_VERSION}"
     const val LIFE_CYCLE_RUNTIME_KTX =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFE_CYCLE_RUNTIME_KTX_VERSION}"
