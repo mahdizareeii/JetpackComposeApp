@@ -1,6 +1,6 @@
 package com.jetpackcompose.domain.util.network.calladapter.adapter
 
-import com.jetpackcompose.domain.util.DataState
+import com.jetpackcompose.domain.util.model.NetworkDataState
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ class CallAdapterFactory : CallAdapter.Factory() {
             Call::class.java -> {
                 val callType = getParameterUpperBound(0, returnType as ParameterizedType)
                 when (getRawType(callType)) {
-                    DataState::class.java -> ResultAdapter(
+                    NetworkDataState::class.java -> ResultAdapter(
                         getParameterUpperBound(0, callType as ParameterizedType)
                     )
                     else -> null

@@ -2,7 +2,7 @@ package com.jetpackcompose.domain
 
 import com.jetpackcompose.domain.network.api.RecipeApiService
 import com.jetpackcompose.domain.network.model.RecipeDto
-import com.jetpackcompose.domain.util.DataState
+import com.jetpackcompose.domain.util.model.NetworkDataState
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -34,6 +34,6 @@ class RecipeApiServiceTest : TestCase() {
         }
     }
 
-    private fun getFakeDataOfRecipe() = DataState.Success(RecipeDto())
+    private fun getFakeDataOfRecipe() = NetworkDataState.Success(RecipeDto())
 
 }

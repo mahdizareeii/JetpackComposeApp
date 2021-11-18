@@ -33,6 +33,7 @@ fun MainScreen(
 ) {
     val context = LocalContext.current
     val errorMessage = viewModel.error.value
+    val loading = viewModel.loading.value
 
     val channel = getCoroutineChannel()
     val snackBarHostState = getSnackBarHostState(channel) { result ->
@@ -49,6 +50,10 @@ fun MainScreen(
 
     errorMessage.takeIf { it.isNotEmpty() }?.let {
         channel.trySend(it)
+    }
+
+    loading.takeIf { it }?.let {
+        channel.trySend("getting data")
     }
 
     Scaffold(

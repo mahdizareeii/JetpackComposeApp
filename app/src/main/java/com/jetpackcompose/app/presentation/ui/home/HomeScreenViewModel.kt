@@ -8,15 +8,19 @@ import androidx.lifecycle.viewModelScope
 import com.jetpackcompose.domain.model.FoodCategory
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.domain.util.DataState
+import com.jetpackcompose.domain.util.model.UiDataState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private val searchRecipesUseCase: SearchRecipesUseCase
 ) : ViewModel() {
+
+    private val _loading: MutableState<Boolean> = mutableStateOf(false)
+    val loading: State<Boolean> get() = _loading
 
     private val _error: MutableState<String> = mutableStateOf("")
     val error: State<String> get() = _error
@@ -29,10 +33,6 @@ class HomeScreenViewModel @Inject constructor(
 
     private val _selectedCategory: MutableState<FoodCategory> = mutableStateOf(FoodCategory.UN_KNOW)
     val selectedCategory: State<FoodCategory> get() = _selectedCategory
-
-    init {
-
-    }
 
     fun onQueryChanged(text: String) {
         _query.value = text
@@ -49,14 +49,14 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun searchFood() {
-        viewModelScope.launch {
-            when (val result = searchRecipesUseCase(page = 1, query.value)) {
-                is DataState.Success -> _recipeList.value = result.data
-                is DataState.Error -> {
-                    _error.value = ""
-                    _error.value = result.networkStatus.message
+        searchRecipesUseCase(page = 1, query.value).onEach {
+            when (it) {
+                is UiDataState.Success -> {
+                    _recipeList.value = it.data
                 }
+                is UiDataState.Error -> it.networkStatus.message
+                is UiDataState.Loading -> _loading.value = it.isLoading
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }
