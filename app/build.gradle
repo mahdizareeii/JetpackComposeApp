@@ -5,6 +5,14 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
+//libs
+apply from: '../buildSrc/dependencies_utilities.gradle'
+apply from: '../buildSrc/dependencies_appcompat.gradle'
+apply from: '../buildSrc/dependencies_retrofit.gradle'
+apply from: '../buildSrc/dependencies_compose.gradle'
+apply from: '../buildSrc/dependencies_hilt.gradle'
+apply from: '../buildSrc/dependencies_test.gradle'
+apply from: '../buildSrc/dependencies_ktx.gradle'
 
 android {
     compileSdk Versions.COMPILE_SDK_VERSION
@@ -52,48 +60,6 @@ android {
 
 dependencies {
     implementation project(path: ":domain")
-
-    implementation(Libs.APP_COMPAT)
-    implementation(Libs.MATERIAL)
-
-    //Test
-    testImplementation(Libs.JUNIT)
-    testImplementation(Libs.TEST_CORE)
-    testImplementation(Libs.MOCKITO)
-    androidTestImplementation(Libs.EXT_TEST_JUNIT)
-    androidTestImplementation(Libs.ESPRESSO)
-    androidTestImplementation(Libs.COMPOSE_JUNIT)
-
-    //Jetpack compose
-    implementation(Libs.ACTIVITY_COMPOSE)
-    implementation(Libs.COMPOSE)
-    implementation(Libs.COMPOSE_MATERIAL)
-    implementation(Libs.COMPOSE_UI_TOOLING_PREVIEW)
-    implementation(Libs.NAVIGATION_COMPOSE)
-    implementation(Libs.VIEW_MODEL_COMPOSE)
-    debugImplementation(Libs.COMPOSE_UI_TOOLING)
-
-    //Retrofit
-    implementation(Libs.RETROFIT)
-    implementation(Libs.RETROFIT_CONVERTER)
-
-    //Hilt
-    implementation(Libs.HILT)
-    kapt(Libs.DAGGER_HILT_COMPILER)
-    kapt(Libs.HILT_COMPILER)
-    implementation(Libs.HILT_NAVIGATION_COMPOSE)
-    implementation(Libs.HILT_VIEW_MODEL)
-
-    //KTX
-    implementation(Libs.CORE_KTX)
-    implementation(Libs.FRAGMENT_KTX)
-    implementation(Libs.ACTIVITY_KTX)
-    implementation(Libs.LIFE_CYCLE_RUNTIME_KTX)
-    implementation(Libs.VIEW_MODEL_KTX)
-    implementation(Libs.LIVE_DATA_KTX)
-
-    //Coil
-    implementation(Libs.COIL)
 }
 
 kapt {

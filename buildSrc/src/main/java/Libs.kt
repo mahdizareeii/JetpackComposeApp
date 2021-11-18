@@ -28,8 +28,8 @@ object Libs {
     const val COMPOSE_MATERIAL = "androidx.compose.material:material:${Versions.COMPOSE_VERSION}"
     const val COMPOSE_UI_TOOLING_PREVIEW =
         "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE_VERSION}"
-    const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:2.4.0-alpha08"
-    const val VIEW_MODEL_COMPOSE = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+    const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:2.4.0-beta02"
+    const val VIEW_MODEL_COMPOSE = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
     const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE_VERSION}"
 
     //Retrofit
