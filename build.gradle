@@ -2,6 +2,7 @@
 buildscript {
     ext {
         compose_version = '1.0.2'
+        kotlin_compiler_version = '1.5.10'
     }
     repositories {
         google()
@@ -24,6 +25,15 @@ buildscript {
             if (project.hasProperty("android")) {
                 android {
                     compileSdkVersion Versions.COMPILE_SDK_VERSION
+
+                    buildFeatures {
+                        compose true
+                    }
+
+                    composeOptions {
+                        kotlinCompilerExtensionVersion compose_version
+                        kotlinCompilerVersion kotlin_compiler_version
+                    }
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.home
+package com.jetpackcompose.homepage.presentation
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State

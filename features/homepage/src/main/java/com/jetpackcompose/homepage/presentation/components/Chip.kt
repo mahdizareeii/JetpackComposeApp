@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.home.components
+package com.jetpackcompose.homepage.presentation.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jetpackcompose.app.presentation.theme.AppTheme
-import com.jetpackcompose.app.presentation.ui.home.HomeScreenViewModel
+import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 
 @Preview(name = "Light Mode")
 @Preview(
@@ -22,7 +21,7 @@ import com.jetpackcompose.app.presentation.ui.home.HomeScreenViewModel
 )
 @Composable
 fun PreviewChip() {
-    AppTheme {
+    MaterialTheme {
         Chip(text = "Test", viewModel = viewModel())
     }
 }

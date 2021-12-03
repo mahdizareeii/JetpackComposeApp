@@ -49,7 +49,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.5.10'
+        kotlinCompilerVersion kotlin_compiler_version
     }
     packagingOptions {
         resources {
@@ -60,6 +60,7 @@ android {
 
 dependencies {
     implementation project(path: ":domain")
+    implementation project(path: ":features:homepage")
 }
 
 kapt {

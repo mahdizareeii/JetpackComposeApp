@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.home
+package com.jetpackcompose.homepage.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,10 +17,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.ui.home.components.Chip
-import com.jetpackcompose.app.presentation.ui.home.components.RecipeCard
-import com.jetpackcompose.app.presentation.ui.home.components.SearchBar
 import com.jetpackcompose.domain.model.FoodCategory
+import com.jetpackcompose.homepage.presentation.components.Chip
+import com.jetpackcompose.homepage.presentation.components.RecipeCard
+import com.jetpackcompose.homepage.presentation.components.SearchBar
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow

@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.home.components
+package com.jetpackcompose.homepage.presentation.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.jetpackcompose.app.presentation.ui.home.HomeScreenViewModel
+import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

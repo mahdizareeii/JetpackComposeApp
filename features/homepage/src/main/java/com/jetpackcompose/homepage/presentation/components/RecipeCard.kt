@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.home.components
+package com.jetpackcompose.homepage.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
-import com.jetpackcompose.app.R
 import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.homepage.R
 
 @ExperimentalCoilApi
 @Composable

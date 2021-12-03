@@ -13,6 +13,7 @@ apply from: '../../buildSrc/dependencies_compose.gradle'
 apply from: '../../buildSrc/dependencies_hilt.gradle'
 apply from: '../../buildSrc/dependencies_test.gradle'
 apply from: '../../buildSrc/dependencies_ktx.gradle'
+
 dependencies {
     implementation project(path: ":domain")
 }
