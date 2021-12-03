@@ -1,6 +1,8 @@
 package com.jetpackcompose.homepage.presentation.components
 
 import android.content.res.Configuration
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.MaterialTheme
@@ -13,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 
+@RequiresApi(Build.VERSION_CODES.FROYO)
 @Preview(name = "Light Mode")
 @Preview(
     name = "Night Mode",

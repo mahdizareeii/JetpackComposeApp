@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.detail
+package com.jetpackcompose.detailpage.presentation
 
 import android.os.Bundle
 import androidx.compose.foundation.layout.Box

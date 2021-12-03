@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.ui.detail.DetailScreen
+import com.jetpackcompose.detailpage.presentation.DetailScreen
 import com.jetpackcompose.homepage.presentation.MainScreen
 
 @ExperimentalCoilApi

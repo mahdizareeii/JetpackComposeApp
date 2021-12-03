@@ -9,3 +9,4 @@ rootProject.name = "Compose App"
 include ':app'
 include ':domain'
 include ':features:homepage'
+include ':features:detailpage'
