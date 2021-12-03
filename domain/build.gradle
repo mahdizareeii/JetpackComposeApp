@@ -5,28 +5,11 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
-
-dependencies {
-
-    implementation(Libs.APP_COMPAT)
-    implementation(Libs.MATERIAL)
-
-    //Test
-    testImplementation(Libs.JUNIT)
-    testImplementation(Libs.TEST_CORE)
-    testImplementation(Libs.MOCKITO)
-    androidTestImplementation(Libs.EXT_TEST_JUNIT)
-    androidTestImplementation(Libs.ESPRESSO)
-    androidTestImplementation(Libs.COMPOSE_JUNIT)
-
-    //Hilt
-    implementation(Libs.HILT)
-    kapt(Libs.DAGGER_HILT_COMPILER)
-    kapt(Libs.HILT_COMPILER)
-    implementation(Libs.HILT_NAVIGATION_COMPOSE)
-    implementation(Libs.HILT_VIEW_MODEL)
-
-    //Retrofit
-    implementation(Libs.RETROFIT)
-    implementation(Libs.RETROFIT_CONVERTER)
-}
+//libs
+apply from: '../buildSrc/dependencies_utilities.gradle'
+apply from: '../buildSrc/dependencies_appcompat.gradle'
+apply from: '../buildSrc/dependencies_retrofit.gradle'
+apply from: '../buildSrc/dependencies_compose.gradle'
+apply from: '../buildSrc/dependencies_hilt.gradle'
+apply from: '../buildSrc/dependencies_test.gradle'
+apply from: '../buildSrc/dependencies_ktx.gradle'
