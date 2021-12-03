@@ -9,4 +9,3 @@ dependencyResolutionManagement {
 rootProject.name = "Compose App"
 include ':app'
 include ':domain'
-include ':homepage'

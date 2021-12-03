@@ -14,7 +14,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/homepage" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
