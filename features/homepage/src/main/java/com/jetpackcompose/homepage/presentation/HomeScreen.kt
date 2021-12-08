@@ -5,25 +5,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
-import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.SnackbarResult
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.domain.model.FoodCategory
+import com.jetpackcompose.domain.util.compose.getSnackBarCoroutineChannel
+import com.jetpackcompose.domain.util.compose.getSnackBarHostState
 import com.jetpackcompose.homepage.presentation.components.Chip
 import com.jetpackcompose.homepage.presentation.components.RecipeCard
 import com.jetpackcompose.homepage.presentation.components.SearchBar
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 
 @ExperimentalCoilApi
 @Composable
@@ -35,7 +34,8 @@ fun MainScreen(
     val errorMessage = viewModel.error.value
     val loading = viewModel.loading.value
 
-    val channel = getCoroutineChannel()
+    val coroutineScope = rememberCoroutineScope()
+    val channel = getSnackBarCoroutineChannel()
     val snackBarHostState = getSnackBarHostState(channel) { result ->
         when (result) {
             SnackbarResult.ActionPerformed -> {
@@ -47,6 +47,8 @@ fun MainScreen(
         }
     }
     val scaffoldState = rememberScaffoldState(snackbarHostState = snackBarHostState)
+
+    val lazyListState = rememberLazyListState()
 
     errorMessage.takeIf { it.isNotEmpty() }?.let {
         channel.trySend(it)
@@ -65,12 +67,22 @@ fun MainScreen(
         content = {
             Column {
                 LazyRow(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    state = lazyListState
                 ) {
+                    //for scroll to previous position automatically (when change screen orientation)
+                    coroutineScope.launch {
+                        lazyListState.animateScrollToItem(
+                            viewModel.lazyRowStatePosition,
+                            viewModel.lazyRowScrollOffsetPosition
+                        )
+                    }
+
                     items(FoodCategory.getAllFood()) {
                         Chip(
                             text = it.foodName,
-                            viewModel = viewModel
+                            viewModel = viewModel,
+                            lazyListState = lazyListState
                         )
                     }
                 }
@@ -84,25 +96,3 @@ fun MainScreen(
         }
     )
 }
-
-@Composable
-fun getSnackBarHostState(
-    channel: Channel<String>,
-    result: (SnackbarResult) -> Unit
-): SnackbarHostState {
-    val snackBarHostState = remember { SnackbarHostState() }
-    LaunchedEffect(channel) {
-        channel.receiveAsFlow().collect { message ->
-            result.invoke(
-                snackBarHostState.showSnackbar(
-                    message = message,
-                    actionLabel = "close"
-                )
-            )
-        }
-    }
-    return snackBarHostState
-}
-
-@Composable
-fun getCoroutineChannel() = remember { Channel<String>(Channel.Factory.CONFLATED) }

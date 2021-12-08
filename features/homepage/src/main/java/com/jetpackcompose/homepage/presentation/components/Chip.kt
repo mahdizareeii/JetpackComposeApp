@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -25,14 +26,15 @@ import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 @Composable
 fun PreviewChip() {
     MaterialTheme {
-        Chip(text = "Test", viewModel = viewModel())
+        Chip(text = "Test", viewModel = viewModel(), lazyListState = LazyListState())
     }
 }
 
 @Composable
 fun Chip(
     text: String,
-    viewModel: HomeScreenViewModel
+    viewModel: HomeScreenViewModel,
+    lazyListState: LazyListState
 ) {
     val isSelected = viewModel.selectedCategory.value.foodName == text
 
@@ -43,6 +45,10 @@ fun Chip(
                 value = isSelected,
                 onValueChange = {
                     viewModel.onSelectedCategory(text)
+
+                    //for save position of lazy row with click on chips
+                    viewModel.lazyRowStatePosition = lazyListState.firstVisibleItemIndex
+                    viewModel.lazyRowScrollOffsetPosition = lazyListState.firstVisibleItemScrollOffset
                 }
             ),
         elevation = 8.dp,

@@ -37,7 +37,7 @@ fun RecipeCard(
                 //load image with coil
                 Image(
                     modifier = Modifier
-                        .fillMaxWidth(0.3f)
+                        .width(100.dp)
                         .height(100.dp),
                     painter = rememberImagePainter(
                         data = img,
@@ -54,7 +54,7 @@ fun RecipeCard(
 
             Column(
                 modifier = Modifier
-                    .fillMaxWidth(0.7f)
+                    .wrapContentWidth()
                     .padding(
                         top = 8.dp,
                         bottom = 8.dp,
@@ -74,7 +74,7 @@ fun RecipeCard(
 
                 recipe.rating?.let {
                     Text(
-                        text = "comments: $it",
+                        text = "rating: $it",
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.Start),
