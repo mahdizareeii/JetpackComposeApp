@@ -53,7 +53,7 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun searchFood() {
-        searchRecipesUseCase(page = 1, query.value).onEach {
+        searchRecipesUseCase(page = 1, query = query.value).onEach {
             when (it) {
                 is UiDataState.Success -> {
                     _recipeList.value = it.data
