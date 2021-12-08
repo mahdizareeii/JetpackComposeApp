@@ -73,8 +73,8 @@ fun MainScreen(
                     //for scroll to previous position automatically (when change screen orientation)
                     coroutineScope.launch {
                         lazyListState.animateScrollToItem(
-                            viewModel.lazyRowStatePosition,
-                            viewModel.lazyRowScrollOffsetPosition
+                            index = viewModel.lazyRowStatePosition,
+                            scrollOffset = viewModel.lazyRowScrollOffsetPosition
                         )
                     }
 
