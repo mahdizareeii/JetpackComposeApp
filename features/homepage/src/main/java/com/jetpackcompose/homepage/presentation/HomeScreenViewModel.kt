@@ -34,7 +34,6 @@ class HomeScreenViewModel @Inject constructor(
     private val _selectedCategory: MutableState<FoodCategory> = mutableStateOf(FoodCategory.UN_KNOW)
     val selectedCategory: State<FoodCategory> get() = _selectedCategory
 
-
     //save scroll position state of the lazy row in home screen
     var lazyRowStatePosition = 0
     var lazyRowScrollOffsetPosition = 0
