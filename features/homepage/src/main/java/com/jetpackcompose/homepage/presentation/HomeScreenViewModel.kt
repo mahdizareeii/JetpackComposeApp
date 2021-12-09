@@ -35,7 +35,7 @@ class HomeScreenViewModel @Inject constructor(
     val selectedCategory: State<FoodCategory> get() = _selectedCategory
 
     //save scroll position state of the lazy row in home screen
-    var lazyRowScrolIndexPosition = 0
+    var lazyRowScrollIndexPosition = 0
     var lazyRowScrollOffsetPosition = 0
 
     fun onQueryChanged(text: String) {

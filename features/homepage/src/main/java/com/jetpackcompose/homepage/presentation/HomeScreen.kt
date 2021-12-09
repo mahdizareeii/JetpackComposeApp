@@ -48,14 +48,10 @@ fun MainScreen(
     }
     val scaffoldState = rememberScaffoldState(snackbarHostState = snackBarHostState)
 
-    val lazyListState = rememberLazyListState()
+    val lazyRowState = rememberLazyListState()
 
     errorMessage.takeIf { it.isNotEmpty() }?.let {
         channel.trySend(it)
-    }
-
-    loading.takeIf { it }?.let {
-        channel.trySend("getting data")
     }
 
     Scaffold(
@@ -68,12 +64,12 @@ fun MainScreen(
             Column {
                 LazyRow(
                     modifier = Modifier.fillMaxWidth(),
-                    state = lazyListState
+                    state = lazyRowState
                 ) {
                     //for scroll to previous position automatically (when change screen orientation)
                     coroutineScope.launch {
-                        lazyListState.animateScrollToItem(
-                            index = viewModel.lazyRowScrolIndexPosition,
+                        lazyRowState.animateScrollToItem(
+                            index = viewModel.lazyRowScrollIndexPosition,
                             scrollOffset = viewModel.lazyRowScrollOffsetPosition
                         )
                     }
@@ -82,12 +78,14 @@ fun MainScreen(
                         Chip(
                             text = it.foodName,
                             viewModel = viewModel,
-                            lazyListState = lazyListState
+                            lazyListState = lazyRowState
                         )
                     }
                 }
 
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
                     items(viewModel.recipeList.value) { recipe ->
                         RecipeCard(recipe = recipe, onClick = {})
                     }

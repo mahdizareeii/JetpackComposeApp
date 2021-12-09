@@ -47,7 +47,7 @@ fun Chip(
                     viewModel.onSelectedCategory(text)
 
                     //for save position of lazy row with click on chips
-                    viewModel.lazyRowScrolIndexPosition = lazyListState.firstVisibleItemIndex
+                    viewModel.lazyRowScrollIndexPosition = lazyListState.firstVisibleItemIndex
                     viewModel.lazyRowScrollOffsetPosition = lazyListState.firstVisibleItemScrollOffset
                 }
             ),

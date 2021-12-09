@@ -2,6 +2,8 @@ package com.jetpackcompose.homepage.presentation.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -48,9 +50,23 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
                         keyboardController?.hide()
                     }
                 ),
-                leadingIcon = { Icon(Icons.Filled.Search, contentDescription = "search icon") },
+                leadingIcon = {
+                    if (viewModel.loading.value)
+                        CircularProgress()
+                    else
+                        Icon(Icons.Filled.Search, contentDescription = "search icon")
+                },
                 colors = TextFieldDefaults.textFieldColors(backgroundColor = MaterialTheme.colors.background)
             )
         }
     }
+}
+
+@Composable
+fun CircularProgress() {
+    CircularProgressIndicator(
+        modifier = Modifier
+            .width(25.dp)
+            .height(25.dp)
+    )
 }

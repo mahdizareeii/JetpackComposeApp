@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColor = darkColors(
-    primary = Red300,
+    primary = Red400,
     primaryVariant = Red700,
     onPrimary = Color.Black,
     secondary = Red300,
