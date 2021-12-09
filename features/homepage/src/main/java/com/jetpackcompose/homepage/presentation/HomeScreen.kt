@@ -2,7 +2,6 @@ package com.jetpackcompose.homepage.presentation
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -107,6 +106,8 @@ fun MainScreen(
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
+
+                            //like 0dp in xml
                             height = Dimension.fillToConstraints
                         }
                 ) {
