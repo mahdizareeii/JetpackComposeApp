@@ -66,19 +66,19 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth(),
                     state = lazyRowState
                 ) {
-                    //for scroll to previous position automatically (when change screen orientation)
-                    coroutineScope.launch {
-                        lazyRowState.animateScrollToItem(
-                            index = viewModel.lazyRowScrollIndexPosition,
-                            scrollOffset = viewModel.lazyRowScrollOffsetPosition
-                        )
-                    }
-
                     items(FoodCategory.getAllFood()) {
                         Chip(
                             text = it.foodName,
                             viewModel = viewModel,
                             lazyListState = lazyRowState
+                        )
+                    }
+                    
+                    //for scroll to previous position automatically (when change screen orientation)
+                    coroutineScope.launch {
+                        lazyRowState.animateScrollToItem(
+                            index = viewModel.lazyRowScrollIndexPosition,
+                            scrollOffset = viewModel.lazyRowScrollOffsetPosition
                         )
                     }
                 }
