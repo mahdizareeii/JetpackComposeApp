@@ -1,6 +1,8 @@
 package com.jetpackcompose.homepage.presentation
 
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -13,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
@@ -61,7 +64,11 @@ fun MainScreen(
             SearchBar(viewModel = viewModel)
         },
         content = {
-            ConstraintLayout {
+            ConstraintLayout(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+            ) {
                 //Create reference for the views to constraint
                 val (chips, contents) = createRefs()
 
@@ -99,6 +106,8 @@ fun MainScreen(
                             top.linkTo(chips.bottom)
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
+                            height = Dimension.fillToConstraints
                         }
                 ) {
                     items(viewModel.recipeList.value) { recipe ->
