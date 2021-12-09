@@ -1,6 +1,5 @@
 package com.jetpackcompose.homepage.presentation
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -13,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
@@ -61,9 +61,18 @@ fun MainScreen(
             SearchBar(viewModel = viewModel)
         },
         content = {
-            Column {
+            ConstraintLayout {
+                //Create reference for the views to constraint
+                val (chips, contents) = createRefs()
+
                 LazyRow(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .constrainAs(chips) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        },
                     state = lazyRowState
                 ) {
                     items(FoodCategory.getAllFood()) {
@@ -73,7 +82,7 @@ fun MainScreen(
                             lazyListState = lazyRowState
                         )
                     }
-                    
+
                     //for scroll to previous position automatically (when change screen orientation)
                     coroutineScope.launch {
                         lazyRowState.animateScrollToItem(
@@ -84,7 +93,13 @@ fun MainScreen(
                 }
 
                 LazyColumn(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .constrainAs(contents) {
+                            top.linkTo(chips.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        }
                 ) {
                     items(viewModel.recipeList.value) { recipe ->
                         RecipeCard(recipe = recipe, onClick = {})
