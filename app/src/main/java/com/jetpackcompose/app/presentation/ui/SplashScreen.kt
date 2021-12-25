@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.jetpackcompose.app.presentation.theme.training.animation.ChangeVisibilityOfButtonWithAnimation
+import com.jetpackcompose.app.presentation.theme.training.animation.ChangeContentSizeOfViewWithAnimation
 
 @Composable
 fun SplashScreen(
@@ -18,6 +18,6 @@ fun SplashScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ChangeVisibilityOfButtonWithAnimation()
+        ChangeContentSizeOfViewWithAnimation()
     }
 }

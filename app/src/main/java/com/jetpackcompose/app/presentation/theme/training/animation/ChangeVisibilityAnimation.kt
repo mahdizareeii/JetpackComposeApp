@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun ChangeVisibilityOfButtonWithAnimation() {
+fun ChangeVisibilityOfViewWithAnimation() {
     var visible by remember {
         mutableStateOf(true)
     }
