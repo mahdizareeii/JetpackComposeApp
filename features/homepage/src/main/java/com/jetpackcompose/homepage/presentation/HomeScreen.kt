@@ -68,7 +68,7 @@ fun MainScreen(
                     .fillMaxWidth()
                     .fillMaxHeight()
             ) {
-                //Create reference for the views to constraint
+                //create reference for the views to constraint
                 val (chips, contents) = createRefs()
 
                 LazyRow(

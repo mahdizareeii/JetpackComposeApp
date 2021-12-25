@@ -1,1 +1,1 @@
-C:\Users\Mahdizareeii\Desktop\JetpackComposeApp\buildSrc\build\classes\kotlin\main\Libs.class;C:\Users\Mahdizareeii\Desktop\JetpackComposeApp\buildSrc\build\classes\kotlin\main\Versions.class
+C:\Users\m.zareei\Desktop\JetpackComposeApp\buildSrc\build\classes\kotlin\main\Libs.class;C:\Users\m.zareei\Desktop\JetpackComposeApp\buildSrc\build\classes\kotlin\main\Versions.class

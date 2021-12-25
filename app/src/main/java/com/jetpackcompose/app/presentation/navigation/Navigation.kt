@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
+import com.jetpackcompose.app.presentation.ui.SplashScreen
 import com.jetpackcompose.detailpage.presentation.DetailScreen
 import com.jetpackcompose.homepage.presentation.MainScreen
 
@@ -16,8 +17,12 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.HomeScreen.route
+        startDestination = Screen.Splash.route
     ) {
+        composable(route = Screen.Splash.route){
+            SplashScreen(navController = navController)
+        }
+        
         composable(
             route = Screen.HomeScreen.route
         ) {
