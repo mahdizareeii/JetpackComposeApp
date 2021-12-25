@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.jetpackcompose.app.presentation.theme.training.animation.ChangeContentSizeOfViewWithAnimation
+import com.jetpackcompose.app.presentation.theme.training.animation.ChangeViewWithCrossFadeAnimation
 
 @Composable
 fun SplashScreen(
@@ -18,6 +19,6 @@ fun SplashScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ChangeContentSizeOfViewWithAnimation()
+        ChangeViewWithCrossFadeAnimation()
     }
 }
