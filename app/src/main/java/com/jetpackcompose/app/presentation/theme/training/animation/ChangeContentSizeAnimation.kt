@@ -41,5 +41,5 @@ fun ChangeContentSizeOfViewWithAnimation() {
     }
 }
 
-val sampleText =
+private const val sampleText =
     "Animations are essential in a modern mobile app in order to realize a smooth and understandable user experience. Many Jetpack Compose Animation APIs are available as composable functions just like layouts and other UI elements, and they are backed by lower-level APIs built with Kotlin coroutine suspend functions. This guide starts with the high-level APIs that are useful in many practical scenarios, and moves on to explain the low-level APIs that give you further control and customization."
