@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.theme.trainingelements
+package com.jetpackcompose.app.presentation.theme.training
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateColorAsState

@@ -1,7 +1,6 @@
-package com.jetpackcompose.app.presentation.theme.trainingelements
+package com.jetpackcompose.app.presentation.theme.training.animation
 
 import androidx.compose.animation.animateColor
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.height
@@ -14,26 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-@Composable
-fun ChangeColorOfButtonWithAnimation() {
-    var blue by remember {
-        mutableStateOf(true)
-    }
-
-    val color by animateColorAsState(if (blue) Color.Blue else Color.Red)
-
-    Button(
-        modifier = Modifier
-            .width(100.dp)
-            .height(100.dp),
-        onClick = { blue = !blue },
-        colors = ButtonDefaults.buttonColors(color)
-    ) {
-        Text(
-            text = "Click me"
-        )
-    }
-}
 
 @Composable
 fun ChangeColorAndSizeOfButtonWithAnimation() {
