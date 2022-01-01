@@ -18,6 +18,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
+import com.jetpackcompose.resources.theme.circularProgressColor
+import com.jetpackcompose.resources.theme.textColor
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -34,7 +36,7 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = viewModel.query.value,
-                textStyle = TextStyle(color = MaterialTheme.colors.onBackground),
+                textStyle = TextStyle(color = MaterialTheme.colors.textColor),
                 onValueChange = { text ->
                     viewModel.inValidateSelectedCategory()
                     viewModel.onQueryChanged(text)
@@ -67,6 +69,7 @@ fun CircularProgress() {
     CircularProgressIndicator(
         modifier = Modifier
             .width(25.dp)
-            .height(25.dp)
+            .height(25.dp),
+        color = MaterialTheme.colors.circularProgressColor
     )
 }

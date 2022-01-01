@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.theme
+package com.jetpackcompose.resources.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

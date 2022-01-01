@@ -16,6 +16,7 @@ import coil.compose.rememberImagePainter
 import coil.size.Scale
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.homepage.R
+import com.jetpackcompose.resources.theme.textColor
 
 @ExperimentalCoilApi
 @Composable
@@ -68,7 +69,8 @@ fun RecipeCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.Start),
-                        style = MaterialTheme.typography.subtitle1
+                        style = MaterialTheme.typography.subtitle1,
+                        color = MaterialTheme.colors.textColor
                     )
                 }
 
@@ -78,7 +80,8 @@ fun RecipeCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentWidth(Alignment.Start),
-                        style = MaterialTheme.typography.caption
+                        style = MaterialTheme.typography.caption,
+                        color = MaterialTheme.colors.textColor
                     )
                 }
             }

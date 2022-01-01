@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.theme.training
+package com.jetpackcompose.app.presentation.ui.training
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button

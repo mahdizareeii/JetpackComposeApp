@@ -1,31 +1,21 @@
-package com.jetpackcompose.app.presentation.theme
+package com.jetpackcompose.resources.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 private val DarkColor = darkColors(
-    primary = Red400,
-    primaryVariant = Red700,
-    onPrimary = Color.Black,
-    secondary = Red300,
-    onSecondary = Color.Black,
-    error = Red200,
-    onBackground = Color.White
+    primary = dark,
+    secondary = black,
+    background = black
 )
 
 private val LightColor = lightColors(
-    primary = Red700,
-    primaryVariant = Red900,
-    onPrimary = Color.White,
-    secondary = Red700,
-    secondaryVariant = Red900,
-    onSecondary = Color.White,
-    error = Red800,
-    onBackground = Color.Black
+    primary = white,
+    secondary = dark,
+    background = white
 )
 
 @Composable

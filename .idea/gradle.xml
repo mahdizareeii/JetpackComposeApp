@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/detailpage" />
             <option value="$PROJECT_DIR$/features/homepage" />
+            <option value="$PROJECT_DIR$/resources" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,0 +1,7 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+//libs
+apply from: '../buildSrc/dependencies_appcompat.gradle'
+apply from: '../buildSrc/dependencies_compose.gradle'
