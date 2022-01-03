@@ -111,6 +111,7 @@ fun MainScreen(
                             height = Dimension.fillToConstraints
                         }
                 ) {
+                    //TODO use paging here
                     items(viewModel.recipeList.value) { recipe ->
                         RecipeCard(recipe = recipe, onClick = {})
                     }
