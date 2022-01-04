@@ -35,9 +35,6 @@ class HomeScreenViewModel @Inject constructor(
         }
     ).flow.cachedIn(viewModelScope)
 
-    private val _loading: MutableState<Boolean> = mutableStateOf(false)
-    val loading: State<Boolean> get() = _loading
-
     private val _query = mutableStateOf("")
     val query: State<String> get() = _query
 

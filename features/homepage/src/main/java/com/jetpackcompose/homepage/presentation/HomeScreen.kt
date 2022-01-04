@@ -38,7 +38,6 @@ fun MainScreen(
     viewModel: HomeScreenViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val loading = viewModel.loading.value
 
     val coroutineScope = rememberCoroutineScope()
     val channel = getSnackBarCoroutineChannel()
