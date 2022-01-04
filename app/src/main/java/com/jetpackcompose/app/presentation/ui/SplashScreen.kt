@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.jetpackcompose.app.presentation.navigation.Screen
-import com.jetpackcompose.app.presentation.ui.training.animation.ChangeBackgroundColorOfViewWithInfiniteAnimation
+import com.jetpackcompose.resources.training.animation.ChangeBackgroundColorOfViewWithInfiniteAnimation
 import com.jetpackcompose.resources.theme.splashColor1
 import com.jetpackcompose.resources.theme.splashColor2
 import kotlinx.coroutines.delay

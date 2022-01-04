@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.training
+package com.jetpackcompose.resources.training
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -9,7 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.jetpackcompose.app.presentation.navigation.Screen
 
 @Composable
 fun SampleItem2(
@@ -35,7 +34,7 @@ fun SampleItem2(
         Button(
             onClick = {
                 //navigate and send params to detail screen
-                navController.navigate("${Screen.DetailScreen.route}/$title")
+                //navController.navigate("${Screen.DetailScreen.route}/$title")
             },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {

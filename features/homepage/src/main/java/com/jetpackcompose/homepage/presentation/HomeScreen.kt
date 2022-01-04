@@ -17,6 +17,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.domain.model.FoodCategory
 import com.jetpackcompose.domain.util.compose.getSnackBarCoroutineChannel
@@ -24,6 +27,8 @@ import com.jetpackcompose.domain.util.compose.getSnackBarHostState
 import com.jetpackcompose.homepage.presentation.components.Chip
 import com.jetpackcompose.homepage.presentation.components.RecipeCard
 import com.jetpackcompose.homepage.presentation.components.SearchBar
+import com.jetpackcompose.resources.components.ErrorListItem
+import com.jetpackcompose.resources.components.LoadingListItem
 import kotlinx.coroutines.launch
 
 @ExperimentalCoilApi
@@ -33,7 +38,6 @@ fun MainScreen(
     viewModel: HomeScreenViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val errorMessage = viewModel.error.value
     val loading = viewModel.loading.value
 
     val coroutineScope = rememberCoroutineScope()
@@ -52,9 +56,7 @@ fun MainScreen(
 
     val lazyRowState = rememberLazyListState()
 
-    errorMessage.takeIf { it.isNotEmpty() }?.let {
-        channel.trySend(it)
-    }
+    val recipes = viewModel.recipeList.collectAsLazyPagingItems()
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -111,9 +113,37 @@ fun MainScreen(
                             height = Dimension.fillToConstraints
                         }
                 ) {
-                    //TODO use paging here
-                    items(viewModel.recipeList.value) { recipe ->
-                        RecipeCard(recipe = recipe, onClick = {})
+                    items(recipes) { recipe ->
+                        RecipeCard(recipe = recipe!!, onClick = {})
+                    }
+
+                    recipes.loadState.let {
+                        if (it.refresh is LoadState.Loading) {
+                            channel.trySend(
+                                "Fetching data"
+                            )
+                        }
+
+                        if (it.refresh is LoadState.Error) {
+                            channel.trySend(
+                                (it.refresh as LoadState.Error).error.message ?: ""
+                            )
+                        }
+
+                        if (it.append is LoadState.Loading) {
+                            item {
+                                LoadingListItem()
+                            }
+                        }
+
+                        if (it.append is LoadState.Error) {
+                            item {
+                                ErrorListItem(
+                                    error = (it.append as LoadState.Error).error.message,
+                                    onTryClicked = { }
+                                )
+                            }
+                        }
                     }
                 }
             }

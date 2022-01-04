@@ -2,8 +2,6 @@ package com.jetpackcompose.homepage.presentation.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -18,7 +16,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
-import com.jetpackcompose.resources.theme.circularProgressColor
+import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.theme.textColor
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -62,14 +60,4 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
             )
         }
     }
-}
-
-@Composable
-fun CircularProgress() {
-    CircularProgressIndicator(
-        modifier = Modifier
-            .width(25.dp)
-            .height(25.dp),
-        color = MaterialTheme.colors.circularProgressColor
-    )
 }

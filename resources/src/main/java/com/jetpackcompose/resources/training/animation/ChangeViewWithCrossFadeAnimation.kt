@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.training.animation
+package com.jetpackcompose.resources.training.animation
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.ui.training
+package com.jetpackcompose.resources.training
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -18,7 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jetpackcompose.app.R
+import com.jetpackcompose.resources.R
 import com.jetpackcompose.resources.theme.AppTheme
 
 @Composable

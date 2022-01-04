@@ -5,13 +5,16 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.jetpackcompose.domain.model.FoodCategory
 import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.domain.pagingsource.RecipePagingSource
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.domain.util.model.UiDataState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,14 +22,21 @@ class HomeScreenViewModel @Inject constructor(
     private val searchRecipesUseCase: SearchRecipesUseCase
 ) : ViewModel() {
 
+    private val size = 10
+    val recipeList: Flow<PagingData<Recipe>> = Pager(
+        config = PagingConfig(
+            pageSize = size,
+            initialLoadSize = size,
+            prefetchDistance = size / 3,
+            enablePlaceholders = true
+        ),
+        pagingSourceFactory = {
+            RecipePagingSource(searchRecipesUseCase, query.value)
+        }
+    ).flow.cachedIn(viewModelScope)
+
     private val _loading: MutableState<Boolean> = mutableStateOf(false)
     val loading: State<Boolean> get() = _loading
-
-    private val _error: MutableState<String> = mutableStateOf("")
-    val error: State<String> get() = _error
-
-    private val _recipeList: MutableState<List<Recipe>> = mutableStateOf(listOf())
-    val recipeList: State<List<Recipe>> get() = _recipeList
 
     private val _query = mutableStateOf("")
     val query: State<String> get() = _query
@@ -53,14 +63,6 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun searchFood() {
-        searchRecipesUseCase(page = 1, query = query.value).onEach {
-            when (it) {
-                is UiDataState.Success -> {
-                    _recipeList.value = it.data
-                }
-                is UiDataState.Error -> it.networkStatus.message
-                is UiDataState.Loading -> _loading.value = it.isLoading
-            }
-        }.launchIn(viewModelScope)
+
     }
 }
