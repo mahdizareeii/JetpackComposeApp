@@ -6,30 +6,31 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.jetpackcompose.app.presentation.navigation.Screen
-import com.jetpackcompose.resources.training.animation.ChangeBackgroundColorOfViewWithInfiniteAnimation
 import com.jetpackcompose.resources.theme.splashColor1
 import com.jetpackcompose.resources.theme.splashColor2
+import com.jetpackcompose.resources.training.animation.ChangeBackgroundColorOfViewWithInfiniteAnimation
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
 fun SplashScreen(
     navController: NavController
 ) {
-    val coroutineScope = rememberCoroutineScope()
+    LaunchedEffect(true) {
+        delay(3000)
+        navController.navigate(Screen.HomeScreen.route) {
+            popUpTo(Screen.Splash.route) {
+                inclusive = true
+            }
+        }
+    }
 
     Scaffold(
         content = {
-            coroutineScope.launch {
-                delay(3000)
-                navController.navigate(Screen.HomeScreen.route)
-            }
-
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
