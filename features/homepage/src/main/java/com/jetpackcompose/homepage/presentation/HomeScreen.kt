@@ -53,7 +53,6 @@ fun MainScreen(
         }
     }
     val scaffoldState = rememberScaffoldState(snackbarHostState = snackBarHostState)
-
     val lazyRowState = rememberLazyListState()
 
     val recipes = viewModel.recipeList.collectAsLazyPagingItems()
