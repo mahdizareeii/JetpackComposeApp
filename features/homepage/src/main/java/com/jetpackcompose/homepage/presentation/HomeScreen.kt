@@ -116,31 +116,35 @@ fun MainScreen(
                         RecipeCard(recipe = recipe!!, onClick = {})
                     }
 
-                    recipes.loadState.let {
-                        if (it.refresh is LoadState.Loading) {
-                            channel.trySend(
-                                "Fetching data"
-                            )
-                        }
-
-                        if (it.refresh is LoadState.Error) {
-                            channel.trySend(
-                                (it.refresh as LoadState.Error).error.message ?: ""
-                            )
-                        }
-
-                        if (it.append is LoadState.Loading) {
-                            item {
-                                LoadingListItem()
-                            }
-                        }
-
-                        if (it.append is LoadState.Error) {
-                            item {
-                                ErrorListItem(
-                                    error = (it.append as LoadState.Error).error.message,
-                                    onTryClicked = { }
+                    recipes.apply {
+                        when {
+                            loadState.refresh is LoadState.Loading -> {
+                                channel.trySend(
+                                    "Fetching data"
                                 )
+                            }
+
+                            loadState.refresh is LoadState.Error -> {
+                                channel.trySend(
+                                    (loadState.refresh as LoadState.Error).error.message ?: ""
+                                )
+                            }
+
+                            loadState.append is LoadState.Loading -> {
+                                item {
+                                    LoadingListItem()
+                                }
+                            }
+
+                            loadState.append is LoadState.Error -> {
+                                item {
+                                    ErrorListItem(
+                                        error = (loadState.append as LoadState.Error).error.message,
+                                        onTryClicked = {
+                                            retry()
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
