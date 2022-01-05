@@ -28,7 +28,12 @@ import com.jetpackcompose.resources.theme.chipUnselected
 @Composable
 fun PreviewChip() {
     MaterialTheme {
-        Chip(text = "Test", viewModel = viewModel(), lazyListState = LazyListState())
+        Chip(
+            text = "Test",
+            viewModel = viewModel(),
+            lazyListState = LazyListState(),
+            onChipClicked = {}
+        )
     }
 }
 
@@ -36,7 +41,8 @@ fun PreviewChip() {
 fun Chip(
     text: String,
     viewModel: HomeScreenViewModel,
-    lazyListState: LazyListState
+    lazyListState: LazyListState,
+    onChipClicked: (String) -> Unit
 ) {
     val isSelected = viewModel.selectedCategory.value.foodName == text
 
@@ -46,8 +52,7 @@ fun Chip(
             .toggleable(
                 value = isSelected,
                 onValueChange = {
-                    viewModel.onSelectedCategory(text)
-
+                    onChipClicked.invoke(text)
                     //for save position of lazy row with click on chips
                     viewModel.lazyRowScrollIndexPosition =
                         lazyListState.firstVisibleItemIndex

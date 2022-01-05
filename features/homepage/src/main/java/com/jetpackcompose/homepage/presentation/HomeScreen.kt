@@ -60,7 +60,12 @@ fun MainScreen(
         scaffoldState = scaffoldState,
         modifier = Modifier.fillMaxWidth(),
         topBar = {
-            SearchBar(viewModel = viewModel)
+            SearchBar(
+                viewModel = viewModel,
+                onSearchClicked = {
+                    recipes.refresh()
+                }
+            )
         },
         content = {
             ConstraintLayout(
@@ -85,7 +90,11 @@ fun MainScreen(
                         Chip(
                             text = it.foodName,
                             viewModel = viewModel,
-                            lazyListState = lazyRowState
+                            lazyListState = lazyRowState,
+                            onChipClicked = { text ->
+                                viewModel.onSelectedCategory(text)
+                                recipes.refresh()
+                            }
                         )
                     }
 

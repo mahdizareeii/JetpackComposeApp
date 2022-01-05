@@ -55,14 +55,9 @@ class HomeScreenViewModel @Inject constructor(
     fun onSelectedCategory(category: String) {
         _selectedCategory.value = FoodCategory.getFoodCategory(category)
         onQueryChanged(category)
-        searchFood()
     }
 
     fun inValidateSelectedCategory() {
         _selectedCategory.value = FoodCategory.UN_KNOW
-    }
-
-    fun searchFood() {
-
     }
 }

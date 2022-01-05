@@ -21,7 +21,10 @@ import com.jetpackcompose.resources.theme.textColor
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun SearchBar(viewModel: HomeScreenViewModel) {
+fun SearchBar(
+    viewModel: HomeScreenViewModel,
+    onSearchClicked: () -> Unit
+) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Surface(
@@ -46,7 +49,7 @@ fun SearchBar(viewModel: HomeScreenViewModel) {
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {
-                        viewModel.searchFood()
+                        onSearchClicked.invoke()
                         keyboardController?.hide()
                     }
                 ),
