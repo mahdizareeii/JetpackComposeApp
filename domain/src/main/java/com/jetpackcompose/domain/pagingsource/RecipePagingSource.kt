@@ -13,10 +13,10 @@ class RecipePagingSource(
     private val query: String
 ) : PagingSource<Int, Recipe>() {
     override fun getRefreshKey(state: PagingState<Int, Recipe>): Int? {
-        return state.anchorPosition?.let {
+        return /*if (invalid) 1 else state.anchorPosition?.let {
             val anchorPage = state.closestPageToPosition(it)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-        }
+        }*/ 1
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Recipe> {

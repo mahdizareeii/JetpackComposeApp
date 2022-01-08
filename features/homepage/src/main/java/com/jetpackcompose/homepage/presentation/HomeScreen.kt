@@ -53,8 +53,17 @@ fun MainScreen(
     }
     val scaffoldState = rememberScaffoldState(snackbarHostState = snackBarHostState)
     val lazyRowState = rememberLazyListState()
+    val lazyColumnState = rememberLazyListState()
 
     val recipes = viewModel.recipeList.collectAsLazyPagingItems()
+
+    val refreshPage: () -> Unit = {
+        coroutineScope.launch {
+            recipes.refresh()
+            //for scroll to top when page refreshed
+            lazyColumnState.animateScrollToItem(index = 0, scrollOffset = 0)
+        }
+    }
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -63,7 +72,7 @@ fun MainScreen(
             SearchBar(
                 viewModel = viewModel,
                 onSearchClicked = {
-                    recipes.refresh()
+                    refreshPage.invoke()
                 }
             )
         },
@@ -93,7 +102,7 @@ fun MainScreen(
                             lazyListState = lazyRowState,
                             onChipClicked = { text ->
                                 viewModel.onSelectedCategory(text)
-                                recipes.refresh()
+                                refreshPage.invoke()
                             }
                         )
                     }
@@ -108,6 +117,7 @@ fun MainScreen(
                 }
 
                 LazyColumn(
+                    state = lazyColumnState,
                     modifier = Modifier
                         .fillMaxWidth()
                         .constrainAs(contents) {
@@ -127,9 +137,6 @@ fun MainScreen(
                     recipes.apply {
                         when {
                             loadState.refresh is LoadState.Loading -> {
-                                channel.trySend(
-                                    "Fetching data"
-                                )
                             }
 
                             loadState.refresh is LoadState.Error -> {

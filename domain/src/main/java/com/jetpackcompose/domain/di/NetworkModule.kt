@@ -1,17 +1,19 @@
 package com.jetpackcompose.domain.di
 
 import com.google.gson.GsonBuilder
+import com.jetpackcompose.domain.BuildConfig
 import com.jetpackcompose.domain.network.api.RecipeApiService
-import com.jetpackcompose.domain.util.network.interceptors.AuthorizationInterceptor
 import com.jetpackcompose.domain.util.network.TokenManager
 import com.jetpackcompose.domain.util.network.TokenManagerImpl
 import com.jetpackcompose.domain.util.network.calladapter.adapter.CallAdapterFactory
+import com.jetpackcompose.domain.util.network.interceptors.AuthorizationInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
@@ -58,9 +60,17 @@ object NetworkModule {
     }
 
     private fun okHttpClient(interceptor: Interceptor): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
+        return OkHttpClient.Builder().apply {
+            addInterceptor(interceptor)
+
+            if (BuildConfig.DEBUG)
+                addInterceptor(
+                    HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    }
+                )
+
+        }.build()
     }
 
 }
