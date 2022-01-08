@@ -22,8 +22,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.domain.model.FoodCategory
-import com.jetpackcompose.domain.util.compose.getSnackBarCoroutineChannel
-import com.jetpackcompose.domain.util.compose.getSnackBarHostState
 import com.jetpackcompose.homepage.presentation.components.Chip
 import com.jetpackcompose.homepage.presentation.components.RecipeCard
 import com.jetpackcompose.homepage.presentation.components.SearchBar
@@ -40,18 +38,7 @@ fun MainScreen(
     val context = LocalContext.current
 
     val coroutineScope = rememberCoroutineScope()
-    val channel = getSnackBarCoroutineChannel()
-    val snackBarHostState = getSnackBarHostState(channel) { result ->
-        when (result) {
-            SnackbarResult.ActionPerformed -> {
-                //do something when snack bar action button clicked
-            }
-            SnackbarResult.Dismissed -> {
-                //do something when snack bar closed
-            }
-        }
-    }
-    val scaffoldState = rememberScaffoldState(snackbarHostState = snackBarHostState)
+    val scaffoldState = rememberScaffoldState()
     val lazyRowState = rememberLazyListState()
     val lazyColumnState = rememberLazyListState()
 
@@ -62,6 +49,24 @@ fun MainScreen(
             recipes.refresh()
             //for scroll to top when page refreshed
             lazyColumnState.animateScrollToItem(index = 0, scrollOffset = 0)
+        }
+    }
+
+    val showSnackBar: (
+        message: String?,
+        actionLabel: String,
+        actionPerformed: () -> Unit,
+        dismissed: () -> Unit
+    ) -> Unit = { message, actionLabel, actionPerformed, dismissed ->
+        coroutineScope.launch {
+            val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
+                message = message.toString(),
+                actionLabel = actionLabel
+            )
+            when (snackBarResult) {
+                SnackbarResult.ActionPerformed -> actionPerformed.invoke()
+                SnackbarResult.Dismissed -> dismissed.invoke()
+            }
         }
     }
 
@@ -137,11 +142,19 @@ fun MainScreen(
                     recipes.apply {
                         when {
                             loadState.refresh is LoadState.Loading -> {
+                                //TODO show skeleton
                             }
 
                             loadState.refresh is LoadState.Error -> {
-                                channel.trySend(
-                                    (loadState.refresh as LoadState.Error).error.message ?: ""
+                                showSnackBar.invoke(
+                                    (loadState.refresh as LoadState.Error).error.message,
+                                    "Try again",
+                                    {
+                                        //on action performed
+                                        refresh()
+                                    }, {
+                                        //on dismissed
+                                    }
                                 )
                             }
 
