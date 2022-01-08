@@ -141,11 +141,31 @@ fun MainScreen(
 
                     recipes.apply {
                         when {
+                            loadState.append is LoadState.Loading -> {
+                                item {
+                                    LoadingListItem()
+                                }
+                            }
+
+                            loadState.append is LoadState.Error -> {
+                                viewModel.setLoading(false)
+                                item {
+                                    ErrorListItem(
+                                        error = (loadState.append as LoadState.Error).error.message,
+                                        onTryClicked = {
+                                            retry()
+                                        }
+                                    )
+                                }
+                            }
+
                             loadState.refresh is LoadState.Loading -> {
+                                viewModel.setLoading(true)
                                 //TODO show skeleton
                             }
 
                             loadState.refresh is LoadState.Error -> {
+                                viewModel.setLoading(false)
                                 showSnackBar.invoke(
                                     (loadState.refresh as LoadState.Error).error.message,
                                     "Try again",
@@ -158,21 +178,9 @@ fun MainScreen(
                                 )
                             }
 
-                            loadState.append is LoadState.Loading -> {
-                                item {
-                                    LoadingListItem()
-                                }
-                            }
-
-                            loadState.append is LoadState.Error -> {
-                                item {
-                                    ErrorListItem(
-                                        error = (loadState.append as LoadState.Error).error.message,
-                                        onTryClicked = {
-                                            retry()
-                                        }
-                                    )
-                                }
+                            //this must check last
+                            loadState.refresh is LoadState.NotLoading -> {
+                                viewModel.setLoading(false)
                             }
                         }
                     }

@@ -60,4 +60,8 @@ class HomeScreenViewModel @Inject constructor(
     fun inValidateSelectedCategory() {
         _selectedCategory.value = FoodCategory.UN_KNOW
     }
+
+    fun setLoading(value:Boolean){
+        _loading.value = value
+    }
 }
