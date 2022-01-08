@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.app.presentation.ui.SplashScreen
 import com.jetpackcompose.detailpage.presentation.DetailScreen
+import com.jetpackcompose.domain.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.MainScreen
 
 @ExperimentalCoilApi
@@ -30,9 +31,9 @@ fun Navigation() {
         }
 
         composable(
-            route = "${Screen.DetailScreen.route}/{title}",
+            route = "${Screen.DetailScreen.route}/{id}",
             arguments = listOf(
-                navArgument("title") {
+                navArgument("id") {
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = true

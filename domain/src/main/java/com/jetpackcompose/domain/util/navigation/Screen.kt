@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.navigation
+package com.jetpackcompose.domain.util.navigation
 
 sealed class Screen(val route: String) {
 

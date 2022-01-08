@@ -22,6 +22,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.domain.model.FoodCategory
+import com.jetpackcompose.domain.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.components.Chip
 import com.jetpackcompose.homepage.presentation.components.RecipeCard
 import com.jetpackcompose.homepage.presentation.components.SearchBar
@@ -136,7 +137,14 @@ fun MainScreen(
                         }
                 ) {
                     items(recipes) { recipe ->
-                        RecipeCard(recipe = recipe!!, onClick = {})
+                        RecipeCard(
+                            recipe = recipe!!,
+                            onClick = {
+                                navController.navigate(
+                                    "${Screen.DetailScreen.route}/${recipe.id}"
+                                )
+                            }
+                        )
                     }
 
                     recipes.apply {
