@@ -1,5 +1,7 @@
 package com.jetpackcompose.homepage.presentation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,8 +11,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarResult
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -26,10 +27,12 @@ import com.jetpackcompose.domain.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.components.Chip
 import com.jetpackcompose.homepage.presentation.components.RecipeCard
 import com.jetpackcompose.homepage.presentation.components.SearchBar
+import com.jetpackcompose.homepage.presentation.components.ShimmerAnimation
 import com.jetpackcompose.resources.components.ErrorListItem
 import com.jetpackcompose.resources.components.LoadingListItem
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalAnimationApi::class)
 @ExperimentalCoilApi
 @Composable
 fun MainScreen(
@@ -43,6 +46,7 @@ fun MainScreen(
     val lazyRowState = rememberLazyListState()
     val lazyColumnState = rememberLazyListState()
 
+    var shimmerVisibility by remember { mutableStateOf(false) }
     val recipes = viewModel.recipeList.collectAsLazyPagingItems()
 
     val refreshPage: () -> Unit = {
@@ -50,6 +54,12 @@ fun MainScreen(
             recipes.refresh()
             //for scroll to top when page refreshed
             lazyColumnState.animateScrollToItem(index = 0, scrollOffset = 0)
+        }
+    }
+
+    val changeShimmerVisibility: (Boolean) -> Unit = { isShow ->
+        coroutineScope.launch {
+            shimmerVisibility = isShow
         }
     }
 
@@ -89,7 +99,7 @@ fun MainScreen(
                     .fillMaxHeight()
             ) {
                 //create reference for the views to constraint
-                val (chips, contents) = createRefs()
+                val (chips, contents, shimmer) = createRefs()
 
                 LazyRow(
                     modifier = Modifier
@@ -119,6 +129,29 @@ fun MainScreen(
                             index = viewModel.lazyRowScrollIndexPosition,
                             scrollOffset = viewModel.lazyRowScrollOffsetPosition
                         )
+                    }
+                }
+
+                AnimatedVisibility(
+                    visible = shimmerVisibility,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .constrainAs(shimmer) {
+                            top.linkTo(chips.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
+
+                            //like 0dp in xml
+                            height = Dimension.fillToConstraints
+                        }
+                ) {
+                    LazyColumn {
+                        repeat(10) {
+                            item {
+                                ShimmerAnimation()
+                            }
+                        }
                     }
                 }
 
@@ -169,7 +202,7 @@ fun MainScreen(
 
                             loadState.refresh is LoadState.Loading -> {
                                 viewModel.setLoading(true)
-                                //TODO show skeleton
+                                changeShimmerVisibility.invoke(true)
                             }
 
                             loadState.refresh is LoadState.Error -> {
@@ -189,6 +222,7 @@ fun MainScreen(
                             //this must check last
                             loadState.refresh is LoadState.NotLoading -> {
                                 viewModel.setLoading(false)
+                                changeShimmerVisibility.invoke(false)
                             }
                         }
                     }
