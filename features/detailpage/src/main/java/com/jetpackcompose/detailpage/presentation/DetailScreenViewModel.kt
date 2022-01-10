@@ -10,6 +10,7 @@ import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.GetRecipeByIdUseCase
 import com.jetpackcompose.domain.util.model.UiDataState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -48,7 +49,7 @@ class DetailScreenViewModel @Inject constructor(
                             _loading.value = it.isLoading
                         }
                     }
-                }
+                }.launchIn(viewModelScope)
         }
     }
 }

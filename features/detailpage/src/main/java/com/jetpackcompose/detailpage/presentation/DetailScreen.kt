@@ -20,9 +20,11 @@ fun DetailScreen(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(
-            text = viewModel.id.toString(),
-            color = MaterialTheme.colors.textColor
-        )
+        viewModel.detail.value?.title?.let {
+            Text(
+                text = it,
+                color = MaterialTheme.colors.textColor
+            )
+        }
     }
 }
