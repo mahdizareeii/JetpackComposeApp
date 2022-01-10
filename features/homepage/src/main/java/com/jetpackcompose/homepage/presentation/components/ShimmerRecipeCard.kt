@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
@@ -30,7 +29,8 @@ fun ShimmerRecipeCard(brush: Brush) {
 
             Column(
                 modifier = Modifier
-                    .wrapContentWidth()
+                    .fillMaxWidth()
+                    .wrapContentHeight()
                     .padding(
                         top = 8.dp,
                         bottom = 8.dp,
@@ -40,17 +40,17 @@ fun ShimmerRecipeCard(brush: Brush) {
             ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentWidth(Alignment.Start)
-                        .height(20.dp)
+                        .fillMaxWidth(0.6f)
+                        .height(10.dp)
                         .background(brush)
                 )
 
+                Spacer(modifier = Modifier.padding(5.dp))
+
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentWidth(Alignment.Start)
-                        .height(20.dp)
+                        .fillMaxWidth(0.1f)
+                        .height(10.dp)
                         .background(brush)
                 )
             }

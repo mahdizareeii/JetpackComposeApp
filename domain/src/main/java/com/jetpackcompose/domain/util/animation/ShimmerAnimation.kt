@@ -1,4 +1,4 @@
-package com.jetpackcompose.homepage.presentation.components
+package com.jetpackcompose.domain.util.animation
 
 import androidx.compose.animation.core.*
 import androidx.compose.runtime.Composable
@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun ShimmerAnimation() {
+fun getShimmerAnimationBrush(): Brush {
     val transition = rememberInfiniteTransition()
     val translateAnim by transition.animateFloat(
         initialValue = 0f,
@@ -22,7 +22,7 @@ fun ShimmerAnimation() {
         )
     )
 
-    val brush = Brush.linearGradient(
+    return Brush.linearGradient(
         colors = listOf(
             Color.LightGray.copy(0.9f),
             Color.LightGray.copy(0.2f),
@@ -31,6 +31,4 @@ fun ShimmerAnimation() {
         start = Offset(10f, 10f),
         end = Offset(translateAnim, translateAnim)
     )
-
-    ShimmerRecipeCard(brush = brush)
 }

@@ -23,11 +23,12 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.domain.model.FoodCategory
+import com.jetpackcompose.domain.util.animation.getShimmerAnimationBrush
 import com.jetpackcompose.domain.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.components.Chip
 import com.jetpackcompose.homepage.presentation.components.RecipeCard
 import com.jetpackcompose.homepage.presentation.components.SearchBar
-import com.jetpackcompose.homepage.presentation.components.ShimmerAnimation
+import com.jetpackcompose.homepage.presentation.components.ShimmerRecipeCard
 import com.jetpackcompose.resources.components.ErrorListItem
 import com.jetpackcompose.resources.components.LoadingListItem
 import kotlinx.coroutines.launch
@@ -149,7 +150,9 @@ fun MainScreen(
                     LazyColumn {
                         repeat(10) {
                             item {
-                                ShimmerAnimation()
+                                ShimmerRecipeCard(
+                                    brush = getShimmerAnimationBrush()
+                                )
                             }
                         }
                     }
