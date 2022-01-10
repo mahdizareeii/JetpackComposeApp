@@ -14,7 +14,7 @@ fun ShimmerAnimationBrush(brush: @Composable (Brush) -> Unit) {
         initialValue = 0f,
         targetValue = 1000f,
         animationSpec = infiniteRepeatable(
-            tween(
+            animation = tween(
                 durationMillis = 1200,
                 easing = FastOutSlowInEasing,
             ),
