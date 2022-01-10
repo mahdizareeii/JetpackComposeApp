@@ -21,7 +21,7 @@ class RecipeDtoMapper : Mapper<RecipeDto, Recipe> {
         )
     }
 
-    override fun mapFromDomainModel(domainModel: Recipe): RecipeDto {
+    override fun mapToDTO(domainModel: Recipe): RecipeDto {
         return RecipeDto(
             primaryKey = domainModel.id,
             title = domainModel.title,
@@ -41,7 +41,7 @@ class RecipeDtoMapper : Mapper<RecipeDto, Recipe> {
         return list.map { mapToDomainModel(it) }
     }
 
-    fun fromDomainList(list: List<Recipe>): List<RecipeDto> {
-        return list.map { mapFromDomainModel(it) }
+    fun toDtoList(list: List<Recipe>): List<RecipeDto> {
+        return list.map { mapToDTO(it) }
     }
 }
