@@ -8,17 +8,20 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.jetpackcompose.resources.theme.textColor
 
 @Composable
-fun DetailScreen(argument: Bundle?) {
-    val title: String = argument?.getString("id") ?: ""
+fun DetailScreen(
+    viewModel: DetailScreenViewModel = hiltViewModel(),
+    argument: Bundle?
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            text = title,
+            text = viewModel.id.toString(),
             color = MaterialTheme.colors.textColor
         )
     }
