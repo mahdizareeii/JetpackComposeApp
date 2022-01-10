@@ -60,7 +60,7 @@ fun MainScreen(
 
     val changeShimmerVisibility: (Boolean) -> Unit = { isShow ->
         coroutineScope.launch {
-            shimmerVisibility = isShow
+            shimmerVisibility = isShow && recipes.itemSnapshotList.size == 0
         }
     }
 
