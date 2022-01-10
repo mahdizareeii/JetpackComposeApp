@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun getShimmerAnimationBrush(): Brush {
+fun ShimmerAnimationBrush(brush: @Composable (Brush) -> Unit) {
     val transition = rememberInfiniteTransition()
     val translateAnim by transition.animateFloat(
         initialValue = 0f,
@@ -22,13 +22,15 @@ fun getShimmerAnimationBrush(): Brush {
         )
     )
 
-    return Brush.linearGradient(
-        colors = listOf(
-            Color.LightGray.copy(0.9f),
-            Color.LightGray.copy(0.2f),
-            Color.LightGray.copy(0.9f)
-        ),
-        start = Offset(10f, 10f),
-        end = Offset(translateAnim, translateAnim)
+    brush.invoke(
+        Brush.linearGradient(
+            colors = listOf(
+                Color.LightGray.copy(0.9f),
+                Color.LightGray.copy(0.2f),
+                Color.LightGray.copy(0.9f)
+            ),
+            start = Offset(10f, 10f),
+            end = Offset(translateAnim, translateAnim)
+        )
     )
 }
