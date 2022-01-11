@@ -13,7 +13,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
@@ -81,7 +80,9 @@ fun DetailScreen(
                 },
             shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
         ) {
-            AnimatedContent(targetState = expanded) { target ->
+            AnimatedContent(
+                targetState = expanded
+            ) { target ->
                 if (target) {
                     DetailContent(
                         title = viewModel.detail.value?.title.toString(),
@@ -89,9 +90,7 @@ fun DetailScreen(
                     )
                 } else {
                     CircularProgress(
-                        Modifier
-                            .wrapContentWidth(align = Alignment.CenterHorizontally)
-                            .wrapContentHeight(align = Alignment.CenterVertically)
+                        Modifier.alpha(0.1f)
                     )
                 }
             }
