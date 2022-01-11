@@ -25,10 +25,10 @@ fun DetailContent(title: String, list: List<String>) {
         Text(
             text = title,
             color = MaterialTheme.colors.textColor,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.subtitle1
         )
 
-        Spacer(modifier = Modifier.padding(10.dp))
+        Spacer(modifier = Modifier.padding(5.dp))
 
         LazyColumn {
             items(list) { item ->
