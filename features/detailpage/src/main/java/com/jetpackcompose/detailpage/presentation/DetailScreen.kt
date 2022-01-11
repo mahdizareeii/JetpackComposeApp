@@ -1,11 +1,11 @@
 package com.jetpackcompose.detailpage.presentation
 
 import android.os.Bundle
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -22,6 +22,7 @@ import com.jetpackcompose.detailpage.R
 import com.jetpackcompose.resources.components.SquareView
 import com.jetpackcompose.resources.theme.textColor
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DetailScreen(
     viewModel: DetailScreenViewModel = hiltViewModel(),
@@ -29,6 +30,8 @@ fun DetailScreen(
 ) {
     ConstraintLayout {
         val (image, content) = createRefs()
+
+        val guideline = createGuidelineFromTop(0.3f)
 
         viewModel.detail.value?.featuredImage?.let {
             SquareView(
@@ -57,31 +60,37 @@ fun DetailScreen(
         }
 
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .constrainAs(content) {
+                    top.linkTo(guideline)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                },
             shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
         ) {
-            LazyColumn(Modifier.padding(8.dp)) {
-                item {
-                    viewModel.detail.value?.title?.let {
-                        Text(
-                            text = it,
-                            color = MaterialTheme.colors.textColor,
-                            style = MaterialTheme.typography.body1
-                        )
-                    }
+            Column(Modifier.padding(8.dp)) {
+                viewModel.detail.value?.title?.let {
+                    Text(
+                        text = it,
+                        color = MaterialTheme.colors.textColor,
+                        style = MaterialTheme.typography.body1
+                    )
                 }
 
-                item {
-                    Spacer(modifier = Modifier.padding(10.dp))
-                }
+                Spacer(modifier = Modifier.padding(10.dp))
 
-                item {
-                    viewModel.detail.value?.ingredients?.let {
-                       /* Text(
-                            text = it,
-                            color = MaterialTheme.colors.textColor,
-                            style = MaterialTheme.typography.body2
-                        )*/
+                viewModel.detail.value?.ingredients?.let { list ->
+                    LazyVerticalGrid(cells = GridCells.Fixed(1)) {
+                        items(list.size) {
+                            Text(
+                                modifier = Modifier.padding(8.dp),
+                                text = list[it],
+                                color = MaterialTheme.colors.textColor,
+                                style = MaterialTheme.typography.body2
+                            )
+                        }
                     }
                 }
             }
