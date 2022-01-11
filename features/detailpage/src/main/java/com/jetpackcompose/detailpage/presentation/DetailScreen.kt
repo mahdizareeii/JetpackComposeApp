@@ -1,6 +1,7 @@
 package com.jetpackcompose.detailpage.presentation
 
 import android.os.Bundle
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -10,9 +11,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,36 +35,44 @@ fun DetailScreen(
 
         val guideline = createGuidelineFromTop(0.3f)
 
-        viewModel.detail.value?.featuredImage?.let {
-            SquareView(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .constrainAs(image) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
+        var expanded by remember {
+            mutableStateOf(false)
+        }
+
+        viewModel.loading.value.let {
+            expanded = !it
+        }
+
+        SquareView(
+            modifier = Modifier
+                .fillMaxWidth()
+                .constrainAs(image) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .alpha(0.5f)
+        ) {
+            Image(
+                modifier = Modifier.fillMaxWidth(),
+                painter = rememberImagePainter(
+                    data = viewModel.detail.value?.featuredImage,
+                    builder = {
+                        crossfade(true)
+                        placeholder(R.drawable.place_holder)
+                        scale(Scale.FILL)
                     }
-                    .alpha(0.5f)
-            ) {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = rememberImagePainter(
-                        data = it,
-                        builder = {
-                            crossfade(true)
-                            placeholder(R.drawable.place_holder)
-                            scale(Scale.FILL)
-                        }
-                    ),
-                    contentDescription = "detail image"
-                )
-            }
+                ),
+                contentDescription = "detail image",
+                contentScale = ContentScale.Crop
+            )
         }
 
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
+                .height(if (expanded) Int.MAX_VALUE.dp else 10.dp)
+                .animateContentSize()
                 .constrainAs(content) {
                     top.linkTo(guideline)
                     start.linkTo(parent.start)
