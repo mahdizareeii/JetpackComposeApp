@@ -1,7 +1,7 @@
 package com.jetpackcompose.detailpage.presentation
 
 import android.os.Bundle
-import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -21,10 +21,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import com.jetpackcompose.detailpage.R
+import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.components.SquareView
 import com.jetpackcompose.resources.theme.textColor
 
 @OptIn(ExperimentalFoundationApi::class)
+@ExperimentalAnimationApi
 @Composable
 fun DetailScreen(
     viewModel: DetailScreenViewModel = hiltViewModel(),
@@ -71,8 +73,7 @@ fun DetailScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(if (expanded) Int.MAX_VALUE.dp else 10.dp)
-                .animateContentSize()
+                .fillMaxHeight()
                 .constrainAs(content) {
                     top.linkTo(guideline)
                     start.linkTo(parent.start)
@@ -80,29 +81,40 @@ fun DetailScreen(
                 },
             shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
         ) {
-            Column(Modifier.padding(8.dp)) {
-                viewModel.detail.value?.title?.let {
-                    Text(
-                        text = it,
-                        color = MaterialTheme.colors.textColor,
-                        style = MaterialTheme.typography.body1
+            AnimatedContent(targetState = expanded) { target ->
+                if (target) {
+                    DetailContent(
+                        title = viewModel.detail.value?.title.toString(),
+                        list = viewModel.detail.value?.ingredients ?: listOf()
                     )
+                } else {
+                    CircularProgress()
                 }
+            }
+        }
+    }
+}
 
-                Spacer(modifier = Modifier.padding(10.dp))
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun DetailContent(title: String, list: List<String>) {
+    Column(Modifier.padding(8.dp)) {
+        Text(
+            text = title,
+            color = MaterialTheme.colors.textColor,
+            style = MaterialTheme.typography.body1
+        )
 
-                viewModel.detail.value?.ingredients?.let { list ->
-                    LazyVerticalGrid(cells = GridCells.Fixed(1)) {
-                        items(list.size) {
-                            Text(
-                                modifier = Modifier.padding(8.dp),
-                                text = list[it],
-                                color = MaterialTheme.colors.textColor,
-                                style = MaterialTheme.typography.body2
-                            )
-                        }
-                    }
-                }
+        Spacer(modifier = Modifier.padding(10.dp))
+
+        LazyVerticalGrid(cells = GridCells.Fixed(1)) {
+            items(list.size) {
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text = list[it],
+                    color = MaterialTheme.colors.textColor,
+                    style = MaterialTheme.typography.body2
+                )
             }
         }
     }
