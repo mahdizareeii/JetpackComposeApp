@@ -142,8 +142,6 @@ fun MainScreen(
                             start.linkTo(parent.start)
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
-
-                            //like 0dp in xml
                             height = Dimension.fillToConstraints
                         }
                 ) {

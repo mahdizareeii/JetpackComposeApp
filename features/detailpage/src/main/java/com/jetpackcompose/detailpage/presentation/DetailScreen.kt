@@ -87,6 +87,9 @@ fun DetailScreen(
             shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
         ) {
             AnimatedContent(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .wrapContentHeight(),
                 targetState = expanded
             ) { target ->
                 if (target) {
@@ -96,7 +99,7 @@ fun DetailScreen(
                     )
                 } else {
                     CircularProgress(
-                        Modifier.alpha(0.1f)
+                        Modifier.width(50.dp).height(50.dp)
                     )
                 }
             }
@@ -107,7 +110,11 @@ fun DetailScreen(
 @ExperimentalFoundationApi
 @Composable
 fun DetailContent(title: String, list: List<String>) {
-    Column(Modifier.padding(8.dp)) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(8.dp)
+    ) {
         Text(
             text = title,
             color = MaterialTheme.colors.textColor,
