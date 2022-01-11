@@ -1,7 +1,8 @@
 package com.jetpackcompose.detailpage.presentation
 
 import android.os.Bundle
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
@@ -20,7 +22,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import coil.size.Scale
-import com.jetpackcompose.detailpage.R
 import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.components.SquareView
 import com.jetpackcompose.resources.theme.textColor
@@ -61,7 +62,6 @@ fun DetailScreen(
                     data = viewModel.detail.value?.featuredImage,
                     builder = {
                         crossfade(true)
-                        placeholder(R.drawable.place_holder)
                         scale(Scale.FILL)
                     }
                 ),
@@ -88,7 +88,11 @@ fun DetailScreen(
                         list = viewModel.detail.value?.ingredients ?: listOf()
                     )
                 } else {
-                    CircularProgress()
+                    CircularProgress(
+                        Modifier
+                            .wrapContentWidth(align = Alignment.CenterHorizontally)
+                            .wrapContentHeight(align = Alignment.CenterVertically)
+                    )
                 }
             }
         }
