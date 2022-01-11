@@ -30,7 +30,7 @@ class DetailScreenViewModel @Inject constructor(
     private val _error: MutableState<String?> = mutableStateOf(null)
     val error: State<String?> get() = _error
 
-    val id get() = savedStateHandle.get<String>("id")?.toIntOrNull() ?: 0
+    private val id get() = savedStateHandle.get<String>("id")?.toIntOrNull() ?: 0
 
     init {
         viewModelScope.launch {

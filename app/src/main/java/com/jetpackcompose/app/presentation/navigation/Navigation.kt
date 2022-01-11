@@ -1,5 +1,7 @@
 package com.jetpackcompose.app.presentation.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,6 +14,8 @@ import com.jetpackcompose.detailpage.presentation.DetailScreen
 import com.jetpackcompose.domain.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.MainScreen
 
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 @ExperimentalCoilApi
 @Composable
 fun Navigation() {

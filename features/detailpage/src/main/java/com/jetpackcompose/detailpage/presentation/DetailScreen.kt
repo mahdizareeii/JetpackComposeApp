@@ -25,25 +25,29 @@ import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.components.SquareView
 import com.jetpackcompose.resources.theme.textColor
 
-@OptIn(ExperimentalFoundationApi::class)
+@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable
 fun DetailScreen(
     viewModel: DetailScreenViewModel = hiltViewModel(),
     argument: Bundle?
 ) {
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+
+    viewModel.loading.value.let {
+        expanded = !it
+    }
+
+    viewModel.error.value?.let {
+
+    }
+
     ConstraintLayout {
         val (image, content) = createRefs()
 
         val guideline = createGuidelineFromTop(0.3f)
-
-        var expanded by remember {
-            mutableStateOf(false)
-        }
-
-        viewModel.loading.value.let {
-            expanded = !it
-        }
 
         SquareView(
             modifier = Modifier
