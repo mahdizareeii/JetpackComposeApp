@@ -6,8 +6,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import coil.size.Scale
@@ -44,7 +45,7 @@ fun DetailScreen(
 
     }
 
-    ConstraintLayout {
+    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (image, content) = createRefs()
 
         val guideline = createGuidelineFromTop(0.3f)
@@ -76,11 +77,12 @@ fun DetailScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
                 .constrainAs(content) {
                     top.linkTo(guideline)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                    height = Dimension.fillToConstraints
                 },
             shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
         ) {
@@ -102,7 +104,7 @@ fun DetailScreen(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+@ExperimentalFoundationApi
 @Composable
 fun DetailContent(title: String, list: List<String>) {
     Column(Modifier.padding(8.dp)) {
@@ -114,11 +116,11 @@ fun DetailContent(title: String, list: List<String>) {
 
         Spacer(modifier = Modifier.padding(10.dp))
 
-        LazyVerticalGrid(cells = GridCells.Fixed(1)) {
-            items(list.size) {
+        LazyColumn {
+            items(list) { item ->
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = list[it],
+                    text = item,
                     color = MaterialTheme.colors.textColor,
                     style = MaterialTheme.typography.body2
                 )
