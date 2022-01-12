@@ -1,11 +1,9 @@
 package com.jetpackcompose.domain.di
 
-import com.jetpackcompose.domain.network.api.RecipeApiService
-import com.jetpackcompose.domain.network.mapper.RecipeDtoMapper
-import com.jetpackcompose.domain.network.repository.RecipeRepository
-import com.jetpackcompose.domain.network.repository.RecipeRepositoryImpl
+import com.jetpackcompose.domain.mapper.RecipeDtoMapper
 import com.jetpackcompose.domain.usecase.GetRecipeByIdUseCase
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
+import com.jetpackcompose.repository.repository.RecipeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,11 +31,5 @@ object RecipeModule {
         repository: RecipeRepository,
         mapper: RecipeDtoMapper
     ): GetRecipeByIdUseCase = GetRecipeByIdUseCase(repository, mapper)
-
-    @Singleton
-    @Provides
-    fun provideRepository(
-        apiService: RecipeApiService
-    ): RecipeRepository = RecipeRepositoryImpl(apiService)
 
 }

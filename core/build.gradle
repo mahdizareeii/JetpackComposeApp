@@ -1,0 +1,15 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+//libs
+apply from: '../buildSrc/dependencies_utilities.gradle'
+apply from: '../buildSrc/dependencies_appcompat.gradle'
+apply from: '../buildSrc/dependencies_retrofit.gradle'
+apply from: '../buildSrc/dependencies_compose.gradle'
+apply from: '../buildSrc/dependencies_hilt.gradle'
+apply from: '../buildSrc/dependencies_test.gradle'
+apply from: '../buildSrc/dependencies_ktx.gradle'

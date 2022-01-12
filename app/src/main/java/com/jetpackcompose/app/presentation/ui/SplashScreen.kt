@@ -10,7 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.jetpackcompose.domain.util.navigation.Screen
+import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.resources.theme.splashColor1
 import com.jetpackcompose.resources.theme.splashColor2
 import com.jetpackcompose.resources.training.animation.ChangeBackgroundColorOfViewWithInfiniteAnimation

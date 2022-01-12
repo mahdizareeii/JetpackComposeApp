@@ -15,5 +15,6 @@ apply from: '../../buildSrc/dependencies_test.gradle'
 apply from: '../../buildSrc/dependencies_ktx.gradle'
 
 dependencies {
+    implementation project(path: ":core")
     implementation project(path: ":domain")
 }

@@ -1,8 +1,8 @@
 package com.jetpackcompose.domain
 
-import com.jetpackcompose.domain.network.api.RecipeApiService
-import com.jetpackcompose.domain.network.model.RecipeDto
-import com.jetpackcompose.domain.util.model.NetworkDataState
+import com.jetpackcompose.core.model.NetworkDataState
+import com.jetpackcompose.network.api.RecipeApiService
+import com.jetpackcompose.network.model.RecipeDto
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
-import org.mockito.runners.MockitoJUnitRunner
+import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class RecipeApiServiceTest : TestCase() {

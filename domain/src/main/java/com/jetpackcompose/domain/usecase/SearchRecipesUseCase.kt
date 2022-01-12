@@ -1,9 +1,9 @@
 package com.jetpackcompose.domain.usecase
 
+import com.jetpackcompose.core.model.NetworkDataState
+import com.jetpackcompose.domain.mapper.RecipeDtoMapper
 import com.jetpackcompose.domain.model.Recipe
-import com.jetpackcompose.domain.network.mapper.RecipeDtoMapper
-import com.jetpackcompose.domain.network.repository.RecipeRepository
-import com.jetpackcompose.domain.util.model.NetworkDataState
+import com.jetpackcompose.repository.repository.RecipeRepository
 import javax.inject.Inject
 
 class SearchRecipesUseCase @Inject constructor(

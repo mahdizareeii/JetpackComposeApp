@@ -14,3 +14,9 @@ apply from: '../buildSrc/dependencies_hilt.gradle'
 apply from: '../buildSrc/dependencies_test.gradle'
 apply from: '../buildSrc/dependencies_ktx.gradle'
 apply from: '../buildSrc/dependencies_paging.gradle'
+
+dependencies {
+    implementation project(path: ":network")
+    implementation project(path: ":repository")
+    implementation project(path: ":core")
+}

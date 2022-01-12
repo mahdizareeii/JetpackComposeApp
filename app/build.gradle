@@ -49,7 +49,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion kotlin_compiler_version
+        kotlinCompilerVersion kotlin_version
     }
     packagingOptions {
         resources {
@@ -59,9 +59,14 @@ android {
 }
 
 dependencies {
+    implementation project(path: ":core")
     implementation project(path: ":domain")
     implementation project(path: ":features:homepage")
     implementation project(path: ":features:detailpage")
+}
+
+hilt {
+    enableAggregatingTask = true
 }
 
 kapt {

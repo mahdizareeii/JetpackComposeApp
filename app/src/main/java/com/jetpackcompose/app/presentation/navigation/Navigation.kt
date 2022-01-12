@@ -3,6 +3,7 @@ package com.jetpackcompose.app.presentation.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,9 +12,10 @@ import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.app.presentation.ui.SplashScreen
 import com.jetpackcompose.detailpage.presentation.DetailScreen
-import com.jetpackcompose.domain.util.navigation.Screen
+import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.MainScreen
 
+@ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @ExperimentalCoilApi

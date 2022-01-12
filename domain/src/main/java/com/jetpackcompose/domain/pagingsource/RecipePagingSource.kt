@@ -2,9 +2,9 @@ package com.jetpackcompose.domain.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.jetpackcompose.core.model.NetworkDataState
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.domain.util.model.NetworkDataState
 import retrofit2.HttpException
 import java.io.IOException
 

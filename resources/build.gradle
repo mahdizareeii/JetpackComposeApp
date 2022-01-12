@@ -5,3 +5,4 @@ plugins {
 //libs
 apply from: '../buildSrc/dependencies_appcompat.gradle'
 apply from: '../buildSrc/dependencies_compose.gradle'
+apply from: '../buildSrc/dependencies_test.gradle'

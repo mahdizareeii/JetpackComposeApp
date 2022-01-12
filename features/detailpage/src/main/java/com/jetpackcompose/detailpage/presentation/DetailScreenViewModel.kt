@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.GetRecipeByIdUseCase
-import com.jetpackcompose.domain.util.model.UiDataState
+import com.jetpackcompose.core.model.UiDataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

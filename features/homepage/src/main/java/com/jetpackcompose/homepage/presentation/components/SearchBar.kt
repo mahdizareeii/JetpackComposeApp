@@ -21,7 +21,7 @@ import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.theme.textColor
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalComposeUiApi
 @Composable
 fun SearchBar(
     viewModel: HomeScreenViewModel,
