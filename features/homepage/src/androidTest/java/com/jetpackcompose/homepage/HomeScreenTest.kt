@@ -44,11 +44,13 @@ class HomeScreenTest {
     fun setup() {
         runBlockingTest {
             `when`(searchRecipesUseCase.invoke(anyInt(), anyString())).thenReturn(
-                NetworkDataState.Success(listOf(
-                    Recipe(id = 1),
-                    Recipe(id = 2),
-                    Recipe(id = 3),
-                ))
+                NetworkDataState.Success(
+                    listOf(
+                        Recipe(id = 1, title = "sample1"),
+                        Recipe(id = 2, title = "sample2"),
+                        Recipe(id = 3, title = "sample3"),
+                    )
+                )
             )
 
             viewModel = HomeScreenViewModel(
@@ -73,6 +75,25 @@ class HomeScreenTest {
             .onChildAt(1)
             .performClick()
 
+    }
+
+    @Test
+    fun performSwipeForChips() {
+        composeTestRule.setContent {
+            AppTheme {
+                MainScreen(
+                    navController = rememberNavController(),
+                    viewModel = viewModel
+                )
+            }
+        }
+
+        composeTestRule
+            .onNodeWithContentDescription("chips")
+            .performGesture {
+                left
+                right
+            }
     }
 
 }
