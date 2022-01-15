@@ -1,4 +1,4 @@
-package com.jetpackcompose.app
+package com.jetpackcompose.homepage
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
