@@ -15,6 +15,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -106,6 +108,7 @@ fun MainScreen(
 
                 LazyRow(
                     modifier = Modifier
+                        .semantics { contentDescription = "chips" }
                         .fillMaxWidth()
                         .constrainAs(chips) {
                             top.linkTo(parent.top)

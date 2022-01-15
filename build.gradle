@@ -7,6 +7,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         def gradle_version = '7.0.2'
@@ -25,6 +26,13 @@ buildscript {
                 android {
                     compileSdkVersion Versions.COMPILE_SDK_VERSION
 
+                    defaultConfig {
+                        minSdk Versions.MIN_SDK_VERSION
+                        targetSdk Versions.TARGET_SDK_VERSION
+
+                        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                    }
+
                     buildFeatures {
                         compose true
                     }
@@ -32,6 +40,12 @@ buildscript {
                     composeOptions {
                         kotlinCompilerExtensionVersion compose_version
                         kotlinCompilerVersion kotlin_version
+                    }
+
+                    packagingOptions {
+                        resources {
+                            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+                        }
                     }
                 }
             }
