@@ -167,6 +167,7 @@ fun MainScreen(
                 LazyColumn(
                     state = lazyColumnState,
                     modifier = Modifier
+                        .semantics { contentDescription = "home items" }
                         .fillMaxWidth()
                         .constrainAs(contents) {
                             top.linkTo(chips.bottom)

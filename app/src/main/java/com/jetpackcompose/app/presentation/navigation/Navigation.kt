@@ -4,6 +4,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,8 +21,7 @@ import com.jetpackcompose.homepage.presentation.MainScreen
 @ExperimentalFoundationApi
 @ExperimentalCoilApi
 @Composable
-fun Navigation() {
-    val navController = rememberNavController()
+fun Navigation(navController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navController,
         startDestination = Screen.Splash.route

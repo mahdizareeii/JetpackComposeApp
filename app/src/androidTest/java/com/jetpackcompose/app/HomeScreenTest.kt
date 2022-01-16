@@ -1,19 +1,20 @@
-package com.jetpackcompose.homepage
+package com.jetpackcompose.app
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import coil.annotation.ExperimentalCoilApi
+import com.jetpackcompose.app.presentation.navigation.Navigation
 import com.jetpackcompose.core.model.NetworkDataState
+import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
 import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
-import com.jetpackcompose.homepage.presentation.MainScreen
-import com.jetpackcompose.resources.theme.AppTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
@@ -36,6 +37,7 @@ class HomeScreenTest {
     val composeTestRule = createComposeRule()
 
     private lateinit var viewModel: HomeScreenViewModel
+    private lateinit var controller: NavHostController
 
     @Mock
     private val searchRecipesUseCase = mock(SearchRecipesUseCase::class.java)
@@ -43,6 +45,11 @@ class HomeScreenTest {
     @Before
     fun setup() {
         runBlockingTest {
+            composeTestRule.setContent {
+                controller = rememberNavController()
+                Navigation(controller)
+            }
+
             `when`(searchRecipesUseCase.invoke(anyInt(), anyString())).thenReturn(
                 NetworkDataState.Success(
                     listOf(
@@ -61,39 +68,59 @@ class HomeScreenTest {
 
     @Test
     fun chipsPerformItemClick() {
-        composeTestRule.setContent {
-            AppTheme {
-                MainScreen(
-                    navController = rememberNavController(),
-                    viewModel = viewModel
-                )
+        controller.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.route) {
+                Screen.HomeScreen.route -> {
+                    composeTestRule
+                        .onNodeWithContentDescription("chips")
+                        .onChildAt(1)
+                        .performClick()
+                }
             }
         }
-
-        composeTestRule
-            .onNodeWithContentDescription("chips")
-            .onChildAt(1)
-            .performClick()
 
     }
 
     @Test
     fun performSwipeForChips() {
-        composeTestRule.setContent {
-            AppTheme {
-                MainScreen(
-                    navController = rememberNavController(),
-                    viewModel = viewModel
-                )
+        controller.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.route) {
+                Screen.HomeScreen.route -> {
+                    composeTestRule
+                        .onNodeWithContentDescription("chips")
+                        .performGesture {
+                            left
+                            right
+                        }
+                }
             }
         }
-
-        composeTestRule
-            .onNodeWithContentDescription("chips")
-            .performGesture {
-                left
-                right
-            }
     }
 
+    @Test
+    fun performClickOnDetailItems() {
+        controller.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.route) {
+                Screen.HomeScreen.route -> {
+                    composeTestRule
+                        .onNodeWithContentDescription("home items")
+                        .onChildAt(1)
+                        .performClick()
+                }
+            }
+        }
+    }
+
+    @Test
+    fun detailScreenIsShow() {
+        controller.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.route) {
+                Screen.DetailScreen.route -> {
+                    composeTestRule
+                        .onNodeWithContentDescription("detail")
+                        .assertIsDisplayed()
+                }
+            }
+        }
+    }
 }
