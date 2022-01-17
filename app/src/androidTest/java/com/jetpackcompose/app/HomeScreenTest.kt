@@ -16,6 +16,7 @@ import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
 import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
@@ -44,7 +45,7 @@ class HomeScreenTest {
 
     @Before
     fun setup() {
-        runBlockingTest {
+        runBlocking {
             composeTestRule.setContent {
                 controller = rememberNavController()
                 Navigation(controller)
