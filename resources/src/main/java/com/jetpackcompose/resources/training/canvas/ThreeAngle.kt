@@ -14,53 +14,53 @@ fun ThreeAngle(modifier: Modifier) {
 
         val path = Path()
         /**  step 1
-         *   Y0 Y1 Y2 Y3
+         *   X0 X1 X2 X3
          *   ---------
-         *X0|         |
-         *X1|         |
-         *X2|*        |
-         *X3|_________|
+         *Y0|         |
+         *Y1|         |
+         *Y2|*        |
+         *Y3|_________|
          */
         path.lineTo(x = 0f, y = canvasHeight)
 
         /**  step 2
-         *   Y0 Y1 Y2 Y3
+         *   X0 X1 X2 X3
          *   ---------
-         *X0|        *|
-         *X1|         |
-         *X2|         |
-         *X3|_________|
+         *Y0|        *|
+         *Y1|         |
+         *Y2|         |
+         *Y3|_________|
          */
         path.lineTo(x = canvasWidth, y = 0f)
 
         /**  step 3
-         *   Y0 Y1 Y2 Y3
+         *   X0 X1 X2 X3
          *   ---------
-         *X0|         |
-         *X1|         |
-         *X2|        *|
-         *X3|_________|
+         *Y0|         |
+         *Y1|         |
+         *Y2|        *|
+         *Y3|_________|
          */
         path.lineTo(x = canvasWidth, y = canvasHeight)
 
 
         /**  step 4
-         *   Y0 Y1 Y2 Y3
+         *   X0 X1 X2 X3
          *   ---------
-         *X0|         |
-         *X1|         |
-         *X2|*        |
-         *X3|_________|
+         *Y0|         |
+         *Y1|         |
+         *Y2|*        |
+         *Y3|_________|
          */
         path.lineTo(x = 0f, y = canvasHeight)
 
         /** finally draw the points
-         *   Y0 Y1 Y2 Y3
+         *   X0 X1 X2 X3
          *   ---------
-         *X0|        *|
-         *X1|         |
-         *X2|*       *|
-         *X3|_________|
+         *Y0|        *|
+         *Y1|         |
+         *Y2|*       *|
+         *Y3|_________|
          */
         drawPath(path = path, color = Color.Blue)
     }
