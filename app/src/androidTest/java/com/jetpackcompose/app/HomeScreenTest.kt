@@ -17,7 +17,6 @@ import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
 import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
