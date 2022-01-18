@@ -33,14 +33,19 @@ class HomeScreenViewModelTest : TestCase() {
     }
 
     @Test
+    fun `on selected category should init query`() {
+        viewModel = getViewModel()
+        viewModel.onSelectedCategory("test")
+        assertEquals("test", viewModel.query.value)
+    }
+
+    @Test
     fun `search recipe should return a list of recipe`() {
         CoroutineScope(Dispatchers.IO).launch {
             `when`(searchRecipesUseCase.invoke(anyInt(), anyString()))
                 .thenReturn(getListOfRecipe())
 
-            viewModel = HomeScreenViewModel(
-                searchRecipesUseCase = searchRecipesUseCase
-            )
+            viewModel = getViewModel()
 
             verify(searchRecipesUseCase).invoke(anyInt(), anyString())
         }
@@ -61,6 +66,10 @@ class HomeScreenViewModelTest : TestCase() {
                 title = "recipe 3"
             )
         )
+    )
+
+    private fun getViewModel() = HomeScreenViewModel(
+        searchRecipesUseCase = searchRecipesUseCase
     )
 
 }
