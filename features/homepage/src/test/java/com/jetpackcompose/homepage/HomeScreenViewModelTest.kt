@@ -41,7 +41,7 @@ class HomeScreenViewModelTest : TestCase() {
 
     @Test
     fun `search recipe should return a list of recipe`() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Default).launch {
             `when`(searchRecipesUseCase.invoke(anyInt(), anyString()))
                 .thenReturn(getListOfRecipe())
 

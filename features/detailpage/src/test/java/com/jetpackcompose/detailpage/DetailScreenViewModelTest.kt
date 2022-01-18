@@ -37,7 +37,7 @@ class DetailScreenViewModelTest : TestCase() {
 
     @Test
     fun `get recipe by id should return a flow of data`() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Default).launch {
             `when`(getRecipeByIdUseCase.invoke(anyInt())).thenReturn(
                 getFlowOfRecipeData()
             )
