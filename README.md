@@ -1,6 +1,8 @@
 # Jetpack Compose sample app
 This is a modular sample Jetpack Compose project
-The technology and libraries that i used in this project are : 
+The technologies and libraries that i used in this project are : 
+
+Jetpack Compose.
 
 DDD(Domain Driven Design) software design,
 
@@ -10,4 +12,3 @@ Dagger & Hilt,
 
 Retrofit & Gson,
 
-Jetpack Compose.
