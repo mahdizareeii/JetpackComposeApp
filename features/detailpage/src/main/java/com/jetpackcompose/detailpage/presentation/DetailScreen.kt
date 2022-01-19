@@ -3,6 +3,8 @@ package com.jetpackcompose.detailpage.presentation
 import android.os.Bundle
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -66,7 +68,9 @@ fun DetailScreen(
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                 },
-            visible = loadingVisibility
+            visible = loadingVisibility,
+            enter = fadeIn(),
+            exit = fadeOut()
         ) {
             CircularProgress(
                 Modifier
@@ -84,7 +88,9 @@ fun DetailScreen(
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                 },
-            visible = errorVisibility
+            visible = errorVisibility,
+            enter = fadeIn(),
+            exit = fadeOut()
         ) {
             ScreenError(
                 modifier = Modifier.wrapContentSize(),
@@ -103,7 +109,9 @@ fun DetailScreen(
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                 },
-            visible = contentVisibility
+            visible = contentVisibility,
+            enter = fadeIn(),
+            exit = fadeOut()
         ) {
             DetailContent(
                 viewModel = viewModel
