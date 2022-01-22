@@ -6,9 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jetpackcompose.core.model.UiDataState
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.GetRecipeByIdUseCase
-import com.jetpackcompose.core.model.UiDataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,6 +33,11 @@ class DetailScreenViewModel @Inject constructor(
     private val id get() = savedStateHandle.get<String>("id")?.toIntOrNull() ?: 0
 
     init {
+        getRecipeById()
+    }
+
+    fun getRecipeById() {
+        clearError()
         viewModelScope.launch {
             getRecipeByIdUseCase.invoke(id)
                 .onEach {
@@ -51,5 +56,9 @@ class DetailScreenViewModel @Inject constructor(
                     }
                 }.launchIn(viewModelScope)
         }
+    }
+
+    private fun clearError() {
+        _error.value = null
     }
 }

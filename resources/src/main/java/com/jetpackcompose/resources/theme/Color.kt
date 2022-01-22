@@ -48,3 +48,7 @@ val Colors.textColor: Color
 @get:Composable
 val Colors.circularProgressColor: Color
     get() = if (isLight) dark else white
+
+@get:Composable
+val Colors.bottomNavigationColor: Color
+    get() = if (isLight) black else white

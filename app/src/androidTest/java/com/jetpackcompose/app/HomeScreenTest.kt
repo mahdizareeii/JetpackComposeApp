@@ -9,12 +9,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.navigation.Navigation
+import com.jetpackcompose.app.presentation.navgraph.AppNavGraph
 import com.jetpackcompose.core.model.NetworkDataState
 import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreenViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -36,7 +36,7 @@ class HomeScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    private lateinit var viewModel: HomeScreenViewModel
+    private lateinit var viewModel: SearchScreenViewModel
     private lateinit var controller: NavHostController
 
     @Mock
@@ -47,7 +47,7 @@ class HomeScreenTest {
         runBlocking {
             composeTestRule.setContent {
                 controller = rememberNavController()
-                Navigation(controller)
+                AppNavGraph(controller)
             }
 
             `when`(searchRecipesUseCase.invoke(anyInt(), anyString())).thenReturn(
@@ -60,7 +60,7 @@ class HomeScreenTest {
                 )
             )
 
-            viewModel = HomeScreenViewModel(
+            viewModel = SearchScreenViewModel(
                 searchRecipesUseCase
             )
         }
@@ -70,7 +70,7 @@ class HomeScreenTest {
     fun chipsPerformItemClick() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.HomeScreen.route -> {
+                Screen.Home.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("chips")
                         .onChildAt(1)
@@ -85,7 +85,7 @@ class HomeScreenTest {
     fun performSwipeForChips() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.HomeScreen.route -> {
+                Screen.Home.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("chips")
                         .performGesture {
@@ -101,7 +101,7 @@ class HomeScreenTest {
     fun performClickOnDetailItems() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.HomeScreen.route -> {
+                Screen.Home.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("home items")
                         .onChildAt(1)
@@ -115,7 +115,7 @@ class HomeScreenTest {
     fun detailScreenIsShow() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.DetailScreen.route -> {
+                Screen.Detail.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("detail")
                         .assertIsDisplayed()

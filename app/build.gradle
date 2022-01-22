@@ -62,7 +62,6 @@ dependencies {
     implementation project(path: ":core")
     implementation project(path: ":domain")
     implementation project(path: ":features:homepage")
-    implementation project(path: ":features:detailpage")
 }
 
 hilt {

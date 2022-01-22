@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreenViewModel
 import com.jetpackcompose.resources.theme.chipSelected
 import com.jetpackcompose.resources.theme.chipUnselected
 
@@ -40,7 +40,7 @@ fun PreviewChip() {
 @Composable
 fun Chip(
     text: String,
-    viewModel: HomeScreenViewModel,
+    viewModel: SearchScreenViewModel,
     lazyListState: LazyListState,
     onChipClicked: (String) -> Unit
 ) {
