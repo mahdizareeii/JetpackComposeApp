@@ -43,7 +43,11 @@ fun ScreenError(
                 .align(Alignment.CenterHorizontally),
             onClick = onRetryClicked
         ) {
-            Text(text = "retry")
+            Text(
+                text = "retry",
+                color = MaterialTheme.colors.textColor,
+                style = MaterialTheme.typography.caption
+            )
         }
     }
 }

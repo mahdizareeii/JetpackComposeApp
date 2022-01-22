@@ -1,9 +1,6 @@
 package com.jetpackcompose.homepage.presentation.components
 
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
@@ -41,16 +38,17 @@ fun HomeBottomNavigation(navController: NavController) {
                     )
                 },
                 icon = {
-                    painterResource(id = it.icon)
+                    Icon(
+                        painter = painterResource(id = it.icon),
+                        contentDescription = null
+                    )
                 },
-                selectedContentColor = MaterialTheme.colors.textColor,
-                unselectedContentColor = MaterialTheme.colors.textColor.copy(0.4f),
                 alwaysShowLabel = true,
                 onClick = {
                     navController.navigate(
                         it.route
                     ) {
-                        popUpTo(navController.graph.findStartDestination().id){
+                        popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
                         launchSingleTop = true
