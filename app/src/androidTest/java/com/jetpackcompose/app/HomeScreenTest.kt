@@ -70,7 +70,7 @@ class HomeScreenTest {
     fun chipsPerformItemClick() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.Home.route -> {
+                Screen.HomeSearch.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("chips")
                         .onChildAt(1)
@@ -85,7 +85,7 @@ class HomeScreenTest {
     fun performSwipeForChips() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.Home.route -> {
+                Screen.HomeSearch.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("chips")
                         .performGesture {
@@ -101,7 +101,7 @@ class HomeScreenTest {
     fun performClickOnDetailItems() {
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
-                Screen.Home.route -> {
+                Screen.HomeSearch.route -> {
                     composeTestRule
                         .onNodeWithContentDescription("home items")
                         .onChildAt(1)
