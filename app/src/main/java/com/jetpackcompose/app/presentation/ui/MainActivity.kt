@@ -7,7 +7,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.ExperimentalComposeUiApi
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.navigation.Navigation
+import com.jetpackcompose.app.presentation.navgraph.AppNavGraph
 import com.jetpackcompose.resources.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                Navigation()
+                AppNavGraph()
             }
         }
     }

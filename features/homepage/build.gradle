@@ -18,4 +18,5 @@ apply from: '../../buildSrc/dependencies_paging.gradle'
 dependencies {
     implementation project(path: ":core")
     implementation project(path: ":domain")
+    implementation project(path: ":features:detailpage")
 }

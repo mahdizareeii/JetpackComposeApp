@@ -1,4 +1,4 @@
-package com.jetpackcompose.homepage.presentation
+package com.jetpackcompose.homepage.presentation.screens.search
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeScreenViewModel @Inject constructor(
+class SearchScreenViewModel @Inject constructor(
     private val searchRecipesUseCase: SearchRecipesUseCase
 ) : ViewModel() {
 

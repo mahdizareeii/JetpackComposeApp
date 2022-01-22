@@ -17,14 +17,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreenViewModel
 import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.theme.textColor
 
 @ExperimentalComposeUiApi
 @Composable
 fun SearchBar(
-    viewModel: HomeScreenViewModel,
+    viewModel: SearchScreenViewModel,
     onSearchClicked: () -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current

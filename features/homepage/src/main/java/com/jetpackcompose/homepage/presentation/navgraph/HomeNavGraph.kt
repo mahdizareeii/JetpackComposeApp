@@ -1,4 +1,4 @@
-package com.jetpackcompose.app.presentation.navigation
+package com.jetpackcompose.homepage.presentation.navgraph
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -8,36 +8,39 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.ui.SplashScreen
-import com.jetpackcompose.detailpage.presentation.DetailScreen
 import com.jetpackcompose.core.util.navigation.Screen
-import com.jetpackcompose.homepage.presentation.MainScreen
+import com.jetpackcompose.detailpage.presentation.DetailScreen
+import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreen
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreen
 
+@ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
-@ExperimentalFoundationApi
 @ExperimentalCoilApi
 @Composable
-fun Navigation(navController: NavHostController = rememberNavController()) {
+fun HomeNavGraph(
+    navController: NavHostController
+) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.HomePopular.route
     ) {
-        composable(route = Screen.Splash.route){
-            SplashScreen(navController = navController)
-        }
-        
         composable(
-            route = Screen.HomeScreen.route
+            route = Screen.HomePopular.route
         ) {
-            MainScreen(navController = navController)
+            PopularScreen()
         }
 
         composable(
-            route = "${Screen.DetailScreen.route}/{id}",
+            route = Screen.HomeSearch.route
+        ) {
+            SearchScreen(navController = navController)
+        }
+
+        composable(
+            route = "${Screen.Detail.route}/{id}",
             arguments = listOf(
                 navArgument("id") {
                     type = NavType.StringType

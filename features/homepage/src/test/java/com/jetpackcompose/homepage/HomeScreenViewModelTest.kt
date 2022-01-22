@@ -3,7 +3,7 @@ package com.jetpackcompose.homepage
 import com.jetpackcompose.core.model.NetworkDataState
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
-import com.jetpackcompose.homepage.presentation.HomeScreenViewModel
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreenViewModel
 import junit.framework.TestCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class HomeScreenViewModelTest : TestCase() {
 
-    private lateinit var viewModel: HomeScreenViewModel
+    private lateinit var viewModel: SearchScreenViewModel
 
     @Mock
     private val searchRecipesUseCase = mock(SearchRecipesUseCase::class.java)
@@ -68,7 +68,7 @@ class HomeScreenViewModelTest : TestCase() {
         )
     )
 
-    private fun getViewModel() = HomeScreenViewModel(
+    private fun getViewModel() = SearchScreenViewModel(
         searchRecipesUseCase = searchRecipesUseCase
     )
 
