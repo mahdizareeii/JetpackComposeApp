@@ -18,12 +18,14 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import com.jetpackcompose.detailpage.presentation.DetailScreenViewModel
 import com.jetpackcompose.resources.components.SquareView
 import com.jetpackcompose.resources.theme.textColor
 
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
 fun DetailContent(
@@ -70,8 +72,7 @@ fun DetailContent(
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                     height = Dimension.fillToConstraints
-                }
-                .fillMaxWidth(),
+                }.fillMaxWidth(),
             shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
         ) {
             Column(

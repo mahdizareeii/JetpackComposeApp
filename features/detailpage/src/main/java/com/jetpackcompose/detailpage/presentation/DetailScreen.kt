@@ -17,10 +17,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.detailpage.presentation.components.DetailContent
 import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.components.ScreenError
 
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable

@@ -30,7 +30,7 @@ fun HomeNavGraph(
         composable(
             route = Screen.HomePopular.route
         ) {
-            PopularScreen()
+            PopularScreen(navController = navController)
         }
 
         composable(

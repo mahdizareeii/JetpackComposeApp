@@ -49,7 +49,7 @@ fun RecipeCard(
                         }
                     ),
                     contentDescription = "list item image",
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Crop
                 )
             }
 

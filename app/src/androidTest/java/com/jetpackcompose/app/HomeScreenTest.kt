@@ -103,7 +103,7 @@ class HomeScreenTest {
             when (destination.route) {
                 Screen.HomeSearch.route -> {
                     composeTestRule
-                        .onNodeWithContentDescription("home items")
+                        .onNodeWithContentDescription("search items")
                         .onChildAt(1)
                         .performClick()
                 }
