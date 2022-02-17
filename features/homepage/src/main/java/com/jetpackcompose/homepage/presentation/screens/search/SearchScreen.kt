@@ -2,6 +2,8 @@ package com.jetpackcompose.homepage.presentation.screens.search
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -149,7 +151,9 @@ fun SearchScreen(
                             end.linkTo(parent.end)
                             bottom.linkTo(parent.bottom)
                             height = Dimension.fillToConstraints
-                        }
+                        },
+                    enter = fadeIn(),
+                    exit = fadeOut()
                 ) {
                     LazyColumn {
                         repeat(10) {
