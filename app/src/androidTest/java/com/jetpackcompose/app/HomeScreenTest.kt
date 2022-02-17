@@ -9,11 +9,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.navgraph.AppNavGraph
 import com.jetpackcompose.core.model.NetworkDataState
 import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.domain.usecase.GetPopularRecipesUseCase
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
+import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreen
+import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreenViewModel
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreen
 import com.jetpackcompose.homepage.presentation.screens.search.SearchScreenViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -36,20 +39,19 @@ class HomeScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    private lateinit var viewModel: SearchScreenViewModel
+    private lateinit var searchScreenViewModel: SearchScreenViewModel
+    private lateinit var popularScreenViewModel: PopularScreenViewModel
     private lateinit var controller: NavHostController
 
     @Mock
     private val searchRecipesUseCase = mock(SearchRecipesUseCase::class.java)
 
+    @Mock
+    private val popularRecipesUseCase = mock(GetPopularRecipesUseCase::class.java)
+
     @Before
     fun setup() {
         runBlocking {
-            composeTestRule.setContent {
-                controller = rememberNavController()
-                AppNavGraph(controller)
-            }
-
             `when`(searchRecipesUseCase.invoke(anyInt(), anyString())).thenReturn(
                 NetworkDataState.Success(
                     listOf(
@@ -60,45 +62,69 @@ class HomeScreenTest {
                 )
             )
 
-            viewModel = SearchScreenViewModel(
+            `when`(popularRecipesUseCase.invoke()).thenReturn(
+                NetworkDataState.Success(
+                    listOf(
+                        Recipe(id = 1, title = "sample1"),
+                        Recipe(id = 2, title = "sample2"),
+                        Recipe(id = 3, title = "sample3"),
+                    )
+                )
+            )
+
+            searchScreenViewModel = SearchScreenViewModel(
                 searchRecipesUseCase
+            )
+
+            popularScreenViewModel = PopularScreenViewModel(
+                popularRecipesUseCase
             )
         }
     }
 
     @Test
-    fun chipsPerformItemClick() {
-        controller.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.route) {
-                Screen.HomeSearch.route -> {
-                    composeTestRule
-                        .onNodeWithContentDescription("chips")
-                        .onChildAt(1)
-                        .performClick()
-                }
-            }
+    fun popularScreenIsShow() {
+        composeTestRule.setContent {
+            controller = rememberNavController()
+            PopularScreen(controller, popularScreenViewModel)
         }
+        composeTestRule
+            .onNodeWithContentDescription("popular items")
+            .assertIsDisplayed()
+    }
 
+    @Test
+    fun chipsPerformItemClick() {
+        composeTestRule.setContent {
+            controller = rememberNavController()
+            SearchScreen(controller, searchScreenViewModel)
+        }
+        composeTestRule
+            .onNodeWithContentDescription("chips")
+            .onChildAt(1)
+            .performClick()
     }
 
     @Test
     fun performSwipeForChips() {
-        controller.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.route) {
-                Screen.HomeSearch.route -> {
-                    composeTestRule
-                        .onNodeWithContentDescription("chips")
-                        .performGesture {
-                            left
-                            right
-                        }
-                }
-            }
+        composeTestRule.setContent {
+            controller = rememberNavController()
+            SearchScreen(controller, searchScreenViewModel)
         }
+        composeTestRule
+            .onNodeWithContentDescription("chips")
+            .performTouchInput {
+                left
+                right
+            }
     }
 
     @Test
-    fun performClickOnDetailItems() {
+    fun performClickOnSearchItems() {
+        composeTestRule.setContent {
+            controller = rememberNavController()
+            SearchScreen(controller, searchScreenViewModel)
+        }
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
                 Screen.HomeSearch.route -> {

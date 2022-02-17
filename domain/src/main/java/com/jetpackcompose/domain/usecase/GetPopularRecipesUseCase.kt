@@ -8,8 +8,9 @@ import com.jetpackcompose.repository.repository.RecipeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class GetPopularRecipesUseCase(
+class GetPopularRecipesUseCase @Inject constructor(
     private val repository: RecipeRepository,
     private val mapper: RecipeDtoMapper
 ) {
