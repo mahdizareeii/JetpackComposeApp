@@ -137,16 +137,4 @@ class HomeScreenTest {
         }
     }
 
-    @Test
-    fun detailScreenIsShow() {
-        controller.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.route) {
-                Screen.Detail.route -> {
-                    composeTestRule
-                        .onNodeWithContentDescription("detail")
-                        .assertIsDisplayed()
-                }
-            }
-        }
-    }
 }
