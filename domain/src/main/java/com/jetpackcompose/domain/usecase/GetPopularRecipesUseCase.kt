@@ -2,8 +2,9 @@ package com.jetpackcompose.domain.usecase
 
 import com.jetpackcompose.core.model.NetworkDataState
 import com.jetpackcompose.core.model.NetworkStatus
+import com.jetpackcompose.core.model.UiDataState
 import com.jetpackcompose.domain.mapper.RecipeDtoMapper
-import com.jetpackcompose.domain.model.Recipe
+import com.jetpackcompose.domain.model.PopularScreenUIState
 import com.jetpackcompose.repository.repository.RecipeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -14,34 +15,45 @@ class GetPopularRecipesUseCase @Inject constructor(
     private val repository: RecipeRepository,
     private val mapper: RecipeDtoMapper
 ) {
-    private val categories = listOf(
-        "pizza",
-        "soup"
-    )
+    private val popularItems: ArrayList<PopularScreenUIState> = arrayListOf()
 
-    suspend operator fun invoke(): NetworkDataState<List<Recipe>> {
-        val popularItems = ArrayList<Recipe>()
-
+    suspend operator fun invoke(): UiDataState<List<PopularScreenUIState>> {
         return withContext(Dispatchers.Default) {
 
-            for (item in categories) {
-                val job = async {
-                    sendRequest(request = item)
-                }
-
-                popularItems.addAll(
-                    job.await()
-                )
+            val pizzaRequestJob = async {
+                sendRequest(request = "Pizza")
             }
 
+            val beefRequestJob = async {
+                sendRequest(request = "Beef")
+            }
+
+            val soupRequestJob = async {
+                sendRequest(request = "Soup")
+            }
+
+            popularItems.add(
+                PopularScreenUIState.MostSells(
+                    pizzaRequestJob.await()
+                )
+            )
+
+            popularItems.add(
+                PopularScreenUIState.MostSells(
+                    beefRequestJob.await()
+                )
+            )
+
+            popularItems.add(
+                PopularScreenUIState.CheapProducts(
+                    soupRequestJob.await()
+                )
+            )
+
             if (popularItems.isNotEmpty())
-                NetworkDataState.Success(
-                    popularItems
-                )
+                UiDataState.Success(popularItems)
             else
-                NetworkDataState.Error(
-                    NetworkStatus.NetworkError
-                )
+                UiDataState.Error(NetworkStatus.NetworkError)
         }
     }
 
