@@ -51,15 +51,16 @@ class PopularScreenTest {
             viewModel = PopularScreenViewModel(
                 getPopularRecipesUseCase
             )
+
+            composeTestRule.setContent {
+                controller = rememberNavController()
+                PopularScreen(controller, viewModel)
+            }
         }
     }
 
     @Test
     fun popularScreenIsShow() {
-        composeTestRule.setContent {
-            controller = rememberNavController()
-            PopularScreen(controller, viewModel)
-        }
         composeTestRule
             .onNodeWithContentDescription("popular items")
             .assertIsDisplayed()
