@@ -1,6 +1,7 @@
 package com.jetpackcompose.homepage.presentation.screens.popular
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -19,20 +20,24 @@ fun PopularScreen(
     navController: NavController,
     viewModel: PopularScreenViewModel = hiltViewModel()
 ) {
-    LazyRow(
-        modifier = Modifier
-            .fillMaxSize()
-            .semantics { contentDescription = "popular items" }
-    ) {
-        items(viewModel.popularList.value) {
-            RecipeLargeCard(
-                recipe = it,
-                onClick = {
-                    navController.navigate(
-                        "${Screen.Detail.route}/${it.id}"
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        item(0){
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .semantics { contentDescription = "popular items" }
+            ) {
+                items(viewModel.popularList.value) {
+                    RecipeLargeCard(
+                        recipe = it,
+                        onClick = {
+                            navController.navigate(
+                                "${Screen.Detail.route}/${it.id}"
+                            )
+                        }
                     )
                 }
-            )
+            }
         }
     }
 }

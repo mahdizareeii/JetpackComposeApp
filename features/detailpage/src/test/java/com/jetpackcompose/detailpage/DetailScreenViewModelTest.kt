@@ -23,10 +23,10 @@ class DetailScreenViewModelTest : TestCase() {
 
     private lateinit var viewModel: DetailScreenViewModel
 
+    private val savedStateHandle = SavedStateHandle()
+
     @Mock
     private val getRecipeByIdUseCase = mock(GetRecipeByIdUseCase::class.java)
-
-    private val savedStateHandle = SavedStateHandle()
 
     private val recipeId = 1
 
