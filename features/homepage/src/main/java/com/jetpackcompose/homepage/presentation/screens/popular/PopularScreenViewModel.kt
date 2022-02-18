@@ -26,7 +26,6 @@ class PopularScreenViewModel @Inject constructor(
     private val _error: MutableState<String?> = mutableStateOf(null)
     val error: State<String?> get() = _error
 
-
     init {
         viewModelScope.launch {
             when (val result = getPopularRecipesUseCase.invoke()) {
