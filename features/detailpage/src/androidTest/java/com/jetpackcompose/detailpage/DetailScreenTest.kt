@@ -65,16 +65,16 @@ class DetailScreenTest {
                 getRecipeByIdUseCase = getRecipeByIdUseCase,
                 savedStateHandle = savedStateHandle
             )
+
+            composeTestRule.setContent {
+                controller = rememberNavController()
+                DetailScreen(argument = Bundle.EMPTY, viewModel = viewModel)
+            }
         }
     }
 
     @Test
     fun detailScreenIsShow() {
-        composeTestRule.setContent {
-            controller = rememberNavController()
-            DetailScreen(argument = Bundle.EMPTY, viewModel = viewModel)
-        }
-
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
                 Screen.Detail.route -> {
