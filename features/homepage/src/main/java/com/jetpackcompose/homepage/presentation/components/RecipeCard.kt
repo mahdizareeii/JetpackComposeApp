@@ -34,24 +34,21 @@ fun RecipeCard(
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
-            recipe.featuredImage?.let { img ->
-                //load image with coil
-                Image(
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp),
-                    painter = rememberImagePainter(
-                        data = img,
-                        builder = {
-                            crossfade(true)
-                            placeholder(R.drawable.place_holder)
-                            scale(Scale.FILL)
-                        }
-                    ),
-                    contentDescription = "list item image",
-                    contentScale = ContentScale.Crop,
-                )
-            }
+            Image(
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(100.dp),
+                painter = rememberImagePainter(
+                    data = recipe.featuredImage,
+                    builder = {
+                        crossfade(true)
+                        placeholder(R.drawable.place_holder)
+                        scale(Scale.FILL)
+                    }
+                ),
+                contentDescription = "list item image",
+                contentScale = ContentScale.Crop
+            )
 
             Column(
                 modifier = Modifier
@@ -63,27 +60,23 @@ fun RecipeCard(
                         end = 8.dp
                     )
             ) {
-                recipe.title?.let {
-                    Text(
-                        text = it,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(Alignment.Start),
-                        style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.textColor
-                    )
-                }
+                Text(
+                    text = recipe.title ?: "",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentWidth(Alignment.Start),
+                    style = MaterialTheme.typography.subtitle1,
+                    color = MaterialTheme.colors.textColor
+                )
 
-                recipe.rating?.let {
-                    Text(
-                        text = "rating: $it",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(Alignment.Start),
-                        style = MaterialTheme.typography.caption,
-                        color = MaterialTheme.colors.textColor
-                    )
-                }
+                Text(
+                    text = "rating: ${recipe.rating}",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentWidth(Alignment.Start),
+                    style = MaterialTheme.typography.caption,
+                    color = MaterialTheme.colors.textColor
+                )
             }
 
         }

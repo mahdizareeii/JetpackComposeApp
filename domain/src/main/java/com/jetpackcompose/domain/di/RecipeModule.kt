@@ -1,6 +1,7 @@
 package com.jetpackcompose.domain.di
 
 import com.jetpackcompose.domain.mapper.RecipeDtoMapper
+import com.jetpackcompose.domain.usecase.GetPopularRecipesUseCase
 import com.jetpackcompose.domain.usecase.GetRecipeByIdUseCase
 import com.jetpackcompose.domain.usecase.SearchRecipesUseCase
 import com.jetpackcompose.repository.repository.RecipeRepository
@@ -31,5 +32,14 @@ object RecipeModule {
         repository: RecipeRepository,
         mapper: RecipeDtoMapper
     ): GetRecipeByIdUseCase = GetRecipeByIdUseCase(repository, mapper)
+
+    @Singleton
+    @Provides
+    fun provideGetPopularRecipesUseCase(
+        repository: RecipeRepository,
+        mapper: RecipeDtoMapper
+    ): GetPopularRecipesUseCase = GetPopularRecipesUseCase(
+        repository, mapper
+    )
 
 }

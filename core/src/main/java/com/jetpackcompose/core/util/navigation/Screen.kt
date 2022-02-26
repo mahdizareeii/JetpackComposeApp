@@ -8,22 +8,22 @@ sealed class Screen(
     val icon: Int = 0
 ) {
 
-    object Splash : Screen("splash_screen")
+    object Splash : Screen(route = "splash_screen")
 
-    object Home : Screen("home_screen")
+    object Home : Screen(route = "home_screen")
 
-    object Detail : Screen("detail_screen")
+    object Detail : Screen(route = "detail_screen")
 
     object HomeSearch : Screen(
-        "home_search_screen",
-        "Search",
-        R.drawable.ic_search_24
+        route = "home_search_screen",
+        title = "Search",
+        icon = R.drawable.ic_search_24
     )
 
     object HomePopular : Screen(
-        "home_popular_screen",
-        "Popular",
-        R.drawable.ic_star_24
+        route = "home_popular_screen",
+        title = "Popular",
+        icon = R.drawable.ic_star_24
     )
 
 }
