@@ -33,7 +33,7 @@ This is a modular sample Jetpack Compose project
 </p>
 
 
-The technologies and libraries that i used in this project are : 
+The technologies and libraries that I used in this project are :
 
 Jetpack Compose, Navigation Components.
 
