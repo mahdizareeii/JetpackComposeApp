@@ -31,6 +31,7 @@ class PopularScreenViewModel @Inject constructor(
     }
 
     fun getPopularList() {
+        clearError()
         viewModelScope.launch {
             _loading.value = true
             when (val result = getPopularRecipesUseCase.invoke()) {
@@ -39,6 +40,10 @@ class PopularScreenViewModel @Inject constructor(
             }
             _loading.value = false
         }
+    }
+
+    private fun clearError() {
+        _error.value = null
     }
 
 }

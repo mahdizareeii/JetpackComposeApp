@@ -22,7 +22,6 @@ fun ScreenError(
     Column(
         modifier = modifier
     ) {
-
         Text(
             modifier = Modifier
                 .fillMaxWidth()

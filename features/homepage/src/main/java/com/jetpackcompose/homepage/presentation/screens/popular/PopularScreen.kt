@@ -39,6 +39,14 @@ fun PopularScreen(
         mutableStateOf(false)
     }
 
+    var contentVisibility by remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(viewModel.popularList.value) {
+        contentVisibility = viewModel.popularList.value.isNotEmpty()
+    }
+
     LaunchedEffect(viewModel.loading.value) {
         loadingVisibility = viewModel.loading.value
     }
@@ -93,7 +101,8 @@ fun PopularScreen(
             }
         }
 
-        LazyColumn(
+
+        AnimatedVisibility(
             modifier = Modifier
                 .fillMaxSize()
                 .constrainAs(content) {
@@ -101,47 +110,55 @@ fun PopularScreen(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
-                }
-                .semantics { contentDescription = "popular items" },
-            contentPadding = PaddingValues(5.dp)
+                },
+            visible = contentVisibility,
+            enter = fadeIn(),
+            exit = fadeOut()
         ) {
-            items(viewModel.popularList.value) {
-                when (it) {
-                    is PopularScreenUIState.MostSells -> {
-                        LazyRow(
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            items(it.list) { recipe ->
-                                RecipeMostSell(
-                                    recipe = recipe,
-                                    onClick = {
-                                        navController.navigate(
-                                            "${Screen.Detail.route}/${recipe.id}"
-                                        )
-                                    }
-                                )
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .semantics { contentDescription = "popular items" },
+                contentPadding = PaddingValues(5.dp)
+            ) {
+                items(viewModel.popularList.value) {
+                    when (it) {
+                        is PopularScreenUIState.MostSells -> {
+                            LazyRow(
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                items(it.list) { recipe ->
+                                    RecipeMostSell(
+                                        recipe = recipe,
+                                        onClick = {
+                                            navController.navigate(
+                                                "${Screen.Detail.route}/${recipe.id}"
+                                            )
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
+                        is PopularScreenUIState.CheapProducts -> {
+                            LazyRow(
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                items(it.list) { recipe ->
+                                    RecipeCheapProduct(
+                                        recipe = recipe,
+                                        onClick = {
+                                            navController.navigate(
+                                                "${Screen.Detail.route}/${recipe.id}"
+                                            )
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
 
-                    is PopularScreenUIState.CheapProducts -> {
-                        LazyRow(
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            items(it.list) { recipe ->
-                                RecipeCheapProduct(
-                                    recipe = recipe,
-                                    onClick = {
-                                        navController.navigate(
-                                            "${Screen.Detail.route}/${recipe.id}"
-                                        )
-                                    }
-                                )
-                            }
-                        }
-                    }
                 }
-
             }
         }
     }

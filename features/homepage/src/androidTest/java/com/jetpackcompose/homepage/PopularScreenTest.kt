@@ -1,5 +1,6 @@
 package com.jetpackcompose.homepage
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -22,6 +23,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 
+@ExperimentalAnimationApi
 @ExperimentalCoilApi
 @RunWith(AndroidJUnit4::class)
 class PopularScreenTest {
