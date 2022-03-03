@@ -1,8 +1,31 @@
 # Jetpack Compose sample app
 This is a modular sample Jetpack Compose project
+
 <p align="left">
-  <img src="https://github.com/mahdizareeii/JetpackComposeApp/blob/master/app/src/main/res/drawable/modules.JPG?raw=true" width="250" title="modules" alt="modules">
+  <img src="https://github.com/mahdizareeii/JetpackComposeApp/blob/master/app/src/main/res/drawable/modules.JPG?raw=true" width="100" title="modules" alt="modules">
 </p>
+
+                              +----------+
+          +-------------------+   app    +--------------------+
+          |                   +----+-----+                    |
+          |                        |                          |
+          |                        |                          |
+    +-----v-----+             +----v-----+               +----v-----+
+    | resources <-------------+ features +--------------->   core   |
+    +-----------+             +----+-----+               +----------+
+                                   |
+                              +----v-----+
+                              |  domain  +---+
+                              +----+-----+   |
+                                   |         |
+                              +----v-----+   |
+                              |repository|   |
+                              +----+-----+   |
+                                   |         |
+                              +----v-----+   |
+                              |  network <---+
+                              +----------+
+
 
 <p align="left">
   <img src="https://github.com/mahdizareeii/JetpackComposeApp/blob/master/app/src/main/res/drawable/home_page.jpg?raw=true" width="250" title="home page" alt="home page">
