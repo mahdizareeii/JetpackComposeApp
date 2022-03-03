@@ -1,9 +1,8 @@
 # Jetpack Compose sample app
 This is a modular sample Jetpack Compose project
-
-![]()
-![]()
-![]()
+<p align="left">
+  <img src="https://github.com/mahdizareeii/JetpackComposeApp/blob/master/app/src/main/res/drawable/modules.JPG?raw=true" width="250" title="modules" alt="modules">
+</p>
 
 <p align="left">
   <img src="https://github.com/mahdizareeii/JetpackComposeApp/blob/master/app/src/main/res/drawable/home_page.jpg?raw=true" width="250" title="home page" alt="home page">
