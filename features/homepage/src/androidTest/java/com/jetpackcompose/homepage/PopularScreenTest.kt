@@ -1,5 +1,6 @@
 package com.jetpackcompose.homepage
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -7,7 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.core.model.NetworkDataState
+import com.jetpackcompose.core.model.UiDataState
+import com.jetpackcompose.domain.model.PopularScreenUIState
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.GetPopularRecipesUseCase
 import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreen
@@ -21,6 +23,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 
+@ExperimentalAnimationApi
 @ExperimentalCoilApi
 @RunWith(AndroidJUnit4::class)
 class PopularScreenTest {
@@ -39,11 +42,18 @@ class PopularScreenTest {
     fun setup() {
         runBlocking {
             Mockito.`when`(getPopularRecipesUseCase.invoke()).thenReturn(
-                NetworkDataState.Success(
+                UiDataState.Success(
                     listOf(
-                        Recipe(id = 1, title = "sample1"),
-                        Recipe(id = 2, title = "sample2"),
-                        Recipe(id = 3, title = "sample3"),
+                        PopularScreenUIState.CheapProducts(
+                            listOf(
+                                Recipe(id = 2, title = "sample2")
+                            )
+                        ),
+                        PopularScreenUIState.MostSells(
+                            listOf(
+                                Recipe(id = 2, title = "sample2")
+                            )
+                        )
                     )
                 )
             )

@@ -20,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class HomeScreenViewModelTest : TestCase() {
+class SearchViewModelTest : TestCase() {
 
     private lateinit var viewModel: SearchScreenViewModel
 

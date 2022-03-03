@@ -58,7 +58,9 @@ fun SearchBar(
                 leadingIcon = {
                     if (viewModel.loading.value)
                         CircularProgress(
-                            Modifier.width(25.dp).height(25.dp)
+                            Modifier
+                                .width(25.dp)
+                                .height(25.dp)
                         )
                     else
                         Icon(Icons.Filled.Search, contentDescription = "search icon")

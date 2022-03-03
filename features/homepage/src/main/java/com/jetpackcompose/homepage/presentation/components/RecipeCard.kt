@@ -46,7 +46,7 @@ fun RecipeCard(
                         scale(Scale.FILL)
                     }
                 ),
-                contentDescription = "list item image",
+                contentDescription = "recipe image",
                 contentScale = ContentScale.Crop
             )
 
