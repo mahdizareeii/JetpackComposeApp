@@ -21,6 +21,7 @@ class RecipePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Recipe> {
         return try {
+            if (query.isEmpty()) return LoadResult.Invalid()
             val position = params.key ?: 1
             return when (val result = searchRecipesUseCase.invoke(position, query)) {
                 is NetworkDataState.Success -> {
