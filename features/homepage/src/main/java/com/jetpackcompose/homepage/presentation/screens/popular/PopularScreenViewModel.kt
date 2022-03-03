@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularScreenViewModel @Inject constructor(
-    getPopularRecipesUseCase: GetPopularRecipesUseCase
+    private val getPopularRecipesUseCase: GetPopularRecipesUseCase
 ) : ViewModel() {
 
     private val _popularList: MutableState<List<PopularScreenUIState>> = mutableStateOf(listOf())
@@ -27,11 +27,17 @@ class PopularScreenViewModel @Inject constructor(
     val error: State<String?> get() = _error
 
     init {
+        getPopularList()
+    }
+
+    fun getPopularList() {
         viewModelScope.launch {
+            _loading.value = true
             when (val result = getPopularRecipesUseCase.invoke()) {
                 is UiDataState.Success -> _popularList.value = result.data
                 is UiDataState.Error -> _error.value = result.networkStatus.message
             }
+            _loading.value = false
         }
     }
 

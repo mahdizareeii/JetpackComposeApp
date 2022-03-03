@@ -32,40 +32,27 @@ class GetPopularRecipesUseCase @Inject constructor(
                 sendRequest(request = "Soup")
             }
 
-            popularItems.add(
-                PopularScreenUIState.MostSells(
-                    pizzaRequestJob.await()
-                )
-            )
+            val pizzaResult = pizzaRequestJob.await()
+            val beefResult = beefRequestJob.await()
+            val soupResult = soupRequestJob.await()
 
-            popularItems.add(
-                PopularScreenUIState.MostSells(
-                    beefRequestJob.await()
-                )
-            )
-
-            popularItems.add(
-                PopularScreenUIState.CheapProducts(
-                    soupRequestJob.await()
-                )
-            )
-
-            if (popularItems.isNotEmpty())
-                UiDataState.Success(popularItems)
-            else
+            if (pizzaResult == null || beefResult == null || soupResult == null) {
                 UiDataState.Error(NetworkStatus.NetworkError)
+            } else {
+                popularItems.add(PopularScreenUIState.MostSells(pizzaResult))
+                popularItems.add(PopularScreenUIState.MostSells(beefResult))
+                popularItems.add(PopularScreenUIState.CheapProducts(soupResult))
+
+                UiDataState.Success(popularItems)
+            }
         }
     }
 
     private suspend fun sendRequest(page: Int = 1, request: String) =
         when (val result = repository.search(page, request)) {
-            is NetworkDataState.Success -> {
-                result.data.results?.map {
-                    mapper.mapToDomainModel(it)
-                } ?: listOf()
-            }
-            is NetworkDataState.Error -> {
-                listOf()
-            }
+            is NetworkDataState.Success -> result.data.results?.map {
+                mapper.mapToDomainModel(it)
+            } ?: listOf()
+            is NetworkDataState.Error -> null
         }
 }
