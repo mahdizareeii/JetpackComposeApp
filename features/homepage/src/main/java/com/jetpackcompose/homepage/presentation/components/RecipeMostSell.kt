@@ -41,7 +41,7 @@ fun RecipeMostSell(
                     scale(Scale.FILL)
                 }
             ),
-            contentDescription = "detail image",
+            contentDescription = "recipe image",
             contentScale = ContentScale.Crop
         )
     }

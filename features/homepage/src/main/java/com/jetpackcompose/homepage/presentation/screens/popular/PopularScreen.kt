@@ -20,6 +20,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.domain.model.PopularScreenUIState
 import com.jetpackcompose.homepage.presentation.components.RecipeCheapProduct
+import com.jetpackcompose.homepage.presentation.components.RecipeDessert
 import com.jetpackcompose.homepage.presentation.components.RecipeMostSell
 import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.components.ScreenError
@@ -146,6 +147,23 @@ fun PopularScreen(
                             ) {
                                 items(it.list) { recipe ->
                                     RecipeCheapProduct(
+                                        recipe = recipe,
+                                        onClick = {
+                                            navController.navigate(
+                                                "${Screen.Detail.route}/${recipe.id}"
+                                            )
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
+                        is PopularScreenUIState.DessertProducts -> {
+                            LazyRow(
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                items(it.list) { recipe ->
+                                    RecipeDessert(
                                         recipe = recipe,
                                         onClick = {
                                             navController.navigate(

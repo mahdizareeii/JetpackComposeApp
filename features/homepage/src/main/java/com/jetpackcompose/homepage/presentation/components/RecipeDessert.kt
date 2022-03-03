@@ -19,21 +19,21 @@ import com.jetpackcompose.domain.model.Recipe
 
 @ExperimentalCoilApi
 @Composable
-fun RecipeCheapProduct(
+fun RecipeDessert(
     recipe: Recipe,
     onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .width(200.dp)
-            .height(200.dp)
+            .height(150.dp)
             .padding(5.dp),
-        shape = RoundedCornerShape(100)
+        shape = RoundedCornerShape(5, 5, 5, 5)
     ) {
         Image(
             modifier = Modifier
-                .clickable(onClick = onClick)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .clickable(onClick = onClick),
             painter = rememberImagePainter(
                 data = recipe.featuredImage,
                 builder = {
@@ -45,5 +45,4 @@ fun RecipeCheapProduct(
             contentScale = ContentScale.Crop
         )
     }
-
 }

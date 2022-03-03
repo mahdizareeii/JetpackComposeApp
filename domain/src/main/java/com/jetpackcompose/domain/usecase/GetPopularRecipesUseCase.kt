@@ -21,26 +21,32 @@ class GetPopularRecipesUseCase @Inject constructor(
         return withContext(Dispatchers.Default) {
 
             val pizzaRequestJob = async {
-                sendRequest(request = "Pizza")
+                sendRequest(request = "Pizza", page = 2)
             }
 
-            val beefRequestJob = async {
-                sendRequest(request = "Beef")
+            val pastaRequestJob = async {
+                sendRequest(request = "Pasta", page = 3)
             }
 
             val soupRequestJob = async {
                 sendRequest(request = "Soup")
             }
 
-            val pizzaResult = pizzaRequestJob.await()
-            val beefResult = beefRequestJob.await()
-            val soupResult = soupRequestJob.await()
+            val dessertRequestJob = async {
+                sendRequest(request = "Cake")
+            }
 
-            if (pizzaResult == null || beefResult == null || soupResult == null) {
+            val pizzaResult = pizzaRequestJob.await()
+            val pastaResult = pastaRequestJob.await()
+            val soupResult = soupRequestJob.await()
+            val dessertResult = dessertRequestJob.await()
+
+            if (pizzaResult == null || pastaResult == null || soupResult == null || dessertResult == null) {
                 UiDataState.Error(NetworkStatus.NetworkError)
             } else {
                 popularItems.add(PopularScreenUIState.MostSells(pizzaResult))
-                popularItems.add(PopularScreenUIState.MostSells(beefResult))
+                popularItems.add(PopularScreenUIState.MostSells(pastaResult))
+                popularItems.add(PopularScreenUIState.DessertProducts(dessertResult))
                 popularItems.add(PopularScreenUIState.CheapProducts(soupResult))
 
                 UiDataState.Success(popularItems)
