@@ -15,7 +15,8 @@ import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.domain.model.PopularScreenUIState
-import com.jetpackcompose.homepage.presentation.components.RecipeLargeCard
+import com.jetpackcompose.homepage.presentation.components.RecipeCheapProduct
+import com.jetpackcompose.homepage.presentation.components.RecipeMostSell
 
 @ExperimentalCoilApi
 @Composable
@@ -24,19 +25,19 @@ fun PopularScreen(
     viewModel: PopularScreenViewModel = hiltViewModel()
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .semantics { contentDescription = "popular items" },
         contentPadding = PaddingValues(5.dp)
     ) {
         items(viewModel.popularList.value) {
             when (it) {
                 is PopularScreenUIState.MostSells -> {
                     LazyRow(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .semantics { contentDescription = "popular items" }
+                        modifier = Modifier.fillMaxSize()
                     ) {
                         items(it.list) { recipe ->
-                            RecipeLargeCard(
+                            RecipeMostSell(
                                 recipe = recipe,
                                 onClick = {
                                     navController.navigate(
@@ -49,7 +50,20 @@ fun PopularScreen(
                 }
 
                 is PopularScreenUIState.CheapProducts -> {
-
+                    LazyRow(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        items(it.list) { recipe ->
+                            RecipeCheapProduct(
+                                recipe = recipe,
+                                onClick = {
+                                    navController.navigate(
+                                        "${Screen.Detail.route}/${recipe.id}"
+                                    )
+                                }
+                            )
+                        }
+                    }
                 }
             }
 

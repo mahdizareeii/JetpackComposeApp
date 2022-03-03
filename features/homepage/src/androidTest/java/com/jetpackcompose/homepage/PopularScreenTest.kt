@@ -7,7 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.core.model.NetworkDataState
+import com.jetpackcompose.core.model.UiDataState
+import com.jetpackcompose.domain.model.PopularScreenUIState
 import com.jetpackcompose.domain.model.Recipe
 import com.jetpackcompose.domain.usecase.GetPopularRecipesUseCase
 import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreen
@@ -39,11 +40,18 @@ class PopularScreenTest {
     fun setup() {
         runBlocking {
             Mockito.`when`(getPopularRecipesUseCase.invoke()).thenReturn(
-                NetworkDataState.Success(
+                UiDataState.Success(
                     listOf(
-                        Recipe(id = 1, title = "sample1"),
-                        Recipe(id = 2, title = "sample2"),
-                        Recipe(id = 3, title = "sample3"),
+                        PopularScreenUIState.CheapProducts(
+                            listOf(
+                                Recipe(id = 2, title = "sample2")
+                            )
+                        ),
+                        PopularScreenUIState.MostSells(
+                            listOf(
+                                Recipe(id = 2, title = "sample2")
+                            )
+                        )
                     )
                 )
             )
