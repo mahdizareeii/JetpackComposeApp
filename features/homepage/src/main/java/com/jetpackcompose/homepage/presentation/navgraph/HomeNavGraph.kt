@@ -18,7 +18,6 @@ class HomeNavGraph @Inject constructor(
     private val searchScreen: BaseScreen,
     @Screen.Detail.Detail
     private val detailScreen: BaseScreen
-
 ) : BaseNavGraph {
     @Composable
     override fun createNavGraph(navController: NavHostController) {
