@@ -1,33 +1,33 @@
 package com.jetpackcompose.homepage.presentation
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
+import android.os.Bundle
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import coil.annotation.ExperimentalCoilApi
+import com.jetpackcompose.core.util.base.BaseNavGraph
+import com.jetpackcompose.core.util.base.BaseScreen
+import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.components.HomeBottomNavigation
-import com.jetpackcompose.homepage.presentation.navgraph.HomeNavGraph
+import javax.inject.Inject
 
-@ExperimentalCoilApi
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
-@ExperimentalFoundationApi
-@Composable
-fun HomeScreen(navController: NavHostController = rememberNavController()) {
-    Scaffold(
-        bottomBar = {
-            HomeBottomNavigation(navController)
-        },
-        content = { contentPadding ->
-            Box(modifier = Modifier.padding(contentPadding)) {
-                HomeNavGraph(navController)
+class HomeScreen @Inject constructor(
+    @Screen.Home.Home
+    private val homeNavGraph: BaseNavGraph
+) : BaseScreen {
+    @Composable
+    override fun createScreen(argument: Bundle?, navController: NavHostController) {
+        Scaffold(
+            bottomBar = {
+                HomeBottomNavigation(navController)
+            },
+            content = { contentPadding ->
+                Box(modifier = Modifier.padding(contentPadding)) {
+                    homeNavGraph.createNavGraph(navController = navController)
+                }
             }
-        }
-    )
+        )
+    }
 }

@@ -3,26 +3,25 @@ package com.jetpackcompose.app.presentation.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.ui.ExperimentalComposeUiApi
-import coil.annotation.ExperimentalCoilApi
-import com.jetpackcompose.app.presentation.navgraph.AppNavGraph
+import androidx.navigation.compose.rememberNavController
+import com.jetpackcompose.core.util.base.BaseNavGraph
+import com.jetpackcompose.core.util.qualifiers.Qualifiers
 import com.jetpackcompose.resources.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@ExperimentalComposeUiApi
-@ExperimentalFoundationApi
-@ExperimentalAnimationApi
-@ExperimentalCoilApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Qualifiers.NavGraphs.AppNavGraph
+    @Inject
+    lateinit var appNavGraph: BaseNavGraph
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                AppNavGraph()
+                appNavGraph.createNavGraph(rememberNavController())
             }
         }
     }
