@@ -64,7 +64,7 @@ class PopularScreenTest {
 
             composeTestRule.setContent {
                 controller = rememberNavController()
-                PopularScreen(controller, viewModel)
+                PopularScreen()
             }
         }
     }

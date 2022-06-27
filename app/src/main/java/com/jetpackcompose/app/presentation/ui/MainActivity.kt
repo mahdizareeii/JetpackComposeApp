@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
+import com.jetpackcompose.app.presentation.navgraph.AppNavGraph
 import com.jetpackcompose.core.util.base.BaseNavGraph
 import com.jetpackcompose.core.util.qualifiers.Qualifiers
 import com.jetpackcompose.resources.theme.AppTheme
@@ -13,9 +14,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Qualifiers.NavGraphs.AppNavGraph
     @Inject
-    lateinit var appNavGraph: BaseNavGraph
+    lateinit var appNavGraph: AppNavGraph
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,25 +7,24 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.jetpackcompose.core.util.base.BaseNavGraph
+import androidx.navigation.compose.rememberNavController
 import com.jetpackcompose.core.util.base.BaseScreen
-import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.homepage.presentation.components.HomeBottomNavigation
+import com.jetpackcompose.homepage.presentation.navgraph.HomeNavGraph
 import javax.inject.Inject
 
 class HomeScreen @Inject constructor(
-    @Screen.Home.Home
-    private val homeNavGraph: BaseNavGraph
+    private val homeNavGraph: HomeNavGraph
 ) : BaseScreen {
     @Composable
-    override fun createScreen(argument: Bundle?, navController: NavHostController) {
+    override fun onScreenCreated(argument: Bundle?, navController: NavHostController) {
         Scaffold(
             bottomBar = {
                 HomeBottomNavigation(navController)
             },
             content = { contentPadding ->
                 Box(modifier = Modifier.padding(contentPadding)) {
-                    homeNavGraph.createNavGraph(navController = navController)
+                    homeNavGraph.createNavGraph(rememberNavController())
                 }
             }
         )

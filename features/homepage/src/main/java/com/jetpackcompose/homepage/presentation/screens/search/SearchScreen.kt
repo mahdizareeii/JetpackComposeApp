@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -41,14 +42,11 @@ import com.jetpackcompose.resources.components.ShimmerAnimationBrush
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalComposeUiApi
-@ExperimentalAnimationApi
-@ExperimentalCoilApi
-class SearchScreen @Inject constructor(
-    private val viewModel: SearchScreenViewModel
-) : BaseScreen {
+class SearchScreen @Inject constructor() : BaseScreen {
+    @OptIn(ExperimentalComposeUiApi::class)
     @Composable
-    override fun createScreen(argument: Bundle?, navController: NavHostController) {
+    override fun onScreenCreated(argument: Bundle?, navController: NavHostController) {
+        val viewModel: SearchScreenViewModel = hiltViewModel()
         val context = LocalContext.current
         val coroutineScope = rememberCoroutineScope()
         val scaffoldState = rememberScaffoldState()

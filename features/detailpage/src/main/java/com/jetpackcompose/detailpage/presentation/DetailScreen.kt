@@ -5,7 +5,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +22,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
@@ -33,13 +33,11 @@ import com.jetpackcompose.resources.components.ScreenError
 import com.jetpackcompose.resources.components.SquareView
 import com.jetpackcompose.resources.theme.textColor
 import javax.inject.Inject
-
-class DetailScreen @Inject constructor(
-    private val viewModel: DetailScreenViewModel,
-) : BaseScreen {
+class DetailScreen @Inject constructor() : BaseScreen {
     @OptIn(ExperimentalAnimationApi::class)
     @Composable
-    override fun createScreen(argument: Bundle?, navController: NavHostController) {
+    override fun onScreenCreated(argument: Bundle?, navController: NavHostController) {
+        val viewModel: DetailScreenViewModel = hiltViewModel()
         var loadingVisibility by remember {
             mutableStateOf(false)
         }

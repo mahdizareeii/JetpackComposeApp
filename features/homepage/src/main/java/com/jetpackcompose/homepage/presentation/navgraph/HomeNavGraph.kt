@@ -7,17 +7,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.jetpackcompose.core.util.base.BaseNavGraph
-import com.jetpackcompose.core.util.base.BaseScreen
 import com.jetpackcompose.core.util.navigation.Screen
+import com.jetpackcompose.detailpage.presentation.DetailScreen
+import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreen
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreen
 import javax.inject.Inject
 
 class HomeNavGraph @Inject constructor(
-    @Screen.HomePopular.Popular
-    private val popularScreen: BaseScreen,
-    @Screen.HomeSearch.Search
-    private val searchScreen: BaseScreen,
-    @Screen.Detail.Detail
-    private val detailScreen: BaseScreen
+    private val popularScreen: PopularScreen,
+    private val searchScreen: SearchScreen,
+    private val detailScreen: DetailScreen
 ) : BaseNavGraph {
     @Composable
     override fun createNavGraph(navController: NavHostController) {

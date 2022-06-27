@@ -15,7 +15,9 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import coil.annotation.ExperimentalCoilApi
 import com.jetpackcompose.core.util.base.BaseScreen
 import com.jetpackcompose.core.util.navigation.Screen
 import com.jetpackcompose.domain.model.PopularScreenUIState
@@ -26,12 +28,11 @@ import com.jetpackcompose.resources.components.CircularProgress
 import com.jetpackcompose.resources.components.ScreenError
 import javax.inject.Inject
 
-class PopularScreen @Inject constructor(
-    private val viewModel: PopularScreenViewModel
-) : BaseScreen {
-    @OptIn(ExperimentalAnimationApi::class)
+class PopularScreen @Inject constructor() : BaseScreen {
+    @OptIn(ExperimentalAnimationApi::class, ExperimentalCoilApi::class)
     @Composable
-    override fun createScreen(argument: Bundle?, navController: NavHostController) {
+    override fun onScreenCreated(argument: Bundle?, navController: NavHostController) {
+        val viewModel: PopularScreenViewModel = hiltViewModel()
         var loadingVisibility by remember {
             mutableStateOf(false)
         }

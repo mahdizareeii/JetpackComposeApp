@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 class SplashScreen @Inject constructor() : BaseScreen {
     @Composable
-    override fun createScreen(argument: Bundle?, navController: NavHostController) {
+    override fun onScreenCreated(argument: Bundle?, navController: NavHostController) {
         val textVisibility = remember {
             MutableTransitionState(false).apply {
                 //start animation immediately

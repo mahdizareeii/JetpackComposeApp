@@ -62,7 +62,7 @@ class SearchScreenTest {
 
             composeTestRule.setContent {
                 controller = rememberNavController()
-                SearchScreen(controller, viewModel)
+                SearchScreen()
             }
         }
     }

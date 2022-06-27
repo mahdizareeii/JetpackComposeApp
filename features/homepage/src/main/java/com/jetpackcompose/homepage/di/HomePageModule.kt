@@ -1,35 +1,31 @@
 package com.jetpackcompose.homepage.di
 
-import com.jetpackcompose.core.util.base.BaseNavGraph
-import com.jetpackcompose.core.util.base.BaseScreen
-import com.jetpackcompose.core.util.navigation.Screen
-import com.jetpackcompose.core.util.qualifiers.Qualifiers
+import com.jetpackcompose.detailpage.presentation.DetailScreen
 import com.jetpackcompose.homepage.presentation.HomeScreen
 import com.jetpackcompose.homepage.presentation.navgraph.HomeNavGraph
 import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreen
-import dagger.Binds
+import com.jetpackcompose.homepage.presentation.screens.popular.PopularScreenViewModel
+import com.jetpackcompose.homepage.presentation.screens.search.SearchScreen
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class HomePageModule {
-    @Qualifiers.NavGraphs.HomeNavGraph
-    @Binds
-    abstract fun bindHomePageNavGraph(
-        navGraph: HomeNavGraph
-    ): BaseNavGraph
+object HomePageModule {
+    @Provides
+    fun bindHomePageNavGraph(
+        popularScreen: PopularScreen,
+        searchScreen: SearchScreen,
+        detailScreen: DetailScreen
+    ): HomeNavGraph = HomeNavGraph(popularScreen, searchScreen, detailScreen)
 
-    @Screen.Home.Home
-    @Binds
-    abstract fun bindHomeScreen(
-        screen: HomeScreen
-    ): BaseScreen
+    @Provides
+    fun bindHomeScreen(
+        homeNavGraph: HomeNavGraph
+    ): HomeScreen = HomeScreen(homeNavGraph)
 
-    @Screen.HomePopular.Popular
-    @Binds
-    abstract fun bindHomePopular(
-        screen: PopularScreen
-    ): BaseScreen
+    @Provides
+    fun bindHomePopular(): PopularScreen = PopularScreen()
 }

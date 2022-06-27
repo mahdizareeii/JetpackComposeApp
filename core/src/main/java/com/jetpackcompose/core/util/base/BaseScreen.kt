@@ -2,23 +2,31 @@ package com.jetpackcompose.core.util.base
 
 import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.core.os.bundleOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 
 interface BaseScreen {
+
+    @Composable
+    abstract fun onScreenCreated(
+        argument: Bundle?,
+        navController: NavHostController
+    )
+
     @Composable
     fun createScreen(
         argument: Bundle?,
         navController: NavHostController
     ) {
+        onScreenCreated(argument = argument, navController = navController)
     }
 
     @Composable
     fun createScreen(
         navController: NavHostController
     ) {
+        onScreenCreated(argument = null, navController = navController)
     }
 
     fun getArgument(

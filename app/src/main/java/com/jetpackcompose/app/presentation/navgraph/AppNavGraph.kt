@@ -4,14 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.jetpackcompose.app.presentation.ui.SplashScreen
 import com.jetpackcompose.core.util.base.BaseNavGraph
-import com.jetpackcompose.core.util.base.BaseScreen
 import com.jetpackcompose.core.util.navigation.Screen
+import com.jetpackcompose.homepage.presentation.HomeScreen
 import javax.inject.Inject
 
 class AppNavGraph @Inject constructor(
-    @Screen.Splash.Splash private val splashScreen: BaseScreen,
-    @Screen.Home.Home private val homeScreen: BaseScreen
+    private val splashScreen: SplashScreen,
+    private val homeScreen: HomeScreen
 ) : BaseNavGraph {
     @Composable
     override fun createNavGraph(navController: NavHostController) {
@@ -19,7 +20,6 @@ class AppNavGraph @Inject constructor(
             navController = navController,
             startDestination = Screen.Splash.route,
         ) {
-
             composable(
                 route = Screen.Splash.route
             ) {
