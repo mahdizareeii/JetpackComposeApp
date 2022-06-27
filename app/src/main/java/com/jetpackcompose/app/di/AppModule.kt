@@ -20,10 +20,7 @@ object AppModule {
     fun provideAppNavGraph(
         splashScreen: SplashScreen,
         homeScreen: HomeScreen
-    ): AppNavGraph = AppNavGraph(
-        splashScreen,
-        homeScreen
-    )
+    ): AppNavGraph = AppNavGraph(splashScreen, homeScreen)
 
     @Provides
     fun provideSplashScreen(): SplashScreen = SplashScreen()

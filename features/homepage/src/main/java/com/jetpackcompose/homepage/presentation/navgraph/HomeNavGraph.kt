@@ -46,7 +46,6 @@ class HomeNavGraph @Inject constructor(
                     }
                 )
             ) { navBackStackEntry ->
-
                 detailScreen.createScreen(
                     argument = navBackStackEntry.arguments,
                     navController = navController

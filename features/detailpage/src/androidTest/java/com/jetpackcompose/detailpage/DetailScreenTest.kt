@@ -1,6 +1,5 @@
 package com.jetpackcompose.detailpage
 
-import android.os.Bundle
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.test.assertIsDisplayed
@@ -68,7 +67,7 @@ class DetailScreenTest {
 
             composeTestRule.setContent {
                 controller = rememberNavController()
-                DetailScreen(argument = Bundle.EMPTY, viewModel = viewModel)
+                DetailScreen()
             }
         }
     }

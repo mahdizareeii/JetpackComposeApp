@@ -24,7 +24,7 @@ class HomeScreen @Inject constructor(
             },
             content = { contentPadding ->
                 Box(modifier = Modifier.padding(contentPadding)) {
-                    homeNavGraph.createNavGraph(rememberNavController())
+                    homeNavGraph.createNavGraph(navController)
                 }
             }
         )
