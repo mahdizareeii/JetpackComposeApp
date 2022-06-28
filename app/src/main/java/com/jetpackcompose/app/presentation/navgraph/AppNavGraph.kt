@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.jetpackcompose.app.presentation.ui.SplashScreen
 import com.jetpackcompose.core.util.base.BaseNavGraph
 import com.jetpackcompose.core.util.navigation.Screen
@@ -29,7 +30,7 @@ class AppNavGraph @Inject constructor(
             composable(
                 route = Screen.Home.route
             ) {
-                homeScreen.createScreen(navController = navController)
+                homeScreen.createScreen(navController = rememberNavController())
             }
         }
     }

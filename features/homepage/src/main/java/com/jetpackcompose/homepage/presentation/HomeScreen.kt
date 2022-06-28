@@ -7,7 +7,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.jetpackcompose.core.util.base.BaseScreen
 import com.jetpackcompose.homepage.presentation.components.HomeBottomNavigation
 import com.jetpackcompose.homepage.presentation.navgraph.HomeNavGraph
