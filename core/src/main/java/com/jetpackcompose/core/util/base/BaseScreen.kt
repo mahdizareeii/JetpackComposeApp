@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 interface BaseScreen {
 
     @Composable
-    abstract fun onScreenCreated(
+    fun onScreenCreated(
         argument: Bundle?,
         navController: NavHostController
     )
