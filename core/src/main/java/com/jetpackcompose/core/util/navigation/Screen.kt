@@ -9,22 +9,42 @@ sealed class Screen(
     val icon: Int = 0,
 ) {
 
-    object Splash : Screen(route = "splash_screen")
+    object Splash : Screen(route = "splash_screen"){
+        @Qualifier
+        @Retention(AnnotationRetention.BINARY)
+        annotation class Splash
+    }
 
-    object Home : Screen(route = "home_screen")
+    object Home : Screen(route = "home_screen"){
+        @Qualifier
+        @Retention(AnnotationRetention.BINARY)
+        annotation class Home
+    }
 
-    object Detail : Screen(route = "detail_screen")
+    object Detail : Screen(route = "detail_screen"){
+        @Qualifier
+        @Retention(AnnotationRetention.BINARY)
+        annotation class Detail
+    }
 
     object HomeSearch : Screen(
         route = "home_search_screen",
         title = "Search",
         icon = R.drawable.ic_search_24
-    )
+    ){
+        @Qualifier
+        @Retention(AnnotationRetention.BINARY)
+        annotation class Search
+    }
 
     object HomePopular : Screen(
         route = "home_popular_screen",
         title = "Popular",
         icon = R.drawable.ic_star_24
-    )
+    ){
+        @Qualifier
+        @Retention(AnnotationRetention.BINARY)
+        annotation class Popular
+    }
 
 }

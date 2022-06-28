@@ -7,13 +7,15 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import com.jetpackcompose.core.util.base.BaseNavGraph
 import com.jetpackcompose.core.util.base.BaseScreen
+import com.jetpackcompose.core.util.qualifiers.Qualifiers
 import com.jetpackcompose.homepage.presentation.components.HomeBottomNavigation
-import com.jetpackcompose.homepage.presentation.navgraph.HomeNavGraph
 import javax.inject.Inject
 
 class HomeScreen @Inject constructor(
-    private val homeNavGraph: HomeNavGraph
+    @Qualifiers.NavGraphs.HomeNavGraph
+    private val homeNavGraph: BaseNavGraph
 ) : BaseScreen {
     @Composable
     override fun onScreenCreated(argument: Bundle?, navController: NavHostController) {
